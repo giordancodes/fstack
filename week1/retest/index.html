@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>skill testing</title>
+	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<link rel='stylesheet' href="styles.css" />
+	<script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="http://www.jimsproch.com/react/future/react.js"></script>
+	<script src="http://www.jimsproch.com/react/future/react-dom.js"></script>
+	<script src="http://www.jimsproch.com/react/babel-browser.js"></script>
+</head>
+
+<body>
+	<script type="text/babel">
+		var Transform = React.createClass({
+			getInitialState: function(){
+				return{
+					title: "test title",
+					text: "whatever the text is",
+					image: "http://",
+					comments: [
+						{ author: "This guy", text: "sweet post"}
+					]
+				}
+			}
+		});
+			
+		var Amazon = React.createClass({
+			getInitialState: function(){
+				return{
+					title: 'Fire TV',
+					vendor: 'Amazon',
+					reviews: {
+						rating: 4, reviews: 163863
+					}
+					price: 99.99,
+					images: [
+						{selected: true, src: 'img1.jpg'},
+						{selected: false, src: 'img1.jpg'},
+						{selected: false, src: 'img1.jpg'}
+					],
+					imagesV2: ['img1', 'img2', 'img3'],
+					selectedImg: 1,
+					checkboxes: [{
+						gift: false,
+						hdmi: false,
+						controller: true,
+						memCard: false,
+						quantity: 42
+					}],
+					content: ['point1', 'point2', 'point3']
+				}
+			}
+		});
+
+		var Keep = React.createClass({
+			getInitialState: function(){
+				return{
+					noteType: 'list',
+					title: 'Sample Note',
+					content: 'This is a note of sorts',
+					reminder: false,
+					bgColor: 'cyanish'
+				}
+			}
+		});
+			
+		
+		ReactDOM.render(<Transform />, document.getElementById('transformative'));
+	</script>
+
+	<div id="transformative"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+					
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

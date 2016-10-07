@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Counter in React</title>
+    <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel='stylesheet' href="styles.css" />
+    <script src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://www.jimsproch.com/react/future/react.js"></script>
+    <script src="http://www.jimsproch.com/react/future/react-dom.js"></script>
+    <script src="http://www.jimsproch.com/react/babel-browser.js"></script>
+  </head>
+  <body>
+    <div id='placeholder'></div>
+
+    <script type='text/babel'>
+      var Counter = React.createClass({
+        getInitialState: function() {
+          return { count: 0 };
+        },
+
+        render: function() {
+          var countClass;
+          if (this.state.count > 10) { countClass = 'text-danger' }
+          else if (this.state.count > 5) { countClass = 'text-warning' }
+          else if (this.state.count > 3) { countClass = 'text-info' }
+          else { countClass = 'text-success' }
+
+          return <div className='container'>
+            <div className='jumbotron'>
+              <div className='row'>
+                <div className='col-md-6'>
+                  <div id='counter' className={ countClass }>{ this.state.count }</div>
+                </div>
+                <div className='col-md-6'>
+                  <button id='increment' onClick={ this.click } className='btn btn-primary btn-lg'>Click me!</button>
+                </div>
+              </div>
+            </div>
+
+            { this.state.count > 10 ? <div className='alert alert-danger'>Thats a lot of things!</div> : null }
+            { this.state.count == 0 ? <div className='alert alert-info'>C'mon, add some things!</div> : null }
+          </div>
+        },
+
+        click: function() {
+          this.setState({ count: this.state.count + 1 });
+        }
+      })
+
+      ReactDOM.render(<Counter />, document.getElementById('placeholder'));
+    </script>
+
+
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Uncle Leo</title>
+	<style>
+		.blue{
+			color: blue;
+		}
+	</style>
+	<script src="http://www.jimsproch.com/react/future/react.js"></script>
+	<script src="http://www.jimsproch.com/react/future/react-dom.js"></script>
+	<script src="http://www.jimsproch.com/react/babel-browser.js"></script>
+	<!--	MAKE SURE TO ALWAYS CLOSE TAGS IN JSX-->
+
+	<script type="text/babel">
+		var OtherComponent = React.createClass({
+			render: function(){
+				return (
+					<h1>Word to ya fatha</h1>);
+			}
+		});
+		var HelloWorld = React.createClass({
+			render: function(){
+				return (
+					<div className="blue">Word to ya mutha
+				<OtherComponent />
+				</div>)
+			}
+		});
+		ReactDOM.render(
+			<div><HelloWorld /></div>, document.getElementById("app"))
+	</script>
+</head>
+
+<body>
+
+	<div id="app"></div>
+
+</body>
+
+</html>

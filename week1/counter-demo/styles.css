@@ -1,0 +1,25 @@
+#counter {
+  text-align: center;
+  font-size: 4em;
+}
+
+.jumbotron {
+  margin-top: 40px;
+	background-color: rgba(0,0,0,0);
+}
+
+#increment, #decrement, #reset {
+  margin-top: 20px;
+}
+
+.positive{
+	background-color: darkolivegreen;
+}
+
+.negative{
+	background-color: firebrick;
+}
+
+.zero{
+	background-color: bisque;
+}

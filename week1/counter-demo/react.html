@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Counter in React</title>
+    <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel='stylesheet' href="styles.css" />
+    <script src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://www.jimsproch.com/react/future/react.js"></script>
+    <script src="http://www.jimsproch.com/react/future/react-dom.js"></script>
+    <script src="http://www.jimsproch.com/react/babel-browser.js"></script>
+  </head>
+  <body>
+   
+    <div id='countThat'></div>
+
+    <script type='text/babel'>
+      var Counter = React.createClass({
+				
+				initCount: 2,
+				
+        getInitialState: function() {
+          return { 
+						count: 0,
+						benefits: ['is awesome', 'cheap', 'etc']
+					};
+        },
+
+        render: function() {
+					
+					var numClass;
+					
+					if(this.state.count > 0){
+						numClass = 'positive'
+					} else if(this.state.count < 0){
+						numClass = 'negative'
+					} else if(this.state.count === 0){
+						numClass = 'zero'
+					}
+					
+          return (
+						<div className='container'>
+							<div className={numClass}>
+								<div className='jumbotron'>
+									<div className='row'>
+										<div className='col-xs-12'>
+											<h1 id='counter'>{ this.state.count }</h1>
+											
+											{ this.state.count > 10 ? <div className="alert alert-danger col-xs-12">Whoaaaaaaaaaoooooo</div> : null}
+											
+											{ this.countWarning() }
+											<h2>multiplied by 9:{ this.state.count * 9 }</h2>
+											<h2>multiplied by 99:{ this.state.count * 99 }</h2>
+											<h2>multiplied by 42:{ this.state.count * 42 }</h2>
+											<ul>
+												{ this.state.benefits.map(function(benefit, i){
+													return <li key={ i }>{ benefit }</li>
+												})}
+											</ul>
+										</div>
+										<div className='col-xs-12'>
+											<button id='increment' onClick={ this.increment } className='btn btn-primary btn-lg col-xs-4'>Increment</button>
+											<button id='decrement' onClick={ this.decrement } className='btn btn-primary btn-lg col-xs-4'>Decrement</button>
+											<button id='reset' onClick={ this.reset } className='btn btn-primary btn-lg col-xs-4'>Reset??</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					)
+        },
+
+        increment: function() {
+          this.setState({ count: this.state.count + 1 });
+        },
+				
+				decrement: function(){
+					this.setState({ count: this.state.count - 1 });
+				},
+				
+				reset: function(){
+//					this.setState({ count: this.state.count = 0 });
+					this.setState({ count: 0 });
+					this.setState({ count: this.initCount });
+				},
+				
+				countWarning: function(){
+					if(this.state.count < 10){
+						return <div className="alert alert-danger col-xs-12">lessssss thannnnnnn tennnnnn</div>;
+					}
+				}
+			})
+				
+      ReactDOM.render(<Counter />, document.getElementById('countThat'));
+    </script>
+
+
+  </body>
+</html>

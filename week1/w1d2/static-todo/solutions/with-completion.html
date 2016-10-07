@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My Very Important Todo List</title>
+    <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<!--    <link rel='stylesheet' href="styles.css" />-->
+    <script src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://www.jimsproch.com/react/future/react.js"></script>
+    <script src="http://www.jimsproch.com/react/future/react-dom.js"></script>
+    <script src="http://www.jimsproch.com/react/babel-browser.js"></script>
+  </head>
+  <body>
+
+    <div id='placeholder'></div>
+
+    <script type='text/babel'>
+      var TodoApp = React.createClass({
+        getInitialState: function() {
+          return {
+            todos: [
+              { completed: false, text: "Mow the lawn" },
+              { completed: false, text: "Do the dishes" },
+            ]
+          }
+        },
+
+        render: function() {
+          return <div className='todo-list'>
+            <header className='todo-header'>{ this.state.todos.length } Things to Do</header>
+
+            <div>
+              { this.state.todos.map(function(todo, i) {
+                return <div className='row' key={ i } >
+                  <div className='col-md-2 todo-check'>
+                    <input type='checkbox'
+                           checked={ todo.completed }
+                           onClick={ this.completeTodo.bind(this, i) }
+                           />
+                  </div>
+                  <div className='col-md-10'>{ todo.text }</div>
+                </div>
+              })}
+
+              <div className='row new-todo'>
+                <div className='col-md-2'></div>
+                <div className='col-md-9'>
+                  <div className="input-group">
+                    <input type="text" className="form-control" placeholder="Add Something New" />
+                    <span className="input-group-btn">
+                      <button className="btn btn-primary" type="button">Add</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        },
+
+        completeTodo: function(i) {
+          var todos = this.state.todos;
+          todos[i].completed = !todos[i].completed;
+          this.setState({ todos: todos });
+        }
+      })
+
+
+      ReactDOM.render(<TodoApp />, document.getElementById('placeholder'));
+    </script>
+  </body>
+</html>

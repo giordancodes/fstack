@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My Very Important Todo List</title>
+    <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel='stylesheet' href="styles.css" />
+    <script src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://www.jimsproch.com/react/future/react.js"></script>
+    <script src="http://www.jimsproch.com/react/future/react-dom.js"></script>
+    <script src="http://www.jimsproch.com/react/babel-browser.js"></script>
+  </head>
+  <body>
+
+    <div id='placeholder'></div>
+
+    <script type='text/babel'>
+      var TodoApp = React.createClass({
+				
+				getInitialState: function(){
+					return{
+						
+						todos: [
+							{ item: 'Make Randy cheeseburgers', checked: true },
+							{ item: 'Wrestle the Green Bastard', checked: false },
+							{ item: 'Steal Sam Losco\'s hot dogs', checked: true }
+						],
+						count: 0,
+						newTodo: ''
+						
+					}
+				},
+				
+        render: function() {
+          return <div className='todo-list container'>
+            <header className='todo-header'>{this.state.todos.length} Things to Do</header>
+
+            <div>
+              
+              { this.state.todos.map(function(todo, checked, i){
+								return(
+									
+									<div className='row'>
+									
+										<label>
+											<div className='col-md-2 todo-check'>
+												<input type='checkbox' name={ todo.item } onChange={ this.handleClick } checked={ todo.checked }/>
+											</div>
+											
+											<div className='col-md-8' key={ i }>
+												{ todo.item }
+											</div>
+										</label>
+										
+									</div>
+								)
+							})}
+
+             <div className='row new-todo'>
+               
+                <div className='col-md-2'>
+                
+                	<input type="checkbox" onChange={ this.updateNewTodo } />
+                	
+                </div>
+                
+                <div className='col-md-9'>
+                  <div className="input-group">
+                   
+                    <input onChange={ this.updateNewTodo } type="text" className="form-control" placeholder="Add Something New" value={ this.state.newTodo } />
+                    
+                    
+                    <span className="input-group-btn">
+                      <button onClick={ this.state.newTodo.replace(/\s/g,'') != '' ? this.addTodo : null } className="btn btn-primary" type="button">Add</button>
+                    </span>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        },
+				
+				handleClick: function(event){
+					this.setState({ newTodo: event.target.checked });
+				},
+				
+//				this updates with any changes within the text input box
+				updateNewTodo: function(event){
+					this.setState({ newTodo: event.target.value})
+					console.log(this.state);
+				},
+				
+				addTodo: function(){
+					var t = this.state.todos;
+					t.push({ checked: false, item: this.state.newTodo });
+					
+					this.setState({ todos: t, newTodo: "" });
+				}
+				
+      })
+
+
+
+      ReactDOM.render(<TodoApp />, document.getElementById('placeholder'));
+    </script>
+  </body>
+</html>

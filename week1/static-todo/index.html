@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>My Very Important Todo List</title>
+	<link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<link rel='stylesheet' href="styles.css" />
+	<script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="http://www.jimsproch.com/react/future/react.js"></script>
+	<script src="http://www.jimsproch.com/react/future/react-dom.js"></script>
+	<script src="http://www.jimsproch.com/react/babel-browser.js"></script>
+	
+	<script type="text/babel">
+		
+		var Header = React.createClass({
+			render: function(){
+				return(
+				<header className='todo-header'>Things to Do</header>)
+			}
+		})
+		var TodoContent = React.createClass({
+			render: function(){
+				return(
+					<div>
+						<div className='row '>
+							<div className='col-md-2 todo-check'>
+								<input type='checkbox' />
+							</div>
+							<div className='col-md-10'>Do the dishes</div>
+						</div>
+						<div className='row '>
+							<div className='col-md-2 todo-check'>
+								<input type='checkbox' />
+							</div>
+							<div className='col-md-10'>Mow the Lawn</div>
+						</div>
+						<div className='row '>
+							<div className='col-md-2 todo-check'>
+								<input type='checkbox' />
+							</div>
+							<div className='col-md-10'>Do Full-stack homework</div>
+						</div>
+					</div>
+				)
+			}
+		})
+		var AddNew = React.createClass({
+			render: function(){
+				return(
+					<div className="input-group">
+						<input type="text" className="form-control" placeholder="Add Something New" />
+						<span className="input-group-btn">
+								<button className="btn btn-primary" type="button">Add</button>
+							</span>
+					</div>
+				)
+			}
+		})
+		var TodoApp = React.createClass({
+			render: function(){
+				return(
+					<div>
+						<div className='todo-list'>
+							<Header />
+							<TodoContent />
+						
+								<div className='row new-todo'>
+									<div className='col-md-2'></div>
+									<div className='col-md-9'>
+									
+										<AddNew />
+									</div>
+								</div>
+							</div>
+					</div>
+				)
+			}
+		})
+		
+		ReactDOM.render(
+			<div><TodoApp /></div>, document.getElementById("todoApp")
+		)
+	</script>
+	
+</head>
+
+<body>
+	<div id="todoApp"></div>
+</body>
+
+</html>

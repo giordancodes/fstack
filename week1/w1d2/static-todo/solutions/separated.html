@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My Very Important Todo List</title>
+    <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel='stylesheet' href="styles.css" />
+    <script src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://www.jimsproch.com/react/future/react.js"></script>
+    <script src="http://www.jimsproch.com/react/future/react-dom.js"></script>
+    <script src="http://www.jimsproch.com/react/babel-browser.js"></script>
+  </head>
+  <body>
+
+    <div id='placeholder'></div>
+
+    <script type='text/babel'>
+
+      var TodoItem = React.createClass({
+        render: function() {
+          var todo = this.props.todo;
+
+          return <div className='row'>
+            <div className='col-md-2 todo-check'>
+              <input type='checkbox'
+                     checked={ todo.completed }
+                     onClick={ this.completeTodo }
+                     />
+            </div>
+            <div className='col-md-10'>{ todo.text }</div>
+          </div>
+        },
+
+        completeTodo: function() {
+          if (this.props.onCompleteTodo) {
+            this.props.onCompleteTodo();
+          }
+        }
+      });
+
+      var AddTodo = React.createClass({
+        getInitialState: function() {
+          return { newTodo: "" }
+        },
+
+        render: function() {
+          return <div className='row new-todo'>
+            <div className='col-md-2'></div>
+            <div className='col-md-9'>
+              <div className="input-group">
+                <input type="text"
+                       className="form-control"
+                       placeholder="Add Something New"
+                       value={ this.state.newTodo }
+                       onChange={ this.updateNewTodo }
+                       />
+                <span className="input-group-btn">
+                  <button onClick={ this.addTodo } className="btn btn-primary" type="button">Add</button>
+                </span>
+              </div>
+            </div>
+          </div>;
+        },
+
+        updateNewTodo: function(event) {
+          this.setState({ newTodo: event.target.value });
+        },
+
+        addTodo: function() {
+          if (this.props.onAddTodo) {
+            this.props.onAddTodo({ completed: false, text: this.state.newTodo });
+          }
+          this.setState({ newTodo: "" });
+        }
+      })
+
+      var Header = React.createClass({
+        render: function() {
+          return <header className='todo-header'>{ this.props.text }</header>
+        }
+      })
+
+      var TodoApp = React.createClass({
+        getInitialState: function() {
+          return {
+            todos: [
+              { completed: false, text: "Mow the lawn" },
+              { completed: false, text: "Do the dishes" },
+            ]
+          }
+        },
+
+        render: function() {
+          return <div className='todo-list'>
+            <Header text={ this.todos.length + " things to do" } />
+
+            <div>
+              { this.state.todos.map(function(todo, i) {
+                return <TodoItem todo={ todo } key={ i } onCompleteTodo={ this.completeTodo.bind(this, i) }/>
+              })}
+
+              <AddTodo onAddTodo={ this.addTodo }/>
+            </div>
+          </div>
+        },
+
+        completeTodo: function(i) {
+          var todos = this.state.todos;
+          todos[i].completed = !todos[i].completed;
+          this.setState({ todos: todos });
+        },
+
+        addTodo: function(newTodo) {
+          var todos = this.state.todos.concat(newTodo);
+          this.setState({ todos: todos });
+        }
+      })
+
+
+      ReactDOM.render(<TodoApp />, document.getElementById('placeholder'));
+    </script>
+  </body>
+</html>

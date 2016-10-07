@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Facebook Post</title>
+    <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel='stylesheet' href="styles.css" />
+    <script src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://www.jimsproch.com/react/future/react.js"></script>
+    <script src="http://www.jimsproch.com/react/future/react-dom.js"></script>
+    <script src="http://www.jimsproch.com/react/babel-browser.js"></script>
+  </head>
+  <body>
+
+    <div id='placeholder'></div>
+
+    <script type='text/babel'>
+      var PostContent = React.createClass({
+        render: function() {
+          return <div>
+            <div><b>{ this.props.author }</b></div>
+            <div>{ this.props.content }</div>
+            <div>
+              Liked by { this.props.likedBy.length } people. |
+              <a href='' onClick={ this.like }>Like</a>
+            </div>
+          </div>;
+        },
+
+        like: function() {
+          if (this.props.onLike) {
+            this.props.onLike("Ryan");
+          }
+        }
+      });
+
+      var Post = React.createClass({
+        getInitialState: function() {
+          author: "Ryan",
+          content: "This is my post",
+          likedBy: ["Ryan", "Jim", "Dave"],
+          comments: [
+            { author: "Dave", content: "Great post!", likedBy: ['Ryan'] }
+          ]
+        },
+
+        render: function() {
+          return <div className="post">
+            <PostContent author={ this.state.author }
+                         content={ this.state.content }
+                         likedBy={ this.state.likedBy }
+                         onLike={ this.postLiked } />
+            <hr />
+            <div>
+              <header>Comments</header>
+              {
+                this.state.comments.map(function(comment, i) {
+                  return <PostContent author={ comment.author }
+                                      content={ comment.content }
+                                      likedBy={ comment.likedBy }
+                                      onLike={ this.commentLiked.bind(this, i) }
+                });
+              }
+          </div>;
+        },
+
+        postLiked: function(name) {
+          this.setState({ likedBy: this.state.likedBy.concat(name) })
+        },
+
+        commentLiked: function(i, name) {
+          var comments = this.state.comments;
+          comments.likedBy.push(name);
+          this.setState({ comments: comments });
+        }
+      });
+
+      ReactDOM.render(<Post />, document.getElementById('placeholder'));
+    </script>
+  </body>
+</html>
