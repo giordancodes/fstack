@@ -1,3 +1,11 @@
+body{
+	background: #222;
+}
+.wrapper{
+	max-width: 1440px;
+	text-align: center;
+	margin: 0 auto;
+}
 .App {
   text-align: center;
 }
@@ -21,4 +29,24 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.layer1{
+	color: #EEE;
+}
+.dataEntry input, .dataEntry textarea{
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 20px;
+}
+
+.dataEntry textarea{
+	width: 300px;
+	height: 80px;
+}
+
+.dataDisplay{
+	color: burlywood;
+	font-weight: 100;
+	font-family: monospace;
 }
