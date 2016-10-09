@@ -13,7 +13,11 @@ class App extends Component {
 	
 	printScrn(event){
 		event.preventDefault();
-		const pieces = this.state.pieces;
+		const pieces = {
+			text: this.state.text,
+			number: this.state.number
+		};
+		this.setState(pieces);
 	}
 	
   render() {
