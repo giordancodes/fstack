@@ -27,21 +27,26 @@ var ChatApp = React.createClass({
 
         { Object.keys(this.state.messages).map((id) => {
 					var message = this.state.messages[id];
+					var author = this.state.messages[id].author;
           return <div key={ id } className="message">
             <div className='author'>{ message.author }:</div>
             <div>{ message.message }</div>
 						<div>
-         			<button onClick={ this.onDelete.bind(this, id) }>
-         				delete?
-         			</button> </div>
+							{ author == this.state.currentUser ?
+								<button onClick={ () => this.deleteMessage(id) }>
+									delete?
+								</button> : null}
+						</div>
           </div>
         })}
         
         
         <div className='newMessage'>
-          <input type='text' value={ this.state.newMessage } onChange={ this.updateNewMessage } placeholder="Add a new Message" />
-          <button onClick={ this.postMessage }
-          				onSubmit={ this.postMessage }>Add Message</button>
+          <form onSubmit={(event) => event.preventDefault() }>
+          	<input type='text' value={ this.state.newMessage } onChange={ this.updateNewMessage } placeholder="Add a new Message" />
+          	<button onClick={ this.postMessage }
+          					onSubmit={ this.postMessage }>Add Message</button>
+          </form>
         </div>
       </div>
     }
@@ -85,16 +90,18 @@ var ChatApp = React.createClass({
 	
 	
 	deleteMessage(id){
-		var deadMessage = this.state.messages[id];
-		$.ajax({
-			url: "https://fir-chat-2-f6668.firebaseio.com/messages/" + id + ".json",
-			method: "DELETE",
-			data: JSON.stringify(deadMessage),
-			success: (data) =>{
-				console.log(data);
-				this.updateChat();
-			}
-		})
+		if(confirm("Are you friggin' sure?")){
+			var deadMessage = this.state.messages[id];
+			$.ajax({
+				url: "https://fir-chat-2-f6668.firebaseio.com/messages/" + id + ".json",
+				method: "DELETE",
+				data: JSON.stringify(deadMessage),
+				success: (data) =>{
+					console.log(data);
+					this.updateChat();
+				}
+			})
+		}
 	},
 	
 	componentDidMount(){
