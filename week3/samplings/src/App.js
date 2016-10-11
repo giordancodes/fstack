@@ -7,7 +7,9 @@ class App extends Component {
 	constructor(){
 		super();
 		this.state ={
-			pieces : {}
+			pieces : {
+				text: 'hi'
+			}
 		}
 	}
 	
@@ -32,7 +34,8 @@ class App extends Component {
 				</div>
       	
 				<div className="dataEntry">
-					<form onSubmit={ (event) => this.printScrn(event) }>
+					<form ref={(input) => this.form = input}
+								onSubmit={ (event) => this.printScrn(event) }>
 						<textarea ref={ (input) => this.text = input } placeholder="Step right up"/>
 						<input ref={ (input) => this.number = input } type="range" min="1" max="999" />
 						<button>Contribute</button>
@@ -41,6 +44,7 @@ class App extends Component {
 				
 				<div className="dataDisplay">
 					{/* <h2>{ this.state.pieces }</h2>*/}
+					{ <h2> {this.state.pieces.text} </h2> }
 				</div>
 			</div>
 			
