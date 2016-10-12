@@ -80,15 +80,9 @@ var ChatApp = React.createClass({
 		this.deleteMessage(id);
 	},
 	
-	
 	deleteMessage(id){
 		if(confirm("Are you friggin' sure?")){
-			var deadMessage = this.state.messages[id];
-			$.ajax({
-				url: "https://fir-chat-2-f6668.firebaseio.com/messages/" + id + ".json",
-				method: "DELETE",
-				data: JSON.stringify(deadMessage)
-			})
+			this.firebaseRef.child(id).remove();
 		}
 	},
 	
@@ -107,7 +101,6 @@ var ChatApp = React.createClass({
 			messages[dataSnapshot.key] = dataSnapshot.val();
 			
 			this.setState({messages});
-			
 		});
 		
 		this.firebaseRef.on('child_removed', (dataSnapshot) => {
@@ -116,15 +109,6 @@ var ChatApp = React.createClass({
 			delete messages[dataSnapshot.key];
 			
 			this.setState({messages});
-		})
-	},
-	
-	updateChat(){
-		
-		var component = this;
-		$.ajax({
-			url: "https://fir-chat-2-f6668.firebaseio.com/messages.json",
-			method: "GET"
 		})
 	}
 	
