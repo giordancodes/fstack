@@ -97,7 +97,6 @@ var ChatApp = React.createClass({
 				method: "DELETE",
 				data: JSON.stringify(deadMessage),
 				success: (data) =>{
-					console.log(data);
 					this.updateChat();
 				}
 			})
@@ -133,4 +132,4 @@ var ChatApp = React.createClass({
 //				})
 //       
 
-module.exports = ChatApp;
+export default ChatApp;

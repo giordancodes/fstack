@@ -13,6 +13,6 @@ var config = {
 firebase.initializeApp(config);
 
 // Include your React components like this:
-var ChatApp = require('./components/chat_app');
+import ChatApp from './components/chat_app';
 
 ReactDOM.render(<ChatApp />, document.getElementById("placeholder"));
