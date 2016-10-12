@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import firebase from 'firebase';
 
 
 var ChatApp = React.createClass({
   getInitialState() {
     return {
       newMessage: "",
-      messages: {},
-      currentUser: 'null',
+      messages: {
+				'id1': { author: 'G', message: 'Test'},
+				'id2': { author: 'GB', message: 'TestTest'}
+			},
+      currentUser: null,
       loggedIn: false
     }
   },
@@ -16,10 +18,8 @@ var ChatApp = React.createClass({
   render() {
     if (!this.state.loggedIn) {
       return <div className="splash">
-        <form onSubmit={ (e) => {e.preventDefault() } }>
-        	<input type='text' placeholder="Enter your name to start blabbing!" onChange={ this.setCurrentUser } />
-        	<button onClick={ this.login }>Login</button>
-        </form>
+        <input type='text' placeholder="Enter your name to start chatting!" onChange={ this.setCurrentUser }/>
+        <button onClick={ this.login }>Login</button>
       </div>
     } else {
       return <div>
@@ -43,7 +43,7 @@ var ChatApp = React.createClass({
         
         <div className='newMessage'>
           <form onSubmit={(event) => event.preventDefault() }>
-          	<input type='text' value={ this.state.newMessage } onChange={ this.updateNewMessage } placeholder="Fill some space" />
+          	<input type='text' value={ this.state.newMessage } onChange={ this.updateNewMessage } placeholder="Add a new Message" />
           	<button onClick={ this.postMessage }
           					onSubmit={ this.postMessage }>Add Message</button>
           </form>
@@ -71,43 +71,50 @@ var ChatApp = React.createClass({
 			message: this.state.newMessage 
 		}
 		
-		this.firebaseRef.push(newMessage);
-		this.setState({ newMessage: ""})
+		$.ajax({
+			url: "https://fir-chat-2-f6668.firebaseio.com/messages.json",
+			method: "POST",
+			data: JSON.stringify(newMessage),
+			success: (data) =>{
+				var newState = this.state.messages;
+				newState[data.name] = newMessage;
+				this.setState({ messages: newState, newMessage: ""})
+				this.updateChat();
+			}
+		})		
   },
 	
 	onDelete(id){
 		this.deleteMessage(id);
 	},
 	
+	
 	deleteMessage(id){
 		if(confirm("Are you friggin' sure?")){
-			this.firebaseRef.child(id).remove();
+			var deadMessage = this.state.messages[id];
+			$.ajax({
+				url: "https://fir-chat-2-f6668.firebaseio.com/messages/" + id + ".json",
+				method: "DELETE",
+				data: JSON.stringify(deadMessage),
+				success: (data) =>{
+					this.updateChat();
+				}
+			})
 		}
 	},
 	
-	componentDidUpdate(){
-		window.scrollTo(0, document.body.clientHeight);
+	componentDidMount(){
+		this.updateChat();
 	},
 	
-	componentDidMount(){
-		
-		this.firebaseRef = firebase.database().ref("messages");
-		
-		this.firebaseRef.on("child_added", (dataSnapshot) => {
-//			console.log(dataSnapshot.key, dataSnapshot.val());
-			
-			var messages = this.state.messages;
-			messages[dataSnapshot.key] = dataSnapshot.val();
-			
-			this.setState({messages});
-		});
-		
-		this.firebaseRef.on('child_removed', (dataSnapshot) => {
-			var messages = this.state.messages;
-			
-			delete messages[dataSnapshot.key];
-			
-			this.setState({messages});
+	updateChat(){
+		var component = this;
+		$.ajax({
+			url: "https://fir-chat-2-f6668.firebaseio.com/messages.json",
+			method: "GET",
+			success: (data) => {
+				component.setState({messages: data})
+			}
 		})
 	}
 	
