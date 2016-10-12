@@ -1,18 +1,18 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import firebase from 'firebase';
 
 // Initialize Firebase
-var firebase = require('firebase');
-var config = {
-  apiKey: "AIzaSyBgNrPtUxCTGbq1mF3NbZGMVEXnyTBWlJo",
-  authDomain: "fir-chat-bac0f.firebaseapp.com",
-  databaseURL: "https://fir-chat-bac0f.firebaseio.com",
-  storageBucket: "fir-chat-bac0f.appspot.com",
-  messagingSenderId: "29478721801"
-};
-firebase.initializeApp(config);
+ var config = {
+   apiKey: "AIzaSyDD9CzUnn5XoEW4sJhmo8Tc8ou_Ofqh66Y",
+   authDomain: "fir-chat-2-f6668.firebaseapp.com",
+   databaseURL: "https://fir-chat-2-f6668.firebaseio.com",
+   storageBucket: "fir-chat-2-f6668.appspot.com",
+   messagingSenderId: "586654546422"
+ };
+ firebase.initializeApp(config);
 
 // Include your React components like this:
-import ChatApp from './components/chat_app';
+import ChatApp from './components/chat_app-firebase';
 
 ReactDOM.render(<ChatApp />, document.getElementById("placeholder"));
