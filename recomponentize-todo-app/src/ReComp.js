@@ -11,6 +11,7 @@ class ReComp extends React.Component {
 		super();
 		this.updateText = this.updateText.bind(this);
 		this.updateCheck = this.updateCheck.bind(this);
+		this.onAdd = this.onAdd.bind(this);
 		this.state = {
 			todos:[
 				{ item: 'Water', checked: true },

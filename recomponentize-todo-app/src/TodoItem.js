@@ -28,6 +28,14 @@ class TodoItem extends React.Component {
 			</div>
 		)
 	}
+
+	onUpdateCheck(i) {
+		this.props.updateCheck(i);
+	}
+		
+	onUpdateText(i, e) {
+		this.props.updateText(i, e);
+	}
 }
 
 export default TodoItem;

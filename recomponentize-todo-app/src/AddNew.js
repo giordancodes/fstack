@@ -4,6 +4,8 @@ class AddNew extends React.Component {
 	
 	constructor(){
 		super();
+		this.updateNewTodo = this.updateNewTodo.bind(this);
+		this.addTodo = this.addTodo.bind(this);
 		this.state = {
 			newTodo: ''
 		}
