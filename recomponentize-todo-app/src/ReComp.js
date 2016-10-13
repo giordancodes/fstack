@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-//import ReactBootstrap from 'react-bootstrap';
+import React from 'react';
+import firebase from 'firebase';
 import HeaderTop from './HeaderTop';
 import TodoItem from './TodoItem';
 import AddNew from './AddNew';
@@ -23,7 +23,7 @@ class ReComp extends React.Component {
 	}
 	
   render() {
-			var component = this;
+			// var component = this;
 			
 			return(
 				<div className='container'>
