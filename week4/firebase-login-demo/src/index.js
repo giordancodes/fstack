@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './solution/App';
+import App from './components/App';
 import './index.css';
 import firebase from 'firebase';
 
@@ -11,10 +11,10 @@ ReactDOM.render(
 
 // Initialize Firebase
 var config = {
-  apiKey: "AIzaSyAVDuYnGR232I4TNsmxqr1M2ucRVP6_qnE",
-  authDomain: "login-demo-a123a.firebaseapp.com",
-  databaseURL: "https://login-demo-a123a.firebaseio.com",
-  storageBucket: "",
-  messagingSenderId: "345442827524"
+  apiKey: "AIzaSyCjIeeUpG482EugOaG-d4zxFbAgX-iER0E",
+  authDomain: "auth1-624ca.firebaseapp.com",
+  databaseURL: "https://auth1-624ca.firebaseio.com",
+  storageBucket: "auth1-624ca.appspot.com",
+  messagingSenderId: "259438038024"
 };
 firebase.initializeApp(config);

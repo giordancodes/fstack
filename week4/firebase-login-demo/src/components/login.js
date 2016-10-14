@@ -1,48 +1,70 @@
 import React from 'react';
 import firebase from 'firebase';
 
-var Login = React.createClass({
-  getInitialState: function() {
-    return {
+class Login extends React.Component{
+  
+  constructor(){
+    super();
+    this.setEmail = this.setEmail.bind(this);
+    this.setPassword = this.setPassword.bind(this);
+    this.setMode = this.setMode.bind(this);
+    this.login = this.login.bind(this);
+    this.state = {
       email: '',
       password: '',
       mode: 'login',
       error: null
     }
-  },
+  }
 
-  render: function() {
+  render(){
     return <div>
       { this.state.error ? <div>{ this.state.error }</div> : null }
       <div>
         <label>
-          <input type='radio' value='login' checked={ this.state.mode == 'login' } onChange={ this.setMode } />
+          <input type='radio' value='login' checked={ this.state.mode === 'login' } onChange={ this.setMode } />
           Login
         </label>
         <label>
-          <input type='radio' value='signup' checked={ this.state.mode == 'signup' } onChange={ this.setMode } />
+          <input type='radio' value='signup' checked={ this.state.mode === 'signup' } onChange={ this.setMode } />
           Signup
         </label>
       </div>
       <div>
-        <label for='email'>Email</label>
+        <label htmlFor='email'>Email</label>
         <input type='text' name='email' value={ this.state.email } onChange={ this.setEmail } />
       </div>
       <div>
-        <label for='email'>Password</label>
+        <label htmlFor='email'>Password</label>
         <input type='password' name='password' value={ this.state.password } onChange={ this.setPassword } />
       </div>
       <div>
-        <button>Login</button>
+        <button onClick={ this.login }>
+          { this.state.mode === 'login' ? 'Log-In' : "Sign Up" }
+        </button>
       </div>
     </div>
-  },
+  }
 
-  setEmail: function(evt) { this.setState({ email: evt.target.value }); },
-  setPassword: function(evt) { this.setState({ password: evt.target.value }); },
-  setMode: function(evt) { this.setState({ mode: evt.target.value }); }
+  setEmail(e) { this.setState({ email: e.target.value }) }
+  setPassword(e) { this.setState({ password: e.target.value }) }
+  setMode(e) { this.setState({ mode: e.target.value }) }
 
+  login(){
+    const email = this.state.email,
+          password = this.state.password,
+          component = this;
 
-});
+    if (this.state.mode === 'login'){
+      firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(function()  {component.props.onLogin( component.state.email )})
+      .catch((error) =>  this.setState({ error: error.message }))
+    } else {
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(function(){component.props.onLogin( component.state.email )})
+      .catch((error) => this.setState({ error: error.message }) )
+    }
+  }
+}
 
 export default Login;
