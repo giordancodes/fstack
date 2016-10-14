@@ -38,7 +38,7 @@ class Login extends React.Component{
         <label htmlFor='email'>Password</label>
         <input type='password' name='password' value={ this.state.password } onChange={ this.setPassword } />
       </div>
-      <div>
+      <div>``
         <button onClick={ this.login }>
           { this.state.mode === 'login' ? 'Log-In' : "Sign Up" }
         </button>
