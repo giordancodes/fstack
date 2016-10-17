@@ -78,11 +78,14 @@ class Login extends React.Component {
           password = this.state.password,
           component = this;
 
+    // if mode is login, pass through email & password to the well-named function
     if (this.state.mode === 'login'){
       firebase.auth().signInWithEmailAndPassword(email, password)
       .then(function() { component.props.onLogin( component.state.email )})
       .catch((error) => this.setState({ error: error.message }))
-    } else {
+    } 
+      // if mode is signup, pass through email & password
+      else {
       firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(function() { component.props.onLogin( component.state.email )})
       .catch((error) => this.setState({ error: error.message }))
