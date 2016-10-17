@@ -1,9 +1,7 @@
 import React from 'react';
-// import firebase from 'firebase';
 import Login from './Login';
 
 class App extends React.Component {
-
   constructor(){
     super();
     this.state = {

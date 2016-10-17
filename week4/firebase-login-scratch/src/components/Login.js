@@ -77,6 +77,8 @@ class Login extends React.Component {
     this.setState({ password: e.target.value })
   }
 
+  // take the current state of email and password inputs and set as variables
+
   login(){
     const email = this.state.email,
           password = this.state.password,
@@ -96,9 +98,7 @@ class Login extends React.Component {
       .then(function() { component.props.onLogin( component.state.email )})
       .catch((error) => this.setState({ error: error.message }))
     }
-
   }
-
 }
 
 export default Login;
