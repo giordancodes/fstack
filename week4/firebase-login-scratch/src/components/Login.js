@@ -5,6 +5,7 @@ class Login extends React.Component {
 
   constructor(){
     super();
+    // these functions are re-defined so they are bound to the parent
     this.setMode = this.setMode.bind(this);
     this.setEmail = this.setEmail.bind(this);
     this.setPassword = this.setPassword.bind(this);
@@ -16,7 +17,7 @@ class Login extends React.Component {
       error: null
     }
   }
-  // in this case, calling <Login /> in the parent will render all data in its render method
+  // in this case, calling <Login /> in the parent will render all data in its render method, which includes all inputs needed to gather user data
   // this.state is used in the child, and this.props in the parent
   render() {
     return (
@@ -64,6 +65,7 @@ class Login extends React.Component {
     )
   }
 
+  // each of these functions exist to set the state of their respective input
   setMode(e){
     this.setState({ mode: e.target.value })
   }
@@ -78,6 +80,8 @@ class Login extends React.Component {
     const email = this.state.email,
           password = this.state.password,
           component = this;
+
+// onLogin is the prop method called in either successful "then" instance below, even though the function is named loginUser in App.js
 
     // if mode is login, pass through email & password to the well-named function
     if (this.state.mode === 'login'){

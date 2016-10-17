@@ -20,7 +20,7 @@ class App extends React.Component {
       return <div>Successful login, { this.state.currentUser }! </div> 
     }
   }
-
+  // loginUser is a function in the parent which exists to set state
   loginUser(email){
     this.setState({ loggedIn: true, currentUser: email })
   }
