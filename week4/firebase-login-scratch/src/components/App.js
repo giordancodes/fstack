@@ -11,12 +11,13 @@ class App extends React.Component {
       loggedIn: false
     }
  }
-
+// this.state.loggedIn toggles which screen is rendered, setting default as not logged in
   render(){
-    if(this.state.loggedIn){
-      return <div>Successful login, { this.state.currentUser }! </div> 
-    }else{
+    if(!this.state.loggedIn){
       return <Login onLogin={ this.loginUser } /> 
+    }
+    else{
+      return <div>Successful login, { this.state.currentUser }! </div> 
     }
   }
 

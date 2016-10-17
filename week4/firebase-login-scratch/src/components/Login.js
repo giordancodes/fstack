@@ -16,7 +16,8 @@ class Login extends React.Component {
       error: null
     }
   }
-
+  // in this case, calling <Login /> in the parent will render all data in its render method
+  // this.state is used in the child, and this.props in the parent
   render() {
     return (
       <div>
@@ -84,7 +85,7 @@ class Login extends React.Component {
       .then(function() { component.props.onLogin( component.state.email )})
       .catch((error) => this.setState({ error: error.message }))
     } 
-      // if mode is signup, pass through email & password
+    // if mode is signup, pass through email & password
       else {
       firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(function() { component.props.onLogin( component.state.email )})
