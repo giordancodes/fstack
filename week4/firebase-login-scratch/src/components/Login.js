@@ -66,6 +66,7 @@ class Login extends React.Component {
   }
 
   // each of these functions exist to set the state of their respective input
+  // for every input, a method to set the state of what its tied to
   setMode(e){
     this.setState({ mode: e.target.value })
   }
