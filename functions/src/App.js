@@ -6,6 +6,7 @@ import Login from './Login';
 class App extends Component {
   constructor(){
     super();
+    this.submission = this.submission.bind(this);
     this.state = {
       clicks: null,
       beenClicked: false
@@ -15,25 +16,24 @@ class App extends Component {
     return (
       <div>
         { !this.state.beenClicked ? 
-          <h1>not yet</h1> :
+          <h2>nein</h2> :
           null
         }
         <div className="App">
-          <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h2>Welcome to React</h2>
-          </div>
           <Login 
             onSubmission={ this.submission }
           />
         </div>
+        <div>
+          <p>parental</p>
+          <p> { this.state.clicks } </p>
+        </div>
       </div>
     );
   }
-  submission(){
-    this.setState({ beenClicked: true })
+  submission(clicks){
+    this.setState({ beenClicked: true, clicks: clicks })
   }
-
 }
 
 export default App;

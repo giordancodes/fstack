@@ -21,7 +21,7 @@ class Login extends Component{
 	buttonPress(){
 		var component = this;
 		this.setState({ presses : this.state.presses + 1 });
-		component.props.onSubmission();
+		component.props.onSubmission( component.state.presses );
 	}
 	render(){
 		return(
