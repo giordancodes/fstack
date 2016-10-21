@@ -1,8 +1,11 @@
 import React from 'react';
 import firebase from 'firebase';
+import { Router, Route, Link, browserHistory } from 'react-router';
 
 import HeaderTop from './HeaderTop';
 import TodoItemsAll from './TodoItemsAll';
+import TodoItemsChecked from './TodoItemsChecked';
+import TodoItemsUnchecked from './TodoItemsUnchecked';
 import AddNew from './AddNew';
 import './App.css';
 
@@ -30,7 +33,7 @@ class ReComp extends React.Component {
 						todos={ this.state.todos }
 						/>
 					
-					<TodoItem 
+					<TodoItemsUnchecked
 						todos={ this.state.todos }
 						updateCheck={ this.updateCheck }
 						updateText={ this.updateText }
