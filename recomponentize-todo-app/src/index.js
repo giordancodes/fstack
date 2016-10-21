@@ -5,7 +5,6 @@ import mixpanel from 'mixpanel-browser';
 // import { MixpanelProvider } from 'react-mixpanel';
 
 // import ReComp from './ReComp';
-import TodoState from './TodoState';
 import TodoItemsAll from './TodoItemsAll';
 import TodoItemsChecked from './TodoItemsChecked';
 import TodoItemsUnchecked from './TodoItemsUnchecked';

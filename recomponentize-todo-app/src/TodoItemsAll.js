@@ -1,12 +1,6 @@
 import React from 'react';
 
 class TodoItemsAll extends React.Component {
-
-	static propTypes = {
-		todos: React.PropTypes.array.isRequired,
-		updateCheck: React.PropTypes.string.isRequired,
-		updateText: React.PropTypes.string.isRequired
-	}
 	
   render() {
 		const component = this;

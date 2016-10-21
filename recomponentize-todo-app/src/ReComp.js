@@ -34,18 +34,19 @@ class ReComp extends React.Component {
 						todos={ this.state.todos }
 						/>
 					
-					{/* <TodoItemsUnchecked
+					{/* <TodoItemsAll
 						todos={ this.state.todos }
 						updateCheck={ this.updateCheck }
 						updateText={ this.updateText }
 					/> */}
 
-					{/*<TodoState 
-							todos={ this.state.todos }
-							updateCheck={ this.updateCheck }
-							updateText={ this.updateText }
-						/ */>}
-					{ React.cloneElement(
+					{ <TodoItemsAll
+						todos={ this.state.todos }
+						updateCheck={ this.updateCheck }
+						updateText={ this.updateText }
+					/> }
+
+					{/* React.cloneElement(
 							this.props.children,
 							{
 								todos: this.state.todos,
@@ -53,7 +54,7 @@ class ReComp extends React.Component {
 								updateText: this.updateText
 							}
 						) 
-					}
+					*/}
 					
 					<AddNew 
 						todos={ this.state.todos }
