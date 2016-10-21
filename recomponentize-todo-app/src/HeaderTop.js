@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, Link, browserHistory } from 'react-router';
+import { Link } from 'react-router';
 
 class HeaderTop extends React.Component {
 	
@@ -8,13 +8,13 @@ class HeaderTop extends React.Component {
 			<nav>
 				<ul>
 					<li>
-						<button>All</button>
+						<Link to="/">All</Link>
 					</li>
 					<li>
-						<button>Checked</button>
+						<Link to="/checked">Checked</Link>
 					</li>
 					<li>
-						<button>Unchecked</button>
+						<Link to="/unchecked">Unchecked</Link>
 					</li>
 				</ul>
 				<header><h1>{ this.props.todos.length }</h1></header>
