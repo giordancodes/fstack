@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, Link, browserHistory } from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 import mixpanel from 'mixpanel-browser';
-import { MixpanelProvider } from 'react-mixpanel';
+// import { MixpanelProvider } from 'react-mixpanel';
 
-import ReComp from './ReComp';
-import TodoItemsAll from './TodoItemsAll.js';
-import TodoItemsChecked from './TodoItemsChecked.js';
-import TodoItemsUnchecked from './TodoItemsUnchecked.js';
+// import ReComp from './ReComp';
+import TodoState from './TodoState';
+import TodoItemsAll from './TodoItemsAll';
+import TodoItemsChecked from './TodoItemsChecked';
+import TodoItemsUnchecked from './TodoItemsUnchecked';
 
 import './index.css';
 
@@ -18,9 +19,9 @@ mixpanel.track("Initialized Application", {
 
 ReactDOM.render(
 	<Router history={ browserHistory }>
-		<Route path ='/' component={ TodoItemsAll } />
-		<Route path ='/checked' component={ TodoItemsChecked } />
-		<Route path ='/unchecked' component={ TodoItemsUnchecked } />
+		<Route path='/' component={ TodoItemsAll } />
+		<Route path='/checked' component={ TodoItemsChecked } />
+		<Route path='/unchecked' component={ TodoItemsUnchecked } />
 	</Router>,
   document.getElementById('root')
 );

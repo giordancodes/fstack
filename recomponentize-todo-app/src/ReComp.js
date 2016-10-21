@@ -3,6 +3,7 @@ import firebase from 'firebase';
 // import { Router, Route, Link, browserHistory } from 'react-router';
 
 import HeaderTop from './HeaderTop';
+import TodoState from './TodoState';
 // import TodoItemsAll from './TodoItemsAll';
 // import TodoItemsChecked from './TodoItemsChecked';
 // import TodoItemsUnchecked from './TodoItemsUnchecked';
@@ -38,8 +39,21 @@ class ReComp extends React.Component {
 						updateCheck={ this.updateCheck }
 						updateText={ this.updateText }
 					/> */}
-					
-					{ this.props.children }
+
+					{/*<TodoState 
+							todos={ this.state.todos }
+							updateCheck={ this.updateCheck }
+							updateText={ this.updateText }
+						/ */>}
+					{ React.cloneElement(
+							this.props.children,
+							{
+								todos: this.state.todos,
+								updateCheck: this.updateCheck,
+								updateText: this.updateText
+							}
+						) 
+					}
 					
 					<AddNew 
 						todos={ this.state.todos }
