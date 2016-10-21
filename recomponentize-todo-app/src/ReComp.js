@@ -1,7 +1,8 @@
 import React from 'react';
 import firebase from 'firebase';
+
 import HeaderTop from './HeaderTop';
-import TodoItem from './TodoItem';
+import TodoItemsAll from './TodoItemsAll';
 import AddNew from './AddNew';
 import './App.css';
 
@@ -22,9 +23,7 @@ class ReComp extends React.Component {
 		}
 	}
 	
-  render() {
-			// var component = this;
-			
+  render() {			
 			return(
 				<div className='container'>
 					<HeaderTop 
@@ -52,7 +51,6 @@ class ReComp extends React.Component {
 			checked: false 
 		});
 		this.setState({ todos: t, newTodo: "" });
-
 	}
 
 	updateText(i, e) {
@@ -61,13 +59,11 @@ class ReComp extends React.Component {
 //			3. Call this.setState to re-render
 		const t = this.state.todos;
 		t[i].item = e.target.value;
-		this.setState({ todos: t })
-
+		this.setState({ todos: t });
 	}
 		
 	updateCheck(i) {
 		const t = this.state.todos;
-
 //			short form for turning true into false & vice versa
 //			t[0].checked = !t[0].checked;
 		t[i].checked = !t[i].checked;
