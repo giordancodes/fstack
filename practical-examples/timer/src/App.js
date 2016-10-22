@@ -16,7 +16,7 @@ class App extends Component {
 
     // this.setState({ start: new Date().getTime() })
     // console.log(this.state.start);
-    this.state.start = new Date();
+    this.setState({ start: new Date() })
     this.timer = setInterval(this.tick, 50);
   }
 
