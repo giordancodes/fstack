@@ -5,8 +5,8 @@ class AddNew extends React.Component {
 	
 	constructor(){
 		super();
-		this.updateNewTodo = this.updateNewTodo.bind(this);
-		this.addTodo = this.addTodo.bind(this);
+		// this.updateNewTodo = this.updateNewTodo.bind(this);
+		// this.addTodo = this.addTodo.bind(this);
 		this.state = {
 			newTodo: ''
 		}
@@ -15,17 +15,19 @@ class AddNew extends React.Component {
 	render(){
 		return(
 			<div className="col-xs-12">
-				<input placeholder="nouveau item..." 
-					type="text" className="col-xs-4" 
-					onChange={ this.updateNewTodo } 
-					value={ this.state.newTodo } />
-				<button 
-					className="col-xs-2" 
-					onClick={ this.addTodo }>Addition</button>
-				<button
-					onClick={ this.login }>
-					Loggez-vous
-				</button>
+				<form onSubmit={ (e) => this.addTodo(e) }>
+					<input placeholder="nouveau item..." 
+						type="text" className="col-xs-4" 
+						onChange={ this.updateNewTodo } 
+						value={ this.state.newTodo } />
+					<button 
+						className="col-xs-2" 
+						onClick={ this.addTodo }>Addition</button>
+					<button
+						onClick={ this.login }>
+						Loggez-vous
+					</button>
+				</form>
 			</div>
 		)
 	}
@@ -41,11 +43,13 @@ class AddNew extends React.Component {
 		})
 	}
 
-	updateNewTodo(e){
+	updateNewTodo = (e) => {
 		this.setState({ newTodo: e.target.value });
 	}
 	
-	addTodo(){
+	addTodo = (e) => {
+		e.preventDefault();
+
 		mixpanel.track("Added Todo", {
 			newTodo: this.state.newTodo
 		})

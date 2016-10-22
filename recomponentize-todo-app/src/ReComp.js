@@ -14,7 +14,7 @@ class ReComp extends React.Component {
 		super();
 		// this.updateText = this.updateText.bind(this);
 		// this.updateCheck = this.updateCheck.bind(this);
-		this.onAdd = this.onAdd.bind(this);
+		// this.onAdd = this.onAdd.bind(this);
 		this.state = {
 			todos:[
 				{ item: 'Water', checked: true },
@@ -65,7 +65,7 @@ class ReComp extends React.Component {
 			)
 		}
 	
-	onAdd(newTodo) {
+	onAdd = (newTodo) => {
 		const t = this.state.todos.concat({ 
 			item: newTodo, 
 			checked: false 
