@@ -32,7 +32,7 @@ class App extends Component {
             
             var style = '';
 
-            if(component.state.focused == i){
+            if(component.state.focused === i){
               style = 'focused';
             }
             return <li key={ i } className={ style } onClick={ component.clicked.bind(component, i)}>{m}</li>; 
