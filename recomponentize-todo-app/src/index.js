@@ -18,7 +18,7 @@ mixpanel.track("Initialized Application", {
 
 ReactDOM.render(
 	<Router history={ browserHistory }>
-		<Route path='/' component={ ReComp } />
+		<Route path='/' component={ TodoItemsAll } />
 		<Route path='/checked' component={ TodoItemsChecked } />
 		<Route path='/unchecked' component={ TodoItemsUnchecked } />
 	</Router>,

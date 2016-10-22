@@ -23,6 +23,7 @@ class ReComp extends React.Component {
 				{ item: 'Seppuku', checked: true }
 			]
 		}
+		this.props.router.push('/');
 	}
 	
   render() {			
@@ -39,13 +40,7 @@ class ReComp extends React.Component {
 						updateText={ this.updateText }
 					/> */}
 
-					{ <TodoItemsAll
-						todos={ this.state.todos }
-						updateCheck={ this.updateCheck }
-						updateText={ this.updateText }
-					/> }
-
-					{/* React.cloneElement(
+					{ React.cloneElement(
 							this.props.children,
 							{
 								todos: this.state.todos,
@@ -53,7 +48,13 @@ class ReComp extends React.Component {
 								updateText: this.updateText
 							}
 						) 
-					*/}
+					}
+
+					{/* this.props.children && React.cloneElement( this.props.children, {
+							todos: this.state.todos,
+							updateCheck: this.updateCheck,
+							updateText: this.updateText
+						} ) */}
 					
 					<AddNew 
 						todos={ this.state.todos }

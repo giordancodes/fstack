@@ -2,8 +2,13 @@ import React from 'react';
 
 class TodoItemsAll extends React.Component {
 	
+	constructor(){
+		super();
+		console.log(this, 'this');
+	}
+
   render() {
-		console.log(this.props, 'TodoAll');
+		console.log(this, 'TodoAll');
 		const component = this;
 		return(
 			<div className="row">
@@ -37,5 +42,13 @@ class TodoItemsAll extends React.Component {
 		this.props.updateText(i, e);
 	}
 }
+
+// TodoItemsAll.propTypes = {
+// 	todos: React.PropTypes.array.isRequired,
+// 	updateCheck: React.PropTypes.func.isRequired,
+// 	updateText: React.PropTypes.func.isRequired,	
+// }
+
+console.log(TodoItemsAll.propTypes);
 
 export default TodoItemsAll;
