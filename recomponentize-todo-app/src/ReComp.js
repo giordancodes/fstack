@@ -3,15 +3,13 @@ import firebase from 'firebase';
 // import { Router, Route, Link, browserHistory } from 'react-router';
 
 import HeaderTop from './HeaderTop';
-import TodoState from './TodoState';
-// import TodoItemsAll from './TodoItemsAll';
+import TodoItemsAll from './TodoItemsAll';
 // import TodoItemsChecked from './TodoItemsChecked';
 // import TodoItemsUnchecked from './TodoItemsUnchecked';
 import AddNew from './AddNew';
 import './App.css';
 
 class ReComp extends React.Component {
-	
 	constructor(){
 		super();
 		this.updateText = this.updateText.bind(this);
@@ -28,6 +26,7 @@ class ReComp extends React.Component {
 	}
 	
   render() {			
+		console.log(this, "ReComp");
 			return(
 				<div className='container'>
 					<HeaderTop 

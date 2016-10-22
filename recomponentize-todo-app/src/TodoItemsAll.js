@@ -3,8 +3,8 @@ import React from 'react';
 class TodoItemsAll extends React.Component {
 	
   render() {
+		console.log(this.props, 'TodoAll');
 		const component = this;
-
 		return(
 			<div className="row">
 				{ this.props.todos.map((todo, i) => {

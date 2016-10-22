@@ -8,12 +8,6 @@ class Service extends Component {
       active: false
     }
   }
- services: [
-        { name: 'Web Development', price: 300 },
-        { name: 'Design', price: 400 },
-        { name: 'Integration', price: 250 },
-        { name: 'Training', price: 220 }
-      ];
 
   clickHandler(){
     const active = !this.state.active;
