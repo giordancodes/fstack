@@ -5,9 +5,10 @@ import './App.css';
 class App extends Component {
   constructor(){
     super();
+    this.tick = this.tick.bind(this);
     this.state={
       elapsed: 0,
-      start: 0
+      start: 0  
     }
   }
 
@@ -15,7 +16,8 @@ class App extends Component {
 
     // this.setState({ start: new Date().getTime() })
     // console.log(this.state.start);
-    this.timer = setInterval(this.tick, 90);
+    this.state.start = new Date();
+    this.timer = setInterval(this.tick, 50);
   }
 
   componentWillUnmount(){
@@ -24,12 +26,7 @@ class App extends Component {
 
   tick(){
     this.setState({ elapsed: new Date() - this.state.start });
-  }
-
-  start(){
-    console.log(new Date().getTime());
-    return new Date().getTime();
-  }
+  }  
 
   render() {
 
