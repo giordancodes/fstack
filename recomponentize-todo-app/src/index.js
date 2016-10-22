@@ -16,11 +16,16 @@ mixpanel.track("Initialized Application", {
 	awesome: true
 });
 
+// ReactDOM.render(
+// 	<Router history={ browserHistory }>
+// 		<Route path='/' component={ TodoItemsAll } />
+// 		<Route path='/checked' component={ TodoItemsChecked } />
+// 		<Route path='/unchecked' component={ TodoItemsUnchecked } />
+// 	</Router>,
+//   document.getElementById('root')
+// );
+
 ReactDOM.render(
-	<Router history={ browserHistory }>
-		<Route path='/' component={ TodoItemsAll } />
-		<Route path='/checked' component={ TodoItemsChecked } />
-		<Route path='/unchecked' component={ TodoItemsUnchecked } />
-	</Router>,
+	<ReComp/>,
   document.getElementById('root')
 );

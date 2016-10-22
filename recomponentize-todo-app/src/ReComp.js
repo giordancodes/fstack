@@ -9,11 +9,11 @@ import TodoItemsAll from './TodoItemsAll';
 import AddNew from './AddNew';
 import './App.css';
 
-class ReComp extends React.Component {
+class ReComp extends React.Component {	
 	constructor(){
 		super();
-		this.updateText = this.updateText.bind(this);
-		this.updateCheck = this.updateCheck.bind(this);
+		// this.updateText = this.updateText.bind(this);
+		// this.updateCheck = this.updateCheck.bind(this);
 		this.onAdd = this.onAdd.bind(this);
 		this.state = {
 			todos:[
@@ -23,7 +23,6 @@ class ReComp extends React.Component {
 				{ item: 'Seppuku', checked: true }
 			]
 		}
-		this.props.router.push('/');
 	}
 	
   render() {			
@@ -34,13 +33,13 @@ class ReComp extends React.Component {
 						todos={ this.state.todos }
 						/>
 					
-					{/* <TodoItemsAll
+					{ <TodoItemsAll
 						todos={ this.state.todos }
 						updateCheck={ this.updateCheck }
 						updateText={ this.updateText }
-					/> */}
+					/> }
 
-					{ React.cloneElement(
+					{/* React.cloneElement(
 							this.props.children,
 							{
 								todos: this.state.todos,
@@ -48,7 +47,7 @@ class ReComp extends React.Component {
 								updateText: this.updateText
 							}
 						) 
-					}
+					*/}
 
 					{/* this.props.children && React.cloneElement( this.props.children, {
 							todos: this.state.todos,
@@ -74,7 +73,7 @@ class ReComp extends React.Component {
 		this.setState({ todos: t, newTodo: "" });
 	}
 
-	updateText(i, e) {
+	updateText = (i, e) => {
 //			1. Pull this.state.todos into a variable
 //			2. Modify the 'text' property if todos[i] to 'event.target.value'
 //			3. Call this.setState to re-render
@@ -83,14 +82,14 @@ class ReComp extends React.Component {
 		this.setState({ todos: t });
 	}
 		
-	updateCheck(i) {
-		const t = this.state.todos;
-//			short form for turning true into false & vice versa
-//			t[0].checked = !t[0].checked;
-		t[i].checked = !t[i].checked;
+		updateCheck = (i) => {
+			const t = this.state.todos;
+	//			short form for turning true into false & vice versa
+	//			t[0].checked = !t[0].checked;
+			t[i].checked = !t[i].checked;
 
-		this.setState({ todos: t });
-	}
+			this.setState({ todos: t });
+		}
 }
 
 export default ReComp;
