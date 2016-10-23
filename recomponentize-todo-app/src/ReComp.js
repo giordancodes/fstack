@@ -1,7 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
 // import { Router, Route, Link, browserHistory } from 'react-router';
-
 import HeaderTop from './HeaderTop';
 import TodoItemsAll from './TodoItemsAll';
 // import TodoItemsChecked from './TodoItemsChecked';
@@ -10,8 +9,8 @@ import AddNew from './AddNew';
 import './App.css';
 
 class ReComp extends React.Component {	
-	constructor(){
-		super();
+	constructor(props){
+		super(props);
 		// this.updateText = this.updateText.bind(this);
 		// this.updateCheck = this.updateCheck.bind(this);
 		// this.onAdd = this.onAdd.bind(this);
@@ -32,22 +31,21 @@ class ReComp extends React.Component {
 					<HeaderTop 
 						todos={ this.state.todos }
 						/>
-					
-					{ <TodoItemsAll
+					{/* <TodoItemsAll
 						todos={ this.state.todos }
 						updateCheck={ this.updateCheck }
 						updateText={ this.updateText }
-					/> }
+					/> */}
 
-					{/* React.cloneElement(
-							this.props.children,
+					{ React.cloneElement(
+							this.props.route.children,
 							{
-								todos: this.state.todos,
-								updateCheck: this.updateCheck,
-								updateText: this.updateText
+								todos: this.props.route.todos,
+								updateCheck: this.props.route.updateCheck,
+								updateText: this.props.route.updateText
 							}
 						) 
-					*/}
+					}
 
 					{/* this.props.children && React.cloneElement( this.props.children, {
 							todos: this.state.todos,

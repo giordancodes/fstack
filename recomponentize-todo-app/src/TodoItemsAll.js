@@ -2,8 +2,8 @@ import React from 'react';
 
 class TodoItemsAll extends React.Component {
 	
-	constructor(){
-		super();
+	constructor(props){
+		super(props);
 		console.log(this, 'this');
 	}
 
@@ -30,6 +30,7 @@ class TodoItemsAll extends React.Component {
 					)
 				})
 				}
+				<RouteHandler />
 			</div>
 		)
 	}
