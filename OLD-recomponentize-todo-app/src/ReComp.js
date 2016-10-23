@@ -38,11 +38,11 @@ class ReComp extends React.Component {
 					/> */}
 
 					{ React.cloneElement(
-							this.props.route.children,
+							this.props.children,
 							{
-								todos: this.props.route.todos,
-								updateCheck: this.props.route.updateCheck,
-								updateText: this.props.route.updateText
+								todos: this.state.todos,
+								updateCheck: this.state.updateCheck,
+								updateText: this.state.updateText
 							}
 						) 
 					}
