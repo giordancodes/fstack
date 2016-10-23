@@ -25,7 +25,7 @@ class AddNew extends React.Component {
 						onClick={ this.addTodo }>Addition</button>
 					<button
 						onClick={ this.login }>
-						Loggez-vous
+						Log
 					</button>
 				</form>
 			</div>
@@ -38,8 +38,8 @@ class AddNew extends React.Component {
 		mixpanel.people.set({
 			'$first_name': 'Gio',
 			'$last_name': 'B',
-			'$email': 'thisguy@momo.com',
-			'this guy': false
+			'$email': 'this@that.com',
+			'ergo': false
 		})
 	}
 
@@ -50,12 +50,38 @@ class AddNew extends React.Component {
 	addTodo = (e) => {
 		e.preventDefault();
 
-		mixpanel.track("Added Todo", {
-			newTodo: this.state.newTodo
-		})
+		// mixpanel.track("Added Todo", {
+		// 	newTodo: this.state.newTodo
+		// })
 		this.props.onAdd(this.state.newTodo);
 		this.setState({ newTodo: ''});
 	}
+
+	onAdd = (newTodo) => {
+		const t = this.state.todos.concat({ 
+			item: newTodo, 
+			checked: false 
+		});
+		this.setState({ todos: t, newTodo: "" });
+	}
+
+		updateText = (i, e) => {
+	//			1. Pull this.state.todos into a variable
+	//			2. Modify the 'text' property if todos[i] to 'event.target.value'
+	//			3. Call this.setState to re-render
+			const t = this.state.todos;
+			t[i].item = e.target.value;
+			this.setState({ todos: t });
+		}
+				
+		updateCheck = (i) => {
+			const t = this.state.todos;
+	//			short form for turning true into false & vice versa
+	//			t[0].checked = !t[0].checked;
+			t[i].checked = !t[i].checked;
+
+			this.setState({ todos: t });
+		}
 	
 }
 

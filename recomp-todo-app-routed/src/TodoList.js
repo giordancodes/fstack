@@ -13,8 +13,10 @@ class TodoList extends React.Component {
 		this.state = {
 			todos:[
 				{ item: 'Water', checked: true },
-				{ item: 'Masticate', checked: false },
-				{ item: 'Intrepid', checked: false },
+				{ item: 'MC-202', checked: false },
+				{ item: '303', checked: false },
+				{ item: '808', checked: false },
+				{ item: 'Prophet 6', checked: true },
 				{ item: 'Seppuku', checked: true }
 			]
 		}
@@ -30,12 +32,14 @@ class TodoList extends React.Component {
 
 		if (this.props.params.filter == 'checked') {
 			items = this.state.todos.filter((todo) => todo.checked);
+		} else if (this.props.params.filter =='unchecked'){
+			items = this.state.todos.filter((todo) => !todo.checked)
 		} else {
 			items = this.state.todos;
 		}
 		return(
 			<div className="row">
-
+				
 				Filter: { this.props.params.filter}
 				(
 					<Link to="/">All</Link> |
@@ -61,26 +65,51 @@ class TodoList extends React.Component {
 					)
 				})
 				}
+
+					
+				<AddNew 
+					todos={ this.state.todos }
+					updateNewTodo={ this.updateNewTodo }
+					onAdd={ this.onAdd }
+				/>
 			</div>
 		)
 	}
 
-	filterItems = (items) => {
-		let items;
+	// filterItems = (items) => {
+	// 	let items;
 
-		if (this.props.params.filter == 'checked') {
-			items = this.state.todos.filter((todo) => todo.checked);
-		} else {
-			items = this.state.todos;
-		}
-	}
+	// 	if (this.props.params.filter == 'checked') {
+	// 		items = this.state.todos.filter((todo) => todo.checked);
+	// 	} else {
+	// 		items = this.state.todos;
+	// 	}
+	// }
 
-	onUpdateCheck(i) {
+	onUpdateCheck = (i) => {
 		this.props.updateCheck(i);
 	}
 		
-	onUpdateText(i, e) {
+	onUpdateText = (i, e) => {
 		this.props.updateText(i, e);
+	}
+	
+	updateText = (i, e) => {
+//			1. Pull this.state.todos into a variable
+//			2. Modify the 'text' property if todos[i] to 'event.target.value'
+//			3. Call this.setState to re-render
+		const t = this.state.todos;
+		t[i].item = e.target.value;
+		this.setState({ todos: t });
+	}
+			
+	updateCheck = (i) => {
+		const t = this.state.todos;
+//			short form for turning true into false & vice versa
+//			t[0].checked = !t[0].checked;
+		t[i].checked = !t[i].checked;
+
+		this.setState({ todos: t });
 	}
 }
 

@@ -6,18 +6,13 @@ class HeaderTop extends React.Component {
 	render(){
 		return(
 			<nav>
-				<ul>
-					<li>
-						<Link to="/">All</Link>
-					</li>
-					<li>
-						<Link to="/checked">Checked</Link>
-					</li>
-					<li>
-						<Link to="/unchecked">Unchecked</Link>
-					</li>
-				</ul>
 				<header><h1>{ this.props.todos.length }</h1></header>
+				Filter: { this.props.params.filter}
+				(
+					<Link to="/">All</Link> |
+					<Link to="/checked">Checked</Link> |
+					<Link to="/unchecked">Unchecked</Link>
+				)
 			</nav>
 		)
 	}
