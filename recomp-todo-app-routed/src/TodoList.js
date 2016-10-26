@@ -1,7 +1,7 @@
 import React from 'react';
-import firebase from 'firebase';
+// import firebase from 'firebase';
 import { Link } from 'react-router';
-import HeaderTop from './HeaderTop';
+// import HeaderTop from './HeaderTop';
 import AddNew from './AddNew';
 
 import './App.css';
@@ -30,9 +30,9 @@ class TodoList extends React.Component {
 		const component = this;
 		let items;
 
-		if (this.props.params.filter == 'checked') {
+		if (this.props.params.filter === 'checked') {
 			items = this.state.todos.filter((todo) => todo.checked);
-		} else if (this.props.params.filter =='unchecked'){
+		} else if (this.props.params.filter ==='unchecked'){
 			items = this.state.todos.filter((todo) => !todo.checked)
 		} else {
 			items = this.state.todos;
@@ -65,7 +65,6 @@ class TodoList extends React.Component {
 					)
 				})
 				}
-
 					
 				<AddNew 
 					todos={ this.state.todos }
@@ -75,16 +74,6 @@ class TodoList extends React.Component {
 			</div>
 		)
 	}
-
-	// filterItems = (items) => {
-	// 	let items;
-
-	// 	if (this.props.params.filter == 'checked') {
-	// 		items = this.state.todos.filter((todo) => todo.checked);
-	// 	} else {
-	// 		items = this.state.todos;
-	// 	}
-	// }
 
 	onUpdateCheck = (i) => {
 		this.props.updateCheck(i);
@@ -110,6 +99,13 @@ class TodoList extends React.Component {
 		t[i].checked = !t[i].checked;
 
 		this.setState({ todos: t });
+	}
+	onAdd = (newTodo) => {
+		const t = this.state.todos.concat({ 
+			item: newTodo, 
+			checked: false 
+		});
+		this.setState({ todos: t, newTodo: "" });
 	}
 }
 
