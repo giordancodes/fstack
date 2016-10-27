@@ -44,6 +44,8 @@ var App = React.createClass({
   },
 
   componentDidMount: function() {
+    // callback where firebase can grab info about currently signed in user
+    // either there's a logged in user, or they will be sent to /login
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({loggedIn: true, currentUser: user.displayName });

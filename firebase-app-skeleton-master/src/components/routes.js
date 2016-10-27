@@ -11,8 +11,8 @@ var Routes = React.createClass({
     return <Router history={ browserHistory }>
       <Route path='/login' component={ Login } />
       <Route path='/' component={ App }>
-        <IndexRoute components={ WidgetPage } />
-        <Route path='/reports' components={ ReportsPage } />
+        <IndexRoute component={ WidgetPage } />
+        <Route path='/reports' component={ ReportsPage } />
       </Route>
     </Router>
   }
