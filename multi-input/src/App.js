@@ -50,7 +50,7 @@ class App extends Component {
 
   updateField = (e) => {
     let form = this.state.form;
-
+    // simplifies data extraction from input fields into a single function
     form[e.target.name] = e.target.value;
     this.setState({form});
   }
