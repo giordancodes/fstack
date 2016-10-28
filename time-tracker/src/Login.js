@@ -9,7 +9,9 @@ class Login extends Component {
 			form:{
 				email: '',
 				password: ''
-			}
+			},
+			mode: 'login',
+			error: null
 		}
 	}
 
@@ -22,17 +24,27 @@ class Login extends Component {
         	<label htmlFor="email">email</label>
           <input 	type="text" 
           				placeholder="email"
-          				name="email"
           				id="email"
           				value={ this.state.form.email }
           				onChange={ this.updateField } />
           <label htmlFor="password">password</label>
           <input 	type="password"
           				placeholder="password"
-          				name="password"
           				id="password"
           				value={ this.state.form.password }
           				onChange={ this.updateField } />
+          <input 	type="radio"
+          				value='login'
+									checked={ this.state.mode === 'login' }
+          				onChange={ this.setMode }
+          				 />
+          				
+				 	<input 	type="radio"
+          				value='signup'
+									checked={ this.state.mode === 'signup' }
+          				onChange={ this.setMode }
+          				 />
+          				
         </form>
       </div>
     );
@@ -40,9 +52,12 @@ class Login extends Component {
 
   updateField = (e) =>{
   	let form = this.state.form;
-  	form[e.target.name] = e.target.value;
-  	console.log(form);
+  	form[e.target.id] = e.target.value;
   	this.setState({form})
+  }
+
+  setMode = (e) => {
+  	this.setState({mode: e.target.value})
   }
 }
 
