@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import { browserHistory } from 'react-router';
 
 import './App.scss';
 import './setup.scss';
@@ -134,7 +135,7 @@ class Login extends Component {
       })
     }
     result.then((data) => {
-
+      
     }
     )
     .catch((error) => {

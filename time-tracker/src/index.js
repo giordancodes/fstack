@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import firebase from 'firebase';
 
 import Login from './Login';
+// import ProjectsList from './ProjectsList';
 import './index.css';
 
 // Initialize Firebase
