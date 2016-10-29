@@ -59,6 +59,9 @@ class Login extends Component {
                     onChange={ this.setMode }
                      />
            </div>
+           <div className="button-div">
+             <button className='primary'>{ this.state.mode }</button>
+           </div>
         </form>
       </div>
     );
