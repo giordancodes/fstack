@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import firebase from 'firebase';
 
-import Login from './Login';
-// import ProjectsList from './ProjectsList';
+import Routes from './Routes';
 import './index.css';
 
 // Initialize Firebase
@@ -17,6 +16,6 @@ import './index.css';
   firebase.initializeApp(config);
 
 ReactDOM.render(
-  <Login />,
+  <Routes />,
   document.getElementById('root')
 );

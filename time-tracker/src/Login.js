@@ -3,7 +3,7 @@ import firebase from 'firebase';
 import { browserHistory } from 'react-router';
 
 import './App.scss';
-import './setup.scss';
+import './index.css';
 
 class Login extends Component {
 	constructor(){

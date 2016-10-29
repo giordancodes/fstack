@@ -71,3 +71,22 @@ h1 {
 		}
 	}
 }
+.projects-list{
+	h1{
+		margin-bottom: 10px;
+	}
+	#renameProjects{
+		text-align: center;
+		font-weight: 300;
+		color: $lightblue;
+		input{
+			text-align: center;
+			margin: 0 5px;
+			color: $blue;
+			background: none ;
+			border: none;
+			padding: 0;
+			width: 75px;
+		}
+	}
+}
