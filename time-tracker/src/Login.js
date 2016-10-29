@@ -23,11 +23,10 @@ class Login extends Component {
     return (
       <div className="login wrapper"> 
         <h1>Identify Yourself</h1>
-        <code> { this.state.error ? <div>{ this.state.error }</div> : null } </code>
 				<div className="greeting">
           <code>
             { 
-              (this.state.form.email) ? `Hello, ${this.state.form.email}.` : null 
+              (this.state.form.email) ? `Hello, ${this.state.form.email}` : null 
             } 
             {
               (this.state.form.name) ? `..or do you prefer ${this.state.form.name}?` : null
@@ -73,6 +72,7 @@ class Login extends Component {
                { this.state.mode }
              </button>
            </div>
+           <div className="error"> { this.state.error ? <code>{ this.state.error }</code> : null } </div>
             { (this.state.mode === 'signup' ) ?
               <div className='roboMode'>
               <div className="input">
@@ -134,7 +134,7 @@ class Login extends Component {
       })
     }
     result.then((data) => {
-      
+
     }
     )
     .catch((error) => {
