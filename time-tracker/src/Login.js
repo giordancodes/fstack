@@ -88,12 +88,14 @@ class Login extends Component {
                  <input  type="radio"
                         id='roboModeOff'
                         checked={ !this.state.roboMode }
+                        value={ !this.state.roboMode }
                         onChange={ this.verifyRobot }
                          />
                  <label htmlFor="roboMode">yes</label>
                  <input  type="radio"
                         id='roboMode'
                         checked={ this.state.roboMode }
+                        value={ this.state.roboMode }
                         onChange={ this.verifyRobot }
                          />
                           </div>
@@ -111,7 +113,7 @@ class Login extends Component {
 
   verifyRobot = () =>{
     let roboMode = this.state.roboMode;
-    this.setState({roboMode})
+    this.setState({roboMode : roboMode})
   } 
 
   setMode = (e) => {
