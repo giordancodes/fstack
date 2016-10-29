@@ -14,6 +14,26 @@ body {
 	max-width: 360px;
 	margin: 0 auto;
 }
+header{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	a{
+		margin: 0 5px;
+		color: $liver;
+		text-decoration: none;
+		font-weight:300;
+		transition: all .4s;
+		&:hover, &:focus{
+			color: $white;
+			font-weight:800;
+		}
+	}
+}
 h1 {
 	text-align: center;
 	font-weight: 400;

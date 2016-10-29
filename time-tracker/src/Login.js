@@ -30,7 +30,7 @@ class Login extends Component {
               (this.state.form.email) ? `Hello, ${this.state.form.email}` : null 
             } 
             {
-              (this.state.form.name) ? `..or do you prefer ${this.state.form.name}?` : null
+              (this.state.form.name) ? `...or do you prefer ${this.state.form.name}?` : null
             }
           </code>
         </div>
@@ -105,6 +105,17 @@ class Login extends Component {
     );
   }
 
+  // componentDidMount(){
+  //   firebase.auth().onAuthStateChanged((user) => {
+  //     console.log(user);
+  //     if (user){
+  //       this.setState({ loggedIn:true, currentUser: user.displayName })
+  //     } else {
+  //       browserHistory.push('/login');
+  //     }
+  //   })
+  // }
+
   updateField = (e) =>{
   	let form = this.state.form;
   	form[e.target.id] = e.target.value;
@@ -135,9 +146,9 @@ class Login extends Component {
       })
     }
     result.then((data) => {
-      
-    }
-    )
+      // this.props.logInUser();
+      browserHistory.push('/');
+    })
     .catch((error) => {
       this.resetError(error);
     })

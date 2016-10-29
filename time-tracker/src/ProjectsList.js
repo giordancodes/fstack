@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
 
 import './App.scss';
 import './index.css';
@@ -26,14 +25,10 @@ class ProjectsList extends Component {
     );
   }
 
-  // updateProjects = (e) =>{
-  //   let n = this.props.projectsName;
-  //   n = e.target.value;
-  //   this.setState({projectsName: n})
-  // }
   onUpdateProjects = (e) =>{
     this.props.updateProjects(e);
   }
+
 }
 
 export default ProjectsList;

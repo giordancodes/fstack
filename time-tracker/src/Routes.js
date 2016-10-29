@@ -6,10 +6,7 @@ import Login from './Login';
 import ProjectsList from './ProjectsList';
 
 class Routes extends Component {
-	constructor(){
-		super();
-	}
-
+  
   render() {
     return (
       <Router history={ browserHistory }>
