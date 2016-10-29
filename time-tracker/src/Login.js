@@ -23,6 +23,7 @@ class Login extends Component {
     return (
       <div className="login wrapper"> 
         <h1>Identify Yourself</h1>
+        <code> { this.state.error ? <div>{ this.state.error }</div> : null } </code>
 				<div className="greeting">
           <code>
             { 
@@ -33,7 +34,7 @@ class Login extends Component {
             }
           </code>
         </div>
-        <form onSubmit={ (e) => e.preventDefault }>
+        <form onSubmit={ this.login }>
           <div className="input">
             <label  htmlFor="email">email</label>
             <input  type="text" 
@@ -68,7 +69,7 @@ class Login extends Component {
            </div>
            <div className="button-div">
              <button  className='primary'
-                      onClick={ (e) => e.preventDefault } >
+                      onClick={ this.login } >
                { this.state.mode }
              </button>
            </div>
@@ -88,14 +89,12 @@ class Login extends Component {
                  <input  type="radio"
                         id='roboModeOff'
                         checked={ !this.state.roboMode }
-                        value={ !this.state.roboMode }
                         onChange={ this.verifyRobot }
                          />
                  <label htmlFor="roboMode">yes</label>
                  <input  type="radio"
                         id='roboMode'
                         checked={ this.state.roboMode }
-                        value={ this.state.roboMode }
                         onChange={ this.verifyRobot }
                          />
                           </div>
@@ -113,18 +112,34 @@ class Login extends Component {
 
   verifyRobot = () =>{
     let roboMode = this.state.roboMode;
-    this.setState({roboMode : roboMode})
+    (roboMode === false ? roboMode = true : roboMode = false)
+    this.setState({roboMode})
   } 
 
   setMode = (e) => {
   	this.setState({mode: e.target.id})
   }
 
-  login = () =>{
-    // let result;
-    // if(this.state.mode === "login"){
-
-    // }
+  login = (e) =>{
+    e.preventDefault();
+    let result;
+    let creds = this.state.form;
+    if(this.state.mode === "login"){
+      result = firebase.auth().signInWithEmailAndPassword(
+        creds.email, creds.password)
+    } else {
+      result = firebase.auth().createUserWithEmailAndPassword(creds.email, creds.password)
+      .then((user) => {
+        return user.updateProfile({ displayName: creds.name })
+      })
+    }
+    result.then((data) => {
+      
+    }
+    )
+    .catch((error) => {
+      this.setState({error: error.message})
+    })
   }
 }
 
