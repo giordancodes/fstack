@@ -138,8 +138,15 @@ class Login extends Component {
     }
     )
     .catch((error) => {
-      this.setState({error: error.message})
+      this.resetError(error);
     })
+  }
+
+  resetError = (error) =>{
+    this.setState({error: error.message})
+    setTimeout(() => {
+      this.setState({error: null})}
+      , 5000);
   }
 }
 
