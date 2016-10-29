@@ -9,10 +9,12 @@ class Login extends Component {
 		super();
 		this.state={
 			form:{
+        name: '',
 				email: '',
 				password: ''
 			},
 			mode: 'login',
+      roboMode: false,
 			error: null
 		}
 	}
@@ -22,12 +24,17 @@ class Login extends Component {
       <div className="login wrapper"> 
         <h1>Identify Yourself</h1>
 				<div className="greeting">
-          <code>{ 
-            (this.state.form.email) ? `Hello, ${this.state.form.email}` : null 
-          }</code>
+          <code>
+            { 
+              (this.state.form.email) ? `Hello, ${this.state.form.email}.` : null 
+            } 
+            {
+              (this.state.form.name) ? `..or do you prefer ${this.state.form.name}?` : null
+            }
+          </code>
         </div>
         <form onSubmit={ (e) => e.preventDefault }>
-        	<div className="input">
+          <div className="input">
             <label  htmlFor="email">email</label>
             <input  type="text" 
                     placeholder="email"
@@ -43,15 +50,15 @@ class Login extends Component {
                     value={ this.state.form.password }
                     onChange={ this.updateField } />
           </div>
-          <div className="input">
+          <div className="input radio-sneak">
             <label  htmlFor="login">login</label>
             <input  type="radio"
                     id='login'
                     checked={ this.state.mode === 'login' }
                     onChange={ this.setMode }
                      />
-           </div>
-          <div className="input">
+          </div>
+          <div className="input radio-sneak">
             <label  htmlFor="signup">sign up</label>
             <input  type="radio"
                     id='signup'
@@ -60,8 +67,37 @@ class Login extends Component {
                      />
            </div>
            <div className="button-div">
-             <button className='primary'>{ this.state.mode }</button>
+             <button  className='primary'
+                      onClick={ (e) => e.preventDefault } >
+               { this.state.mode }
+             </button>
            </div>
+            { (this.state.mode === 'signup' ) ?
+              <div className='roboMode'>
+              <div className="input">
+                <label  htmlFor="name">name of user</label>
+                <input  type="text" 
+                        placeholder="name"
+                        id="name"
+                        value={ this.state.form.name }
+                        onChange={ this.updateField } />
+               </div>
+               <div className="input">
+                 <label>is user machine/part-machine?</label>
+                 <label htmlFor="roboModeOff">no</label>
+                 <input  type="radio"
+                        id='roboModeOff'
+                        checked={ !this.state.roboMode }
+                        onChange={ this.verifyRobot }
+                         />
+                 <label htmlFor="roboMode">yes</label>
+                 <input  type="radio"
+                        id='roboMode'
+                        checked={ this.state.roboMode }
+                        onChange={ this.verifyRobot }
+                         />
+                          </div>
+           </div> : null }
         </form>
       </div>
     );
@@ -73,8 +109,20 @@ class Login extends Component {
   	this.setState({form})
   }
 
+  verifyRobot = () =>{
+    let roboMode = this.state.roboMode;
+    this.setState({roboMode})
+  } 
+
   setMode = (e) => {
   	this.setState({mode: e.target.id})
+  }
+
+  login = () =>{
+    // let result;
+    // if(this.state.mode === "login"){
+
+    // }
   }
 }
 

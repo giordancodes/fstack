@@ -24,6 +24,7 @@ h1 {
 	font-size: 20px;
 	padding: 5px;
 	font-weight: 500;
+	width: 80px;
 }
 .login {
 	.greeting {
@@ -40,7 +41,6 @@ h1 {
 			flex-direction: row;
 			justify-content: space-between;
 			font-size: 16px;
-			padding-bottom: 10px;
 			input {
 				width: 160px;
 				background: $white;
@@ -49,9 +49,15 @@ h1 {
 			input[type=radio] {
 				width: 20px;
 			}
-			label + input[type="radio"]:checked{
-			 	display: none;
-			}
+		}
+		.roboMode .input:last-child{
+			margin-top: 10px;
+		}
+		.radio-sneak input[type="radio"]:checked{
+		 	display: none;
+		}
+		& > div {
+			padding-bottom: 10px;
 		}
 		.button-div{
 			text-align: right;
