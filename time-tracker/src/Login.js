@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 
-import './App.css';
-import './setup.css';
+import './App.scss';
+import './setup.scss';
 
 class Login extends Component {
 	constructor(){

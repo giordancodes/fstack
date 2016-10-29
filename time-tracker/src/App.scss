@@ -1,36 +1,60 @@
+$black: #1B1725;
+$lightblue: #3E92CC;
+$blue: #226CE0;
+$white: #FAE8EB;
+$liver: #534B62;
+
 body {
-	background: #1B1725;
+	background: $black;
 }
-
-.wrapper{
+.wrapper {
 	padding: 0 5px;
-	/*font-family: 'Roboto', sans-serif;*/
 	font-family: 'Josefin Sans', sans-serif;
-	color: #111;
+	color: #DDD;
 }
-
-.login .greeting{
-	height: 60px;
-	display: none;
-}
-
-h1{
+h1 {
 	text-align: center;
 	font-weight: 400;
 	font-family: 'Josefin Sans', sans-serif;
 }
-
-form .input{
-	display: -webkit-flex;
-	display: -moz-flex;
-	display: -ms-flex;
-	display: -o-flex;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	font-size: 16px;
+.primary {
+	background: $blue;
+	border: none;
+	color: $white;
+	font-size: 20px;
+	padding: 5px;
+	font-weight: 500;
 }
-
-form .input input{
-	width: 160px;
+.login {
+	.greeting {
+		height: 60px;
+		color: $lightblue;
+	}
+	form {
+		.input {
+			display: -webkit-flex;
+			display: -moz-flex;
+			display: -ms-flex;
+			display: -o-flex;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			font-size: 16px;
+			padding-bottom: 10px;
+			input {
+				width: 160px;
+				background: $white;
+				border: none;
+			}
+			input[type=radio] {
+				width: 20px;
+			}
+			label + input[type="radio"]:checked{
+			 	display: none;
+			}
+		}
+		.button-div{
+			text-align: right;
+		}
+	}
 }
