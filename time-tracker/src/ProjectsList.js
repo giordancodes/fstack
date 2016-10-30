@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import $ from 'jquery';
 
 import './App.scss';
 import './index.css';
@@ -8,7 +7,8 @@ import './index.css';
 class ProjectsList extends Component {
   constructor() {
     super();
-    this.state={ 
+    this.state={
+      rename: false
     }
   }
   render() {
@@ -16,24 +16,40 @@ class ProjectsList extends Component {
       <div className="projects-list wrapper">
         <h1>{ this.props.projectsName } List</h1>
         <section id="renameProjects">
-          <label  htmlFor="rename-input"
-                  onClick={ this.showRename }
-                  >change </label> 
-          <input  type="text"
-                  id="rename-input" 
-                  value={ this.props.projectsName }
-                  onChange={ this.onUpdateProjects } /> 
-          <label  htmlFor="rename-input"
-                  onClick={ this.showRename }
-                  >name?</label>
+          <div>
+            <label  htmlFor="rename-input"
+                    onClick={ this.showRename }
+                    >change</label> 
+            { this.state.rename ?
+              <input  type="text"
+                      id="rename-input" 
+                      value={ this.props.projectsName }
+                      onChange={ this.onUpdateProjects } /> : null 
+            }
+            <label  htmlFor="rename-input"
+                    onClick={ this.showRename }
+                    >name?</label>
+          </div>
+          { this.state.rename ?
+            <div>
+              <button onClick={ this.renameConfirm }
+                      className="secondary"
+                      id="renameProjectsButton" >
+                <code>confirm</code>
+              </button>
+              <button onClick={ this.renameCancel }
+                      className="secondary"
+                      id="cancelRenameProjectsButton" >
+                <code>cancel</code>
+              </button>
+            </div> : null
+          }
         </section>
       </div>
     );
   }
 
   componentDidMount(){
-    $('#rename-input').hide();
-    
   }
 
   onUpdateProjects = (e) =>{
@@ -41,7 +57,16 @@ class ProjectsList extends Component {
   }
 
   showRename = () =>{
-    $('#rename-input').show();
+    this.setState({rename: true})
+  }
+
+  renameConfirm = () =>{
+    let newName = this.props.projectsName;
+    // firebaseRef.push{(name: newName)}
+  }
+
+  renameCancel = () =>{
+    this.setState({rename: false});
   }
 
 }

@@ -50,9 +50,7 @@
   },
   "dependencies": {
     "firebase": "^3.5.2",
-    "jquery": "^3.1.1",
     "react": "^15.3.2",
-    "react-addons-css-transition-group": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-router": "^3.0.0"
   },
