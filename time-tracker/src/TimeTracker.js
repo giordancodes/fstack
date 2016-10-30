@@ -26,13 +26,13 @@ class TimeTracker extends Component {
         </header>
         { React.cloneElement(this.props.children, { projectsName: this.state.projectsName,
           updateProjects: this.updateProjects })}
+        <footer>© 2016 <a href="http://giordan.ca">Giordan Battaglin</a> </footer>
       </div>
     );
   }
 
   componentDidMount(){
     firebase.auth().onAuthStateChanged((user) => {
-      console.log(user);
       if (user){
         this.setState({ loggedIn:true, currentUser: user.displayName })
       } else {
@@ -52,8 +52,13 @@ class TimeTracker extends Component {
   }
 
   logout = () =>{
-    firebase.auth().signOut();
-    this.setState({loggedIn: false})
+    // let popup = confirm("Would you care to sign out?");
+    // if (popup === true){
+      firebase.auth().signOut();
+      this.setState({loggedIn: false})
+    // }else{
+      // browserHistory.push('/');
+    // }
   }
 
 }
