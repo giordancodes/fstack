@@ -146,7 +146,6 @@ class Login extends Component {
       })
     }
     result.then((data) => {
-      // this.props.logInUser();
       browserHistory.push('/');
     })
     .catch((error) => {

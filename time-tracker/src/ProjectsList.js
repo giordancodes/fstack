@@ -24,7 +24,8 @@ class ProjectsList extends Component {
               <input  type="text"
                       id="rename-input" 
                       value={ this.props.projectsName }
-                      onChange={ this.onUpdateProjects } /> : null 
+                      onChange={ this.onUpdateProjects } 
+                      onSubmit={ this.renameConfirm } /> : null 
             }
             <label  htmlFor="rename-input"
                     onClick={ this.showRename }
@@ -62,7 +63,7 @@ class ProjectsList extends Component {
 
   renameConfirm = () =>{
     let newName = this.props.projectsName;
-    // firebaseRef.push{(name: newName)}
+    firebaseRef.push({name: newName});
   }
 
   renameCancel = () =>{
