@@ -24,9 +24,11 @@ class TimeTracker extends Component {
           <Link to='/'>projects</Link>
           <Link to='/login' onClick={ this.logout }>sign out</Link>
         </header>
-        { React.cloneElement(this.props.children, { projectsName: this.state.projectsName,
-          updateProjects: this.updateProjects,
-          firebaseRef: this.firebaseRef })}
+        { React.cloneElement(this.props.children, 
+          { 
+            projectsName: this.state.projectsName,
+            updateProjects: this.updateProjects,
+            firebaseRef: this.firebaseRef })}
         <footer>© 2016 <a href="http://giordan.ca">Giordan Battaglin</a> </footer>
       </div>
     );

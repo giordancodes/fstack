@@ -63,7 +63,7 @@ class ProjectsList extends Component {
 
   renameConfirm = () =>{
     let newName = this.props.projectsName;
-    firebaseRef.push({name: newName});
+    // firebaseRef.push({name: newName});
   }
 
   renameCancel = () =>{
