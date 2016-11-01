@@ -36,13 +36,14 @@ class TimeTracker extends Component {
     this.firebaseRef = firebase.database().ref("projects");
     firebase.auth().onAuthStateChanged((user) => {
       if (user){
-        this.setState({ loggedIn:true, currentUser: user.displayName })
+        this.setState({ loggedIn:true, currentUser: user.displayName });
+        browserHistory.push('/');
       } else {
         browserHistory.push('/login');
       }
 
       // this.firebase.push(test: 'test');
-      console.log(user.uid, this.firebaseRef)
+      // console.log(user.uid, this.firebaseRef)
     })
   }
 
