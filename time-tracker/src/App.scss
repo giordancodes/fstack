@@ -3,6 +3,8 @@ $lightblue: #3E92CC;
 $blue: #226CE0;
 $white: #FAE8EB;
 $liver: #534B62;
+$red: #FF0700;
+$green: #00D51A;
 
 body {
 	background: $black;
@@ -56,6 +58,16 @@ h1 {
 	color: $liver;
 	&:hover, &:focus{
 		color: $blue;
+	}
+}
+#renameProjectsButton{
+	&:hover, &:focus{
+		color: $green;
+	}
+}
+#cancelRenameProjectsButton{
+	&:hover, &:focus{
+		color: $red;
 	}
 }
 .login {

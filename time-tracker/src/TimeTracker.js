@@ -72,10 +72,7 @@ class TimeTracker extends Component {
   }
 
   renameConfirm = (n) =>{
-    console.log(n);
     this.setState({rename: false, projectsName: n })
-
-    // firebaseRef.push({name: newName});
   }
 }
 

@@ -17,20 +17,21 @@ class ProjectsList extends Component {
         <h1>{ this.props.projectsName } List</h1>
         <section id="renameProjects">
           <div>
-            <label  htmlFor="rename-input"
-                    onClick={ this.showRename }
-                    >change</label> 
-            { this.state.rename ?
-              <input  type="text"
-                      id="rename-input" 
-                      placeholder={ this.state.originalName }
-                      onChange={ this.updateProjects } 
-                      onSubmit={ this.props.renameConfirm } /> 
+            <form onSubmit={ this.onRenameConfirm }>
+              <label  htmlFor="rename-input"
+                      onClick={ this.showRename }
+                      >change</label> 
+              { this.state.rename ?
+                  <input  type="text"
+                          id="rename-input" 
+                          placeholder={ this.state.originalName }
+                          onChange={ this.updateProjects } /> 
               : null 
-            }
-            <label  htmlFor="rename-input"
+              }
+              <label  htmlFor="rename-input"
                     onClick={ this.showRename }
                     >name?</label>
+            </form>
           </div>
           { this.state.rename ?
             <div>
@@ -63,7 +64,6 @@ class ProjectsList extends Component {
 
   updateProjects = (e) =>{
     let n = this.state.newName;
-    console.log(n);
     n = e.target.value;
     this.setState({newName: n})
   }
@@ -73,9 +73,21 @@ class ProjectsList extends Component {
   }
 
   onRenameConfirm = (e) =>{
+    e.preventDefault();
     let n = this.state.newName;
-    this.props.renameConfirm(n);
+    // let str = n.replace(/\s+/g, '');
+    // console.log(n, str);
+    if (n === undefined){
+      alert("You entered nothing. What are you doing?");
+    } else if (n.replace(/\s+/g, '') === ""){
+       alert("That is not sufficient. Think this one over.")
+    } else {
+      this.props.renameConfirm(n);
+      this.setState({rename: false, newName: ''});
+    }
   }
+    
+  
 
   renameCancel = () =>{
     this.setState({rename: false, newName: ''});
