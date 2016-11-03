@@ -55,13 +55,18 @@ class ProjectsList extends Component {
             : null
           }
         </section>
-        <section className="projects">
+        <section  className="projects" 
+                  onSubmit={ this.newProject } >
           <ul>
             <li>
               <form>
                 <input  type="text" 
                         placeholder="new item..." 
-                        onChange={ this.newProjectName } />
+                        onChange={ this.newProjectName }
+                          />
+                <button className="primary"
+                        onSubmit={ this.newProject }
+                >si</button>
               </form>
             </li>
             { items.map((item, i) => {
@@ -121,6 +126,11 @@ class ProjectsList extends Component {
     let newProjectName = this.state.newProjectName;
     newProjectName = e.target.value;
     this.setState({newProjectName});
+  }
+
+  newProject = (e) =>{
+    e.preventDefault();
+    this.setState({newProjectName: ''})
   }
 
 }
