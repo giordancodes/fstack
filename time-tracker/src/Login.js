@@ -98,23 +98,13 @@ class Login extends Component {
                         checked={ this.state.roboMode }
                         onChange={ this.verifyRobot }
                          />
-                          </div>
-           </div> : null }
+                </div>
+           </div> 
+           : null }
         </form>
       </div>
     );
   }
-
-  // componentDidMount(){
-  //   firebase.auth().onAuthStateChanged((user) => {
-  //     console.log(user);
-  //     if (user){
-  //       this.setState({ loggedIn:true, currentUser: user.displayName })
-  //     } else {
-  //       browserHistory.push('/login');
-  //     }
-  //   })
-  // }
 
   updateField = (e) =>{
   	let form = this.state.form;
@@ -136,6 +126,7 @@ class Login extends Component {
     e.preventDefault();
     let result;
     let creds = this.state.form;
+    let userName = this.state.form.name;
     if(this.state.mode === "login"){
       result = firebase.auth().signInWithEmailAndPassword(
         creds.email, creds.password)

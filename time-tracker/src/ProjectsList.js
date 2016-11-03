@@ -8,7 +8,10 @@ class ProjectsList extends Component {
   constructor() {
     super();
     this.state={
-      rename: false
+      rename: false,
+      projects: [
+        {title: 'graveyard shift', time: 42}
+      ]
     }
   }
   render() {
@@ -49,6 +52,13 @@ class ProjectsList extends Component {
             : null
           }
         </section>
+        <section className="projects">
+          <ul>
+            <li>
+              <button>new item... </button>
+            </li>
+          </ul>
+        </section>
       </div>
     );
   }
@@ -75,20 +85,16 @@ class ProjectsList extends Component {
   onRenameConfirm = (e) =>{
     e.preventDefault();
     let n = this.state.newName;
-    // let str = n.replace(/\s+/g, '');
-    // console.log(n, str);
     if (n === undefined){
       alert("You entered nothing. What are you doing?");
     } else if (n.replace(/\s+/g, '') === ""){
-       alert("That is not sufficient. Think this one over.")
+       alert("That is not sufficient; think this one over.")
     } else {
       this.props.renameConfirm(n);
-      this.setState({rename: false, newName: ''});
+      this.setState({rename: false, newName: '', originalName: n});
     }
   }
     
-  
-
   renameCancel = () =>{
     this.setState({rename: false, newName: ''});
   }

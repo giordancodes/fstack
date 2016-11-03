@@ -20,9 +20,12 @@ class TimeTracker extends Component {
     }
     return (
       <div className="home wrapper">
-        <header>
+        <nav>
           <Link to='/'>projects</Link>
           <Link to='/login' onClick={ this.logout }>sign out</Link>
+        </nav>
+        <header>
+          <p>Hello, { this.state.currentUser }. </p>
         </header>
         { React.cloneElement(this.props.children, 
           { renameConfirm: this.renameConfirm,
