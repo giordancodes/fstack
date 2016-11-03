@@ -72,7 +72,6 @@ class TimeTracker extends Component {
   }
 
   renameConfirm = (n) =>{
-    let p = this.state.projectsName;
     console.log(n);
     this.setState({rename: false, projectsName: n })
 
