@@ -10,11 +10,14 @@ class ProjectsList extends Component {
     this.state={
       rename: false,
       projects: [
-        {title: 'graveyard shift', time: 42}
+        {title: 'graveyard shift', time: 42},
+        {title: 'some wordpress stuff', time: 420}
       ]
     }
   }
   render() {
+    let items = this.state.projects;
+
     return (
       <div className="projects-list wrapper">
         <h1>{ this.props.projectsName } List</h1>
@@ -32,8 +35,8 @@ class ProjectsList extends Component {
               : null 
               }
               <label  htmlFor="rename-input"
-                    onClick={ this.showRename }
-                    >name?</label>
+                      onClick={ this.showRename }
+                      >name?</label>
             </form>
           </div>
           { this.state.rename ?
@@ -55,8 +58,23 @@ class ProjectsList extends Component {
         <section className="projects">
           <ul>
             <li>
-              <button>new item... </button>
+              <form>
+                <input  type="text" 
+                        placeholder="new item..." 
+                        onChange={ this.newProjectName } />
+              </form>
             </li>
+            { items.map((item, i) => {
+                return(
+                  <div key={ i } >
+                    <li>
+                      <p>{ item.title }</p>
+                      <p>{ item.time }</p>
+                    </li>
+                  </div>
+                )
+              }) 
+            }
           </ul>
         </section>
       </div>
@@ -97,6 +115,12 @@ class ProjectsList extends Component {
     
   renameCancel = () =>{
     this.setState({rename: false, newName: ''});
+  }
+
+  newProjectName = (e) =>{
+    let newProjectName = this.state.newProjectName;
+    newProjectName = e.target.value;
+    this.setState({newProjectName});
   }
 
 }

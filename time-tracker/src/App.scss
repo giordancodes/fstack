@@ -6,6 +6,10 @@ $liver: #534B62;
 $red: #FF0700;
 $green: #00D51A;
 
+html, body{
+	font-size: 120%;
+}
+
 body {
 	background: $black;
 }
@@ -150,13 +154,14 @@ h1 {
 		ul{
 			list-style: none;
 			padding: 0;
-			button{
+			input{
 				color: $white;
 				width: 100%;
 				border: solid 1px $liver;
 				background: transparent;
 				border-radius: 5px;
 				padding: 3px 10px;
+				margin-bottom: 20px;
 				&:hover, &:focus{
 					color: $white;
 					background: $blue;
@@ -164,6 +169,13 @@ h1 {
 				}
 			}
 			li{
+				display: -webkit-flex;
+				display: -moz-flex;
+				display: -ms-flex;
+				display: -o-flex;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
 			}
 		}
 	}
