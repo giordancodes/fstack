@@ -159,6 +159,13 @@ class Login extends Component {
       this.setState({error: null})}
       , 5000);
   }
+
+  renameConfirm = () =>{
+    let newName = this.props.newName;
+    this.setState({rename: false, newName: '', originalName: newName })
+
+    // firebaseRef.push({name: newName});
+  }
 }
 
 export default Login;

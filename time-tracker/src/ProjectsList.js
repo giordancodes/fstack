@@ -23,9 +23,10 @@ class ProjectsList extends Component {
             { this.state.rename ?
               <input  type="text"
                       id="rename-input" 
-                      value={ this.props.projectsName }
-                      onChange={ this.onUpdateProjects } 
-                      onSubmit={ this.renameConfirm } /> : null 
+                      placeholder={ this.state.originalName }
+                      onChange={ this.updateProjects } 
+                      onSubmit={ this.props.renameConfirm } /> 
+              : null 
             }
             <label  htmlFor="rename-input"
                     onClick={ this.showRename }
@@ -33,7 +34,7 @@ class ProjectsList extends Component {
           </div>
           { this.state.rename ?
             <div>
-              <button onClick={ this.renameConfirm }
+              <button onClick={ this.onRenameConfirm }
                       className="secondary"
                       id="renameProjectsButton" >
                 <code>confirm</code>
@@ -43,7 +44,8 @@ class ProjectsList extends Component {
                       id="cancelRenameProjectsButton" >
                 <code>cancel</code>
               </button>
-            </div> : null
+            </div> 
+            : null
           }
         </section>
       </div>
@@ -51,23 +53,32 @@ class ProjectsList extends Component {
   }
 
   componentDidMount(){
+    let p = this.props.projectsName;
+    this.setState({originalName: p})
   }
 
   onUpdateProjects = (e) =>{
-    this.props.updateProjects(e);
+    this.updateProjects(e);
+  }
+
+  updateProjects = (e) =>{
+    let n = this.state.newName;
+    console.log(n);
+    n = e.target.value;
+    this.setState({newName: n})
   }
 
   showRename = () =>{
     this.setState({rename: true})
   }
 
-  renameConfirm = () =>{
-    let newName = this.props.projectsName;
-    // firebaseRef.push({name: newName});
+  onRenameConfirm = (e) =>{
+    let n = this.state.newName;
+    this.props.renameConfirm(n);
   }
 
   renameCancel = () =>{
-    this.setState({rename: false});
+    this.setState({rename: false, newName: ''});
   }
 
 }

@@ -25,9 +25,10 @@ class TimeTracker extends Component {
           <Link to='/login' onClick={ this.logout }>sign out</Link>
         </header>
         { React.cloneElement(this.props.children, 
-          { 
+          { renameConfirm: this.renameConfirm,
             projectsName: this.state.projectsName,
             updateProjects: this.updateProjects,
+
             firebaseRef: this.firebaseRef })}
         <footer>© 2016 <a href="http://giordan.ca">Giordan Battaglin</a> </footer>
       </div>
@@ -50,16 +51,6 @@ class TimeTracker extends Component {
     })
   }
 
-  updateProjects = (e) =>{
-    let n = this.props.projectsName;
-    n = e.target.value;
-    this.setState({projectsName: n})
-  }
-
-  onUpdateProjects = (e) =>{
-    this.updateProjects(e);
-  }
-
   logout = () =>{
     // let popup = confirm("Would you care to sign out?");
     // if (popup === true){
@@ -70,6 +61,23 @@ class TimeTracker extends Component {
     // }
   }
 
+  // updateProjects = (e) =>{
+  //   let n = this.props.projectsName;
+  //   n = e.target.value;
+  //   this.setState({projectsName: n})
+  // }
+
+  onUpdateProjects = (e) =>{
+    this.updateProjects(e);
+  }
+
+  renameConfirm = (n) =>{
+    let p = this.state.projectsName;
+    console.log(n);
+    this.setState({rename: false, projectsName: n })
+
+    // firebaseRef.push({name: newName});
+  }
 }
 
 export default TimeTracker;
