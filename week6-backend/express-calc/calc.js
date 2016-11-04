@@ -47,13 +47,18 @@ app.get('/sum/:num1/:num2', (req, res) =>{
 	res.redirect(`/add/${req.params.num1}/${req.params.num2}`)
 });
 
+app.get('/', (req, res) => {
+	// res.send("<h1>Home :)</h1>");
+	res.sendFile(__dirname + '/public/calculator.html', (err) =>{
+		res.status(404);
+		res.send('File ne pas de found.')
+	});
+})
+
 app.get('*', (req, res) =>{
 	res.status(404);
 	res.send('NOPE');
 })
 
-app.get('/', (req, res) => {
-	res.send("<h1>NOPE</h1>");
-})
 
 app.listen(8080);
