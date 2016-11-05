@@ -109,17 +109,17 @@ class Login extends Component {
   updateField = (e) =>{
   	let form = this.state.form;
   	form[e.target.id] = e.target.value;
-  	this.setState({form})
+  	this.setState({form});
   }
 
   verifyRobot = () =>{
     let roboMode = this.state.roboMode;
     (roboMode === false ? roboMode = true : roboMode = false)
-    this.setState({roboMode})
+    this.setState({roboMode});
   } 
 
   setMode = (e) => {
-  	this.setState({mode: e.target.id})
+  	this.setState({mode: e.target.id});
   }
 
   login = (e) =>{

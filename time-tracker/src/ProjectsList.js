@@ -88,7 +88,10 @@ class ProjectsList extends Component {
 
   componentDidMount(){
     let p = this.props.projectsName;
-    this.setState({originalName: p})
+    this.setState({originalName: p});
+    this.firebaseRef = firebase.database().ref("root");
+    console.log(this.firebaseRef);
+    this.firebaseRef.push({p})
   }
 
   onUpdateProjects = (e) =>{
@@ -98,7 +101,7 @@ class ProjectsList extends Component {
   updateProjects = (e) =>{
     let n = this.state.newName;
     n = e.target.value;
-    this.setState({newName: n})
+    this.setState({newName: n});
   }
 
   showRename = () =>{
@@ -115,6 +118,7 @@ class ProjectsList extends Component {
     } else {
       this.props.renameConfirm(n);
       this.setState({rename: false, newName: '', originalName: n});
+      this.firebaseRef.push({projectsName: n});
     }
   }
     

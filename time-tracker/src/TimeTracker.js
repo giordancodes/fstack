@@ -11,7 +11,8 @@ class TimeTracker extends Component {
     this.state={
       projectsName: "Projects",
       loggedIn: true,
-      currentUser: null
+      currentUser: null,
+      userID: null
     }
   }
   render() {
@@ -30,8 +31,8 @@ class TimeTracker extends Component {
         { React.cloneElement(this.props.children, 
           { renameConfirm: this.renameConfirm,
             projectsName: this.state.projectsName,
-            updateProjects: this.updateProjects,
-
+            loggedIn: this.state.loggedIn,
+            userID: this.state.userID,
             firebaseRef: this.firebaseRef })}
         <footer>© 2016 <a href="http://giordan.ca">Giordan Battaglin</a> </footer>
       </div>
@@ -39,18 +40,16 @@ class TimeTracker extends Component {
   }
 
   componentDidMount(){
-    this.firebaseRef = firebase.database().ref("projects");
+    this.firebaseRef = firebase.database().ref("root");
     console.log(this.firebaseRef);
     firebase.auth().onAuthStateChanged((user) => {
       if (user){
-        this.setState({ loggedIn:true, currentUser: user.displayName });
+        this.setState({ loggedIn: true, currentUser: user.displayName, userID: user.uid });
+        console.log(user);
         browserHistory.push('/');
       } else {
         browserHistory.push('/login');
       }
-
-      // this.firebase.push(test: 'test');
-      // console.log(user.uid, this.firebaseRef)
     })
   }
 
@@ -75,7 +74,9 @@ class TimeTracker extends Component {
   }
 
   renameConfirm = (n) =>{
-    this.setState({rename: false, projectsName: n })
+    // this.firebaseRef.push({projectsName: n});
+    console.log(this.firebaseRef);
+    this.setState({rename: false, projectsName: n });
   }
 }
 
