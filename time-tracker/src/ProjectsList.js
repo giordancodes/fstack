@@ -12,7 +12,8 @@ class ProjectsList extends Component {
       projects: [
         {title: 'graveyard shift', time: 42},
         {title: 'some wordpress stuff', time: 420}
-      ]
+      ],
+      newProjectName: ''
     }
   }
   render() {
@@ -62,7 +63,8 @@ class ProjectsList extends Component {
               <form>
                 <input  type="text" 
                         placeholder="new item..." 
-                        onChange={ this.newProjectName }
+                        onChange={ this.newProjectNameUpdate }
+                        value={ this.state.newProjectName } 
                           />
                 <button className="primary"
                         onSubmit={ this.newProject }
@@ -87,11 +89,29 @@ class ProjectsList extends Component {
   }
 
   componentDidMount(){
+    this.firebaseRef = firebase.database().ref("projects");
     let p = this.props.projectsName;
+
+    this.firebaseRef.on("child_added", (dataSnapshot) =>{
+      
+      let projects = this.state.projects;
+      projects[dataSnapshot.key] = dataSnapshot.val();
+
+      this.setState({projects});
+    });
+
+    this.firebaseRef.on("child_removed", (dataSnapshot) =>{
+      
+      let projects = this.state.projects;
+      delete projects[dataSnapshot.key];
+
+      this.setState({projects});
+    });
+
+
     this.setState({originalName: p});
-    this.firebaseRef = firebase.database().ref("root");
     console.log(this.firebaseRef);
-    this.firebaseRef.push({p})
+    // this.firebaseRef.push({p})
   }
 
   onUpdateProjects = (e) =>{
@@ -126,7 +146,7 @@ class ProjectsList extends Component {
     this.setState({rename: false, newName: ''});
   }
 
-  newProjectName = (e) =>{
+  newProjectNameUpdate = (e) =>{
     let newProjectName = this.state.newProjectName;
     newProjectName = e.target.value;
     this.setState({newProjectName});
@@ -134,7 +154,18 @@ class ProjectsList extends Component {
 
   newProject = (e) =>{
     e.preventDefault();
-    this.setState({newProjectName: ''})
+
+    let projects = this.state.projects;
+    let newProject = {
+      title: this.state.newProjectName,
+      time: 0
+    }
+
+    if (this.state.newProjectName !== ''){
+      this.state.projects.push(newProject);
+      this.setState({newProjectName: '', projects: projects})
+    }
+
   }
 
 }
