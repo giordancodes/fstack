@@ -75,7 +75,7 @@ class ProjectsList extends Component {
                 return(
                   <div key={ i } >
                     <li>
-                      <p>{ item.title }</p>
+                      <p><a href=""> { item.title } </a></p>
                       <p>{ item.time }</p>
                     </li>
                   </div>
