@@ -12,35 +12,35 @@ app.get('/api/:str', (req, res) =>{
 app.get('*.css', (req, res) =>{
 	res.sendFile(`${__dirname}/public/public.css`, (err) =>{
 		res.status(404);
-		res.send("The requested file has not been found.");
+		// res.send("The requested file has not been found.");
 	});
 });
 
 app.get('*.jpg', (req, res) =>{
 	res.sendFile(`${__dirname}/public/skinner.jpg`, (err) =>{
 		res.status(404);
-		res.send("The requested file has not been found.");
+		// res.send("The requested file has not been found.");
 	});
 });
 
 app.get('*.js', (req, res) =>{
 	res.sendFile(`${__dirname}/public/dat.js`, (err) =>{
 		res.status(404);
-		res.send("The requested file has not been found.");
+		// res.send("The requested file has not been found.");
 	});
 });
 
 app.get('*.json', (req, res) =>{
 	res.sendFile(`${__dirname}/public/public.json`, (err) =>{
 		res.status(404);
-		res.send("The requested file has not been found.");
+		// res.send("The requested file has not been found.");
 	});
 });
 
 app.get('*', (req, res) =>{
 	res.sendFile(`${__dirname}/public/smrt.jpg`, (err) =>{
 		res.status(404);
-		res.send("The requested file has not been found.");
+		// res.send("The requested file has not been found.");
 	});
 });
 
