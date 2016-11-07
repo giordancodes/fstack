@@ -40,12 +40,13 @@ class TimeTracker extends Component {
   }
 
   componentDidMount(){
+
     this.firebaseRef = firebase.database().ref("root");
     console.log(this.firebaseRef);
     firebase.auth().onAuthStateChanged((user) => {
       if (user){
         this.setState({ loggedIn: true, currentUser: user.displayName, userID: user.uid });
-        console.log(user);
+        console.log(user, user.uid);
         browserHistory.push('/');
       } else {
         browserHistory.push('/login');
