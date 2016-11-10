@@ -7,17 +7,7 @@ var controller = require('./controller');
 // reference the various controller actions in this file.
 
 router.get('/', controller.index);
-// router.post('/', controller.create);
-
-router.get('/', (req, res) =>{
-  // res.send('Listing posts should go here');
-  res.send(controller.index);
-});
-
-router.get('/:id', (req, res) =>{
-  // res.send('Show post id ' + req.params.id + ' here.');
-  res.send(controller.index + '.' + req.params.id);
-});
+router.get('/:id', controller.show);
 
 router.post('/', (req, res) =>{
 	res.send("Creating a post");

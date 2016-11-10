@@ -2,10 +2,10 @@ var express = require('express');
 var app = express();
 
 // Serve your API assets here. You'll need to include the post route file.
-app.use('/api/posts', require('./api/posts'));
+app.use(express.static("public"));
 
 // Serve your static assets here. You'll need to use express.static middleware.
-app.use(express.static("public"));
+app.use('/api/posts', require('./api/posts'));
 
 app.get('/public', (req, res) =>{
 	res.sendFile(`${__dirname}/public/bundle.js`);
@@ -13,7 +13,6 @@ app.get('/public', (req, res) =>{
 app.get('/public/*', (req, res) =>{
 	res.sendFile(`${__dirname}/public/bundle.js`);
 });
-
 
 // If none of the above matches, serve public/index.html.
 app.get('*', (req, res) =>{

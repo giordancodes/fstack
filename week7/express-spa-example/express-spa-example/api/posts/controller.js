@@ -16,11 +16,16 @@ var posts = [
 ]
 
 exports.index = (req, res) =>{
-  res.status(501);
   res.send(posts);
 }
 
 exports.show = (req, res) =>{
-  res.status(501);
-  res.send("Not implemented");
+  let post = posts.find((post) => post.id == req.params.id);
+  console.log(post, posts);
+  if (post){
+    res.send(post);
+  } else {
+    res.status(404);
+    res.send("Post not found");
+  }
 }
