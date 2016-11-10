@@ -15,12 +15,12 @@ var posts = [
   }
 ]
 
-exports.index = function(req, res) {
+exports.index = (req, res) =>{
   res.status(501);
-  res.send("Not implemented");
+  res.send(posts);
 }
 
-exports.show = function(req, res) {
+exports.show = (req, res) =>{
   res.status(501);
   res.send("Not implemented");
 }
