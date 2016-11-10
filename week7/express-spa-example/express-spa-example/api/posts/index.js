@@ -15,7 +15,8 @@ router.get('/', (req, res) =>{
 });
 
 router.get('/:id', (req, res) =>{
-  res.send('Show post id ' + req.params.id + ' here.');
+  // res.send('Show post id ' + req.params.id + ' here.');
+  res.send(controller.index + '.' + req.params.id);
 });
 
 router.post('/', (req, res) =>{
