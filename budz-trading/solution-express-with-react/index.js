@@ -5,7 +5,8 @@ var webpack = require('webpack');
 var webpackMiddleware = require('webpack-dev-middleware');
 
 // Serve bundle.js
-app.use(webpackMiddleware(webpack(require('./webpack.config.js'))));
+let compiler = webpack(require('./webpack.config.js'));
+app.use(webpackMiddleware(compiler));
 
 // Serve your API assets here. You'll need to include the post route file.
 app.use(express.static('public'));
