@@ -9,15 +9,11 @@ class ProjectsList extends Component {
     super();
     this.state={
       rename: false,
-      projects: [
-        {title: 'graveyard shift', time: 42},
-        {title: 'some wordpress stuff', time: 420}
-      ],
       newProjectName: ''
     }
   }
   render() {
-    let items = this.state.projects;
+    let items = this.props.projects;
 
     return (
       <div className="projects-list wrapper">
@@ -68,7 +64,7 @@ class ProjectsList extends Component {
                           />
                 <button className="primary"
                         onSubmit={ this.newProject }
-                >si</button>
+                >add new</button>
               </form>
             </li>
             { items.map((item, i) => {
@@ -110,7 +106,7 @@ class ProjectsList extends Component {
 
 
     this.setState({originalName: p});
-    console.log(this.firebaseRef);
+    // console.log(this.firebaseRef);
     // this.firebaseRef.push({p})
   }
 
@@ -155,14 +151,14 @@ class ProjectsList extends Component {
   newProject = (e) =>{
     e.preventDefault();
 
-    let projects = this.state.projects;
+    let projects = this.props.projects;
     let newProject = {
       title: this.state.newProjectName,
       time: 0
     }
 
     if (this.state.newProjectName !== ''){
-      this.state.projects.push(newProject);
+      this.props.projects.push(newProject);
       this.setState({newProjectName: '', projects: projects})
     }
 

@@ -12,7 +12,11 @@ class TimeTracker extends Component {
       projectsName: "Projects",
       loggedIn: true,
       currentUser: null,
-      userID: null
+      userID: null,
+      projects: [
+        {title: 'graveyard shift', time: 42},
+        {title: 'some wordpress stuff', time: 420}
+      ]
     }
   }
   render() {
@@ -31,6 +35,7 @@ class TimeTracker extends Component {
         { React.cloneElement(this.props.children, 
           { renameConfirm: this.renameConfirm,
             projectsName: this.state.projectsName,
+            projects: this.state.projects,
             loggedIn: this.state.loggedIn,
             userID: this.state.userID,
             firebaseRef: this.firebaseRef })}
