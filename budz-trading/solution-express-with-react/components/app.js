@@ -22,10 +22,8 @@ var App = React.createClass({
   componentDidMount: function() {
   	$.get('/api/posts.json', (data) => {
 			let posts = data;
-			this.setState({posts})
-			console.log(data);
+			this.setState({posts});
   	});
-    console.log(this.state.posts);
   }
 });
 
