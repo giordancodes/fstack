@@ -1,0 +1,23 @@
+[
+	{
+		"title": "A dress",
+	  "image": "http://s3-us-west-2.amazonaws.com/itemimages.prod.or.shufl.it/e77072/38672def9b876ffce5f1dd07e1bc9762",
+		"description": "Used to be my favourite dress. Still looks brand new! Beautiful bird design on it.  It has pockets!! Medium",
+		"location": "Fashion District",
+	  "user": "Ryan"
+	},
+	{
+		"title": "2 dress",
+	  "image": "http://s3-us-west-2.amazonaws.com/itemimages.prod.or.shufl.it/e77072/38672def9b876ffce5f1dd07e1bc9762",
+		"description": "Used to be my favourite dress. Still looks brand new! Beautiful bird design on it.  It has pockets!! Medium",
+		"location": "Fashion District",
+	  "user": "Ryan"
+	},
+	{
+		"title": "Floor Tom",
+	  "image": "http://s3-us-west-2.amazonaws.com/itemimages.prod.or.shufl.it/d57072/6b4c7358582ce09df14479b56d2a9332",
+	  "description": "Westbury 16'",
+	  "location": "Downtown",
+	  "user": "Jim"
+	}
+]

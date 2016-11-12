@@ -20,12 +20,12 @@ var App = React.createClass({
   },
 
   componentDidMount: function() {
-  	$.get('/api/posts/posts.json', (data) => {
+  	$.get('/api/posts.json', (data) => {
 			let posts = data;
-			// this.setState({posts})
-			console.log(posts, 'hola');
+			this.setState({posts})
+			console.log(data);
   	});
-  	console.log('hi');
+    console.log(this.state.posts);
   }
 });
 
