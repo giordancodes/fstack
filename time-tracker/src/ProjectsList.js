@@ -85,12 +85,13 @@ class ProjectsList extends Component {
   }
 
   componentDidMount(){
-    this.firebaseRef = firebase.database().ref("projects");
     let p = this.props.projectsName;
-
+    let user = this.props.currentUser;
+    this.firebaseRef = firebase.database().ref("projects");
+    
     this.firebaseRef.on("child_added", (dataSnapshot) =>{
       
-      let projects = this.state.projects;
+      let projects = this.props.projects;
       projects[dataSnapshot.key] = dataSnapshot.val();
 
       this.setState({projects});
@@ -98,16 +99,13 @@ class ProjectsList extends Component {
 
     this.firebaseRef.on("child_removed", (dataSnapshot) =>{
       
-      let projects = this.state.projects;
+      let projects = this.props.projects;
       delete projects[dataSnapshot.key];
 
       this.setState({projects});
     });
 
-
     this.setState({originalName: p});
-    // console.log(this.firebaseRef);
-    // this.firebaseRef.push({p})
   }
 
   onUpdateProjects = (e) =>{
