@@ -20,6 +20,7 @@ app.get('*.jpg', (req, res) =>{
 	res.sendFile(`${__dirname}/public/skinner.jpg`, (err) =>{
 		res.status(404);
 		res.send("The requested file has not been found.");
+		return;
 	});
 });
 
