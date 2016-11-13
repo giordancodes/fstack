@@ -12,7 +12,10 @@ class TimeTracker extends Component {
       projectsName: "Projects",
       loggedIn: true,
       currentUser: null,
-      userID: null
+      projects: [
+        {title: 'graveyard shift', time: 42},
+        {title: 'some wordpress stuff', time: 420}
+      ]
     }
   }
   render() {
@@ -31,6 +34,8 @@ class TimeTracker extends Component {
         { React.cloneElement(this.props.children, 
           { renameConfirm: this.renameConfirm,
             projectsName: this.state.projectsName,
+            projects: this.state.projects,
+            currentUser: this.state.currentUser,
             loggedIn: this.state.loggedIn,
             userID: this.state.userID,
             firebaseRef: this.firebaseRef })}
@@ -45,7 +50,7 @@ class TimeTracker extends Component {
     firebase.auth().onAuthStateChanged((user) => {
       if (user){
         this.setState({ loggedIn: true, currentUser: user.displayName, userID: user.uid });
-        console.log(user);
+        console.log(user, user.uid);
         browserHistory.push('/');
       } else {
         browserHistory.push('/login');
@@ -62,12 +67,6 @@ class TimeTracker extends Component {
       // browserHistory.push('/');
     // }
   }
-
-  // updateProjects = (e) =>{
-  //   let n = this.props.projectsName;
-  //   n = e.target.value;
-  //   this.setState({projectsName: n})
-  // }
 
   onUpdateProjects = (e) =>{
     this.updateProjects(e);

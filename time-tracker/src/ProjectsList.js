@@ -9,14 +9,11 @@ class ProjectsList extends Component {
     super();
     this.state={
       rename: false,
-      projects: [
-        {title: 'graveyard shift', time: 42},
-        {title: 'some wordpress stuff', time: 420}
-      ]
+      newProjectName: ''
     }
   }
   render() {
-    let items = this.state.projects;
+    let items = this.props.projects;
 
     return (
       <div className="projects-list wrapper">
@@ -62,18 +59,19 @@ class ProjectsList extends Component {
               <form>
                 <input  type="text" 
                         placeholder="new item..." 
-                        onChange={ this.newProjectName }
+                        onChange={ this.newProjectNameUpdate }
+                        value={ this.state.newProjectName } 
                           />
                 <button className="primary"
                         onSubmit={ this.newProject }
-                >si</button>
+                >add new</button>
               </form>
             </li>
             { items.map((item, i) => {
                 return(
                   <div key={ i } >
                     <li>
-                      <p>{ item.title }</p>
+                      <p><a href=""> { item.title } </a></p>
                       <p>{ item.time }</p>
                     </li>
                   </div>
@@ -88,10 +86,26 @@ class ProjectsList extends Component {
 
   componentDidMount(){
     let p = this.props.projectsName;
+    let user = this.props.currentUser;
+    this.firebaseRef = firebase.database().ref("projects");
+    
+    this.firebaseRef.on("child_added", (dataSnapshot) =>{
+      
+      let projects = this.props.projects;
+      projects[dataSnapshot.key] = dataSnapshot.val();
+
+      this.setState({projects});
+    });
+
+    this.firebaseRef.on("child_removed", (dataSnapshot) =>{
+      
+      let projects = this.props.projects;
+      delete projects[dataSnapshot.key];
+
+      this.setState({projects});
+    });
+
     this.setState({originalName: p});
-    this.firebaseRef = firebase.database().ref("root");
-    console.log(this.firebaseRef);
-    this.firebaseRef.push({p})
   }
 
   onUpdateProjects = (e) =>{
@@ -126,7 +140,7 @@ class ProjectsList extends Component {
     this.setState({rename: false, newName: ''});
   }
 
-  newProjectName = (e) =>{
+  newProjectNameUpdate = (e) =>{
     let newProjectName = this.state.newProjectName;
     newProjectName = e.target.value;
     this.setState({newProjectName});
@@ -134,7 +148,18 @@ class ProjectsList extends Component {
 
   newProject = (e) =>{
     e.preventDefault();
-    this.setState({newProjectName: ''})
+
+    let projects = this.props.projects;
+    let newProject = {
+      title: this.state.newProjectName,
+      time: 0
+    }
+
+    if (this.state.newProjectName !== ''){
+      this.props.projects.push(newProject);
+      this.setState({newProjectName: '', projects: projects})
+    }
+
   }
 
 }

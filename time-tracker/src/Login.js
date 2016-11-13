@@ -106,6 +106,15 @@ class Login extends Component {
     );
   }
 
+  componentWillMount(){
+    this.firebaseRef = firebase.database().ref("root");
+    firebase.auth().onAuthStateChanged((user) =>{
+      if (user){
+        browserHistory.push('/');
+      }
+    })
+  }
+
   updateField = (e) =>{
   	let form = this.state.form;
   	form[e.target.id] = e.target.value;
