@@ -13,8 +13,8 @@ class TimeTracker extends Component {
       loggedIn: true,
       currentUser: null,
       projects: [
-        {title: 'graveyard shift', time: 42},
-        {title: 'some wordpress stuff', time: 420}
+        {title: 'graveyard shift', time: 42, author: null},
+        {title: 'some wordpress stuff', time: 420, author: null}
       ]
     }
   }
@@ -45,7 +45,8 @@ class TimeTracker extends Component {
   }
 
   componentDidMount(){
-    this.firebaseRef = firebase.database().ref("root");
+    let currentUser = this.state.currentUser;
+    this.firebaseRef = firebase.database().ref("projectList");
     console.log(this.firebaseRef);
     firebase.auth().onAuthStateChanged((user) => {
       if (user){
@@ -55,7 +56,8 @@ class TimeTracker extends Component {
       } else {
         browserHistory.push('/login');
       }
-    })
+    });
+
   }
 
   logout = () =>{

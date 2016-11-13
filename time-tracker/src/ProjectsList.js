@@ -67,7 +67,17 @@ class ProjectsList extends Component {
                 >add new</button>
               </form>
             </li>
-            { items.map((item, i) => {
+            { Object.keys(items).map((item, id) => {
+              return(
+                  <div key={ id } >
+                    <li>
+                      <p><a href=""> { item.title } </a></p>
+                      <p>{ item.time }</p>
+                    </li>
+                  </div>
+                )
+            })}
+            {/* items.map((item, i) => {
                 return(
                   <div key={ i } >
                     <li>
@@ -77,7 +87,7 @@ class ProjectsList extends Component {
                   </div>
                 )
               }) 
-            }
+           */}
           </ul>
         </section>
       </div>
@@ -86,8 +96,8 @@ class ProjectsList extends Component {
 
   componentDidMount(){
     let p = this.props.projectsName;
-    let user = this.props.currentUser;
-    this.firebaseRef = firebase.database().ref("projects");
+    // let currentUser = this.props.currentUser;
+    this.firebaseRef = firebase.database().ref("projectList");
     
     this.firebaseRef.on("child_added", (dataSnapshot) =>{
       
@@ -150,13 +160,16 @@ class ProjectsList extends Component {
     e.preventDefault();
 
     let projects = this.props.projects;
+    let currentUser = this.props.currentUser;
     let newProject = {
       title: this.state.newProjectName,
-      time: 0
+      time: 0,
+      author: currentUser
     }
 
     if (this.state.newProjectName !== ''){
       this.props.projects.push(newProject);
+      this.firebaseRef.push({projects});
       this.setState({newProjectName: '', projects: projects})
     }
 
