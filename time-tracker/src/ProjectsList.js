@@ -96,25 +96,8 @@ class ProjectsList extends Component {
 
   componentDidMount(){
     let p = this.props.projectsName;
-    // let currentUser = this.props.currentUser;
+    let currentUser = this.props.currentUser;
     this.firebaseRef = firebase.database().ref("projectList");
-    
-    this.firebaseRef.on("child_added", (dataSnapshot) =>{
-      
-      let projects = this.props.projects;
-      projects[dataSnapshot.key] = dataSnapshot.val();
-
-      this.setState({projects});
-    });
-
-    this.firebaseRef.on("child_removed", (dataSnapshot) =>{
-      
-      let projects = this.props.projects;
-      delete projects[dataSnapshot.key];
-
-      this.setState({projects});
-    });
-
     this.setState({originalName: p});
   }
 

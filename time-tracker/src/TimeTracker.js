@@ -52,10 +52,25 @@ class TimeTracker extends Component {
       if (user){
         this.setState({ loggedIn: true, currentUser: user.displayName, userID: user.uid });
         console.log(user, user.uid);
-        browserHistory.push('/');
       } else {
         browserHistory.push('/login');
       }
+    });
+
+    this.firebaseRef.on("child_added", (dataSnapshot) =>{
+      
+      let projects = this.state.projects;
+      projects[dataSnapshot.key] = dataSnapshot.val();
+
+      this.setState({projects});
+    });
+
+    this.firebaseRef.on("child_removed", (dataSnapshot) =>{
+      
+      let projects = this.state.projects;
+      delete projects[dataSnapshot.key];
+
+      this.setState({projects});
     });
 
   }
