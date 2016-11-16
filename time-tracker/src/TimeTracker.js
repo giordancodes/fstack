@@ -9,7 +9,6 @@ class TimeTracker extends Component {
   constructor() {
     super();
     this.state={
-      projectsName: "Projects",
       loggedIn: true,
       currentUser: null,
       projects: {}
@@ -47,7 +46,7 @@ class TimeTracker extends Component {
     firebase.auth().onAuthStateChanged((user) => {
       if (user){
         this.setState({ loggedIn: true, currentUser: user.displayName, userID: user.uid });
-        console.log(user, user.uid);
+        // console.log(user, user.uid);
       } else {
         browserHistory.push('/login');
       }
@@ -57,9 +56,10 @@ class TimeTracker extends Component {
 
     this.firebaseRef.on("child_added", (dataSnapshot) =>{
       let projects = this.state.projects;
+      let projectsName = projects[projectsName];
       projects[dataSnapshot.key] = dataSnapshot.val();
-
-      this.setState({projects});
+      // console.log(projects, projectsName);
+      this.setState({projects, projectsName: projectsName});
     });
 
     this.firebaseRef.on("child_removed", (dataSnapshot) =>{
@@ -87,7 +87,6 @@ class TimeTracker extends Component {
 
   renameConfirm = (n) =>{
     this.firebaseRef.update({projectsName: n});
-    // console.log(this.firebaseRef);
     this.setState({rename: false, projectsName: n });
   }
 }

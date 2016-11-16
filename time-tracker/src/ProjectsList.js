@@ -68,10 +68,13 @@ class ProjectsList extends Component {
               </form>
             </li>
             { Object.keys(items).map((item, id) => {
+            	// console.log(item, item.title, item['title'], id, item[id]['title']);
+            	console.log(Object.keys(items));
+            	console.log(item, id);
               return(
                   <div key={ id } >
                     <li>
-                      <p><a href=""> { item.title } </a></p>
+                      <p>{ item.title }</p>
                       <p>{ item.time }</p>
                     </li>
                   </div>
