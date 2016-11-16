@@ -14,7 +14,6 @@ class ProjectsList extends Component {
   }
   render() {
     let items = this.props.projects;
-
     return (
       <div className="projects-list wrapper">
         <h1>{ this.props.projectsName } List</h1>
@@ -67,9 +66,10 @@ class ProjectsList extends Component {
                 >add new</button>
               </form>
             </li>
-            { Object.keys(items).map((id) => {
+            { Object.keys(items).map((id, val) => {
             	let item = items[id];
-              return(
+            	if(!item[val]){
+	              return(
                   <div key={ id } >
                     <li>
                       <div>
@@ -84,6 +84,7 @@ class ProjectsList extends Component {
                     </li>
                   </div>
                 )
+            	}
             })}
           </ul>
         </section>

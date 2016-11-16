@@ -54,9 +54,9 @@ class TimeTracker extends Component {
 
     this.firebaseRef.on("child_added", (dataSnapshot) =>{
       let projects = this.state.projects;
-      let projectsName = projects[projectsName];
       projects[dataSnapshot.key] = dataSnapshot.val();
-      this.setState({projects, projectsName: projectsName});
+      console.log(this.firebaseRef['projectsName']);
+      this.setState({projects});
     });
 
     this.firebaseRef.on("child_removed", (dataSnapshot) =>{
@@ -66,16 +66,14 @@ class TimeTracker extends Component {
       this.setState({projects});
     });
 
+
   }
 
   logout = () =>{
-    // let popup = confirm("Would you care to sign out?");
-    // if (popup === true){
+    if(confirm("Would you care to sign out?")){
       firebase.auth().signOut();
       this.setState({loggedIn: false})
-    // }else{
-      // browserHistory.push('/');
-    // }
+    }
   }
 
   onUpdateProjects = (e) =>{
@@ -88,7 +86,7 @@ class TimeTracker extends Component {
   }
 
   deleteProject = (id) =>{
-    if(confirm("Delete item?")){
+    if(confirm("Destroy item?")){
       this.firebaseRef.child(id).remove();
     }
   }
