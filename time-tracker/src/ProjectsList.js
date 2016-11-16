@@ -151,8 +151,7 @@ class ProjectsList extends Component {
     }
 
     if (this.state.newProjectName !== ''){
-      this.props.projects.push(newProject);
-      this.firebaseRef.push({projects});
+      this.firebaseRef.push(newProject);
       this.setState({newProjectName: '', projects: projects})
     }
 
