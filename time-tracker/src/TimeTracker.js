@@ -52,11 +52,10 @@ class TimeTracker extends Component {
         browserHistory.push('/login');
       }
     
-    let uID = this.state.userID;
+    // let uID = this.state.userID;
     });
 
     this.firebaseRef.on("child_added", (dataSnapshot) =>{
-      
       let projects = this.state.projects;
       projects[dataSnapshot.key] = dataSnapshot.val();
 
@@ -64,7 +63,6 @@ class TimeTracker extends Component {
     });
 
     this.firebaseRef.on("child_removed", (dataSnapshot) =>{
-      
       let projects = this.state.projects;
       delete projects[dataSnapshot.key];
 
@@ -88,8 +86,8 @@ class TimeTracker extends Component {
   }
 
   renameConfirm = (n) =>{
-    // this.firebaseRef.push({projectsName: n});
-    console.log(this.firebaseRef);
+    this.firebaseRef.update({projectsName: n});
+    // console.log(this.firebaseRef);
     this.setState({rename: false, projectsName: n });
   }
 }

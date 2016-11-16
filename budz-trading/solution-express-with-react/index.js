@@ -4,6 +4,9 @@ var app = express();
 var webpack = require('webpack');
 var webpackMiddleware = require('webpack-dev-middleware');
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/trading');
+
 // Serve bundle.js
 let compiler = webpack(require('./webpack.config.js'));
 app.use(webpackMiddleware(compiler));

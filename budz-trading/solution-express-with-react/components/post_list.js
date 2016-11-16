@@ -13,6 +13,7 @@ var PostList = React.createClass({
           <p>{ post.description }</p>
           <p>{ post.location }</p>
           <p>{ post.user }</p>
+          <p>{ post.price }</p>
         </div>
       )})
     }
