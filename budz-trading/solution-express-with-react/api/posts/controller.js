@@ -10,7 +10,6 @@ exports.show = function(req, res) {
   Post.findById(req.params.id).then((post) => {
     if (post) {
       res.send(post);
-      console.log(post);
     } else {
       res.status(404);
       res.send("Post not found");
@@ -18,8 +17,19 @@ exports.show = function(req, res) {
   });
 }
 
-exports.update = function(req, res) {
-  var post = posts.find((post) => post.id == req.params.id);
-  post.title = "Updated";
-  res.send("OK");
-}
+// exports.delete = function(req, res) {
+//   Post.findById(req.params.id).then((post) =>{
+//     if (post) {
+//       res.delete(post);
+//     } else {
+//       res.status(404);
+//       res.send("Post not found");
+//     }
+//   })
+// }
+
+// exports.update = function(req, res) {
+//   var post = posts.find((post) => post.id == req.params.id);
+//   post.title = "Updated";
+//   res.send("OK");
+// }
