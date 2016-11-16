@@ -67,10 +67,9 @@ class ProjectsList extends Component {
                 >add new</button>
               </form>
             </li>
-            { Object.keys(items).map((item, id) => {
+            { Object.keys(items).map((id) => {
             	// console.log(item, item.title, item['title'], id, item[id]['title']);
-            	console.log(Object.keys(items));
-            	console.log(item, id);
+            	let item = items[id];
               return(
                   <div key={ id } >
                     <li>
@@ -80,17 +79,6 @@ class ProjectsList extends Component {
                   </div>
                 )
             })}
-            {/* items.map((item, i) => {
-                return(
-                  <div key={ i } >
-                    <li>
-                      <p><a href=""> { item.title } </a></p>
-                      <p>{ item.time }</p>
-                    </li>
-                  </div>
-                )
-              }) 
-           */}
           </ul>
         </section>
       </div>
