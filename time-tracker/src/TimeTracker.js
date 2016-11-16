@@ -34,6 +34,7 @@ class TimeTracker extends Component {
             currentUser: this.state.currentUser,
             loggedIn: this.state.loggedIn,
             userID: this.state.userID,
+            deleteProject: this.deleteProject,
             firebaseRef: this.firebaseRef })}
         <footer>© 2016 <a href="http://giordan.ca">Giordan Battaglin</a> </footer>
       </div>
@@ -46,19 +47,15 @@ class TimeTracker extends Component {
     firebase.auth().onAuthStateChanged((user) => {
       if (user){
         this.setState({ loggedIn: true, currentUser: user.displayName, userID: user.uid });
-        // console.log(user, user.uid);
       } else {
         browserHistory.push('/login');
       }
-    
-    // let uID = this.state.userID;
     });
 
     this.firebaseRef.on("child_added", (dataSnapshot) =>{
       let projects = this.state.projects;
       let projectsName = projects[projectsName];
       projects[dataSnapshot.key] = dataSnapshot.val();
-      // console.log(projects, projectsName);
       this.setState({projects, projectsName: projectsName});
     });
 
@@ -88,6 +85,12 @@ class TimeTracker extends Component {
   renameConfirm = (n) =>{
     this.firebaseRef.update({projectsName: n});
     this.setState({rename: false, projectsName: n });
+  }
+
+  deleteProject = (id) =>{
+    if(confirm("Delete item?")){
+      this.firebaseRef.child(id).remove();
+    }
   }
 }
 

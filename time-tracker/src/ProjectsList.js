@@ -68,13 +68,19 @@ class ProjectsList extends Component {
               </form>
             </li>
             { Object.keys(items).map((id) => {
-            	// console.log(item, item.title, item['title'], id, item[id]['title']);
             	let item = items[id];
               return(
                   <div key={ id } >
                     <li>
-                      <p>{ item.title }</p>
-                      <p>{ item.time }</p>
+                      <div>
+                      	<span>{ item.title }</span>
+                      </div>
+                      <div>
+                      	<span>{ item.time }</span>
+                      	<button className="delete"
+                      					onClick={ () => this.onDeleteProject(id) }
+                      	>delete?</button>
+                      </div>
                     </li>
                   </div>
                 )
@@ -145,7 +151,10 @@ class ProjectsList extends Component {
       this.firebaseRef.push(newProject);
       this.setState({newProjectName: '', projects: projects})
     }
+  }
 
+  onDeleteProject = (id) =>{
+  	this.props.deleteProject(id);
   }
 
 }
