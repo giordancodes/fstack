@@ -68,7 +68,8 @@ class ProjectsList extends Component {
             </li>
             { Object.keys(items).map((id, val) => {
             	let item = items[id];
-            	if(!item[val]){
+              let userID = this.props.userID;
+            	if(item.userID === userID  && !item[val]){
 	              return(
                   <div key={ id } >
                     <li>
@@ -141,11 +142,11 @@ class ProjectsList extends Component {
     e.preventDefault();
 
     let projects = this.props.projects;
-    let currentUser = this.props.currentUser;
+    let userID = this.props.userID;
     let newProject = {
       title: this.state.newProjectName,
       time: 0,
-      author: currentUser
+      userID: userID
     }
 
     if (this.state.newProjectName !== ''){
@@ -155,6 +156,7 @@ class ProjectsList extends Component {
   }
 
   onDeleteProject = (id) =>{
+    console.log(this.props.deleteProject(id));
   	this.props.deleteProject(id);
   }
 
