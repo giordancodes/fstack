@@ -61,7 +61,13 @@ class TimeTracker extends Component {
     this.firebaseRef.on("child_added", (dataSnapshot) =>{
       let projects = this.state.projects;
       projects[dataSnapshot.key] = dataSnapshot.val();
-      console.log(this.firebaseRef['projectsName']);
+      console.log(Object.keys(projects).map((id, val) =>{
+        // let item = projects[id];
+        if (id === 'projectsName'){
+
+          return id;
+        }
+      }));
       this.setState({projects});
     });
 

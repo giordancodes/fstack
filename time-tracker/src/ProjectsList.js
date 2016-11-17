@@ -124,7 +124,6 @@ class ProjectsList extends Component {
     } else {
       this.props.renameConfirm(n);
       this.setState({rename: false, newName: '', originalName: n});
-      // this.firebaseRef.push({projectsName: n});
     }
   }
     
