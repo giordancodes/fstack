@@ -156,7 +156,6 @@ class ProjectsList extends Component {
   }
 
   onDeleteProject = (id) =>{
-    console.log(this.props.deleteProject(id));
   	this.props.deleteProject(id);
   }
 
