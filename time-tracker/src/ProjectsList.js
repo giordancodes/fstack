@@ -68,12 +68,13 @@ class ProjectsList extends Component {
             </li>
             { Object.keys(items).map((id, val) => {
             	let item = items[id];
-            	if(!item[val]){
+              let userID = this.props.userID;
+            	if(item.userID === userID  && !item[val]){
 	              return(
                   <div key={ id } >
                     <li>
                       <div>
-                      	<span>{ item.title }</span>
+                      	<span><a href={id}>{ item.title }</a></span>
                       </div>
                       <div>
                       	<span>{ item.time }</span>
@@ -123,7 +124,6 @@ class ProjectsList extends Component {
     } else {
       this.props.renameConfirm(n);
       this.setState({rename: false, newName: '', originalName: n});
-      // this.firebaseRef.push({projectsName: n});
     }
   }
     
@@ -141,11 +141,11 @@ class ProjectsList extends Component {
     e.preventDefault();
 
     let projects = this.props.projects;
-    let currentUser = this.props.currentUser;
+    let userID = this.props.userID;
     let newProject = {
       title: this.state.newProjectName,
       time: 0,
-      author: currentUser
+      userID: userID
     }
 
     if (this.state.newProjectName !== ''){

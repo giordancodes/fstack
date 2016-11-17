@@ -19,26 +19,32 @@ class TimeTracker extends Component {
       browserHistory.push('/login');
     }
     return (
-      <div className="home wrapper">
-        <nav>
+      <div>
+        <nav className="home">
           <Link to='/'>projects</Link>
           <Link to='/login' onClick={ this.logout }>sign out</Link>
         </nav>
-        <header>
-          <p>Hello, { this.state.currentUser }. </p>
-        </header>
-        { React.cloneElement(this.props.children, 
-          { renameConfirm: this.renameConfirm,
-            projectsName: this.state.projectsName,
-            projects: this.state.projects,
-            currentUser: this.state.currentUser,
-            loggedIn: this.state.loggedIn,
-            userID: this.state.userID,
-            deleteProject: this.deleteProject,
-            firebaseRef: this.firebaseRef })}
-        <footer>© 2016 <a href="http://giordan.ca">Giordan Battaglin</a> </footer>
+        <div className="home wrapper">
+          <header>
+            <p>Hello, { this.state.currentUser }. </p>
+          </header>
+          { React.cloneElement(this.props.children, 
+            { renameConfirm: this.renameConfirm,
+              projectsName: this.state.projectsName,
+              projects: this.state.projects,
+              currentUser: this.state.currentUser,
+              loggedIn: this.state.loggedIn,
+              userID: this.state.userID,
+              deleteProject: this.deleteProject,
+              firebaseRef: this.firebaseRef })}
+          <footer>© 2016 <a href="http://giordan.ca">Giordan Battaglin</a> </footer>
+        </div>
       </div>
     );
+  }
+
+  componentWillMount(){
+    
   }
 
   componentDidMount(){
@@ -55,7 +61,13 @@ class TimeTracker extends Component {
     this.firebaseRef.on("child_added", (dataSnapshot) =>{
       let projects = this.state.projects;
       projects[dataSnapshot.key] = dataSnapshot.val();
-      console.log(this.firebaseRef['projectsName']);
+      console.log(Object.keys(projects).map((id, val) =>{
+        // let item = projects[id];
+        if (id === 'projectsName'){
+
+          return id;
+        }
+      }));
       this.setState({projects});
     });
 

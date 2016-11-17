@@ -9,15 +9,12 @@ $green: #00D51A;
 html, body{
 	font-size: 62.5%;
 }
-
 body {
 	background: $black;
 }
-
 button, a{
 	transition: all .4s;
 }
-
 code{
 	font-size: 1.6rem;
 }
@@ -29,6 +26,8 @@ code{
 	margin: 0 auto;
 }
 nav{
+	font-family: 'Josefin Sans', sans-serif;
+	color: #DDD;
 	display: -webkit-flex;
 	display: -moz-flex;
 	display: -ms-flex;
@@ -37,6 +36,8 @@ nav{
 	flex-direction: row;
 	justify-content: space-around;
 	font-size: 2.4rem;
+	border-bottom: solid 1px $liver;
+	padding: 1rem 0;
 	a{
 		margin: 0 5px;
 		color: $blue;
@@ -84,9 +85,17 @@ h1 {
 .delete{
 	font-size: 1.4rem;
 	height: 2rem;
-	background: $red;
+	background: none;
 	border: none;
-	color: $white;
+	color: $red;
+	&:focus, &:hover{
+		color: $white;
+		background: $red;
+
+	}
+}
+#renameProjects{
+	margin-bottom: 6rem;
 }
 #renameProjectsButton{
 	&:hover, &:focus{
@@ -184,8 +193,8 @@ h1 {
 				border-radius: 5px;
 				padding: 8px 10px 5px;
 				margin-bottom: 20px;
+				transition: all .4s;
 				&:hover, &:focus{
-					color: $white;
 					background: $blue;
 					border-color: $white;
 				}
