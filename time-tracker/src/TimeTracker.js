@@ -64,7 +64,7 @@ class TimeTracker extends Component {
       console.log(Object.keys(projects).map((id, val) =>{
         // let item = projects[id];
         if (id === 'projectsName'){
-
+          console.log(val);
           return id;
         }
       }));
