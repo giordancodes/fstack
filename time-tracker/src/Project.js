@@ -17,7 +17,7 @@ class Project extends Component {
                   <h3>Current Time Logged: <span>{ item.time }</span></h3>
                   <div className="modify-time">
                     <h4>
-                      <label htmlFor="startTimer">Start Timer? =></label>
+                      <label htmlFor="startTimer">Start Timer? =<span>></span></label>
                     </h4>
                     <button className="primary"
                             id="startTimer" >

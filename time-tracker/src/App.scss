@@ -248,6 +248,14 @@ section.single-project{
 			font-weight: 700;
 		}
 	}
+	h4{
+		label{
+			cursor: pointer;
+			span{
+				color: $green;
+			}
+		}
+	}
 	.modify-time{
 		display: -webkit-flex;
 		display: -moz-flex;
