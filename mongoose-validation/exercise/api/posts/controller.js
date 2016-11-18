@@ -15,32 +15,24 @@ exports.show = function(req, res) {
 // middleware in index.js
 
 exports.update = function(req, res) {
-
   Post.findById(req.params.id)
   .then((p) => {
-    p.title = req.body.title;
-    p.desc = req.body.description;
+    Object.assign(p, req.body);
 
-    p.save().then((p) => {
+    p.save()
+    .then((p) => {
       res.send(p);
-      // res.redirect(`/api/posts/${post._id}`);
     })
+    .catch((err) => res.send(404));
   })
-
-  // Implement your update logic here
-  // To find the post to update, use Post.findById(req.params.id)
-  // Remember that this returns a promise, so you'll need to work with the
-  // returned post in a .then() call. Also, remember to save()!
-  // If you can't find the post, return a 404.
-  res.send("Not implemented");
 }
 
 exports.create = function(req, res) {
-  // Implement your create logic here. Create a new post with var post = new Post()
-  // Remember to save!
-  let p = new Post();
+  // using _.pick from underscore.js maintains a strict allowance for which fields can be passed thru when using Post(req.body)
+  delete req.body.user;
+  let p = new Post(req.body);
 
   p.save()
-  // .then((p) => )
-  res.send("Not implemented");
+  .then((p) => res.send(p))
+  .catch((err) => res.send(404));
 }
