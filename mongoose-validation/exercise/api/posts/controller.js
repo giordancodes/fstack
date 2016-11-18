@@ -20,11 +20,13 @@ exports.update = function(req, res) {
     Object.assign(p, req.body);
 
     p.save()
-    .then((p) => {
-      res.send(p);
-    })
-    .catch((err) => res.send(404));
+    .then((p) => res.send(p))
+    .catch((err) => {
+      res.status(422);
+      res.send(err);
+    });
   })
+  .catch((err) => res.send(404))
 }
 
 exports.create = function(req, res) {
@@ -34,5 +36,9 @@ exports.create = function(req, res) {
 
   p.save()
   .then((p) => res.send(p))
-  .catch((err) => res.send(404));
+  .catch((err) => {
+    res.status(422);
+    console.log(err.errors);
+    res.send(err.errors);
+  });
 }

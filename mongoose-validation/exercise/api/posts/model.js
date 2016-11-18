@@ -6,12 +6,27 @@ var UserSchema = new mongoose.Schema({
 });
 
 var PostSchema = new mongoose.Schema({
-  title: String,
+  title: {
+  	type: String,
+  	required: true,
+  	minlength: 5,
+  	maxlength: 255
+  },
   description: String,
-  location: String,
-  user: String,
+  location: {
+  	type: String,
+  	enum: ['Toronto', 'Alert', 'Fiji']
+  },
+  user: {
+		type: String,
+		required: true
+  },
   image: String,
-  comment_count: Number,
+  comment_count: {
+		type: Number,
+		min: 0,
+		max: 99
+  },
   user_details: UserSchema
 });
 
