@@ -15,6 +15,18 @@ exports.show = function(req, res) {
 // middleware in index.js
 
 exports.update = function(req, res) {
+
+  Post.findById(req.params.id)
+  .then((p) => {
+    p.title = req.body.title;
+    p.desc = req.body.description;
+
+    p.save().then((p) => {
+      res.send(p);
+      // res.redirect(`/api/posts/${post._id}`);
+    })
+  })
+
   // Implement your update logic here
   // To find the post to update, use Post.findById(req.params.id)
   // Remember that this returns a promise, so you'll need to work with the
@@ -26,5 +38,9 @@ exports.update = function(req, res) {
 exports.create = function(req, res) {
   // Implement your create logic here. Create a new post with var post = new Post()
   // Remember to save!
+  let p = new Post();
+
+  p.save()
+  // .then((p) => )
   res.send("Not implemented");
 }

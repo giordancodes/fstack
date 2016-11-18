@@ -14,6 +14,7 @@ let PostSchema = new mongoose.Schema({
 	price: Number,
 	featured: Boolean,
 	userDetails: UserSchema
-});
+}, { strict: 'throw' });
+// strict can have true, false, or 'throw' arguments
 
 module.exports = mongoose.model('Post', PostSchema);
