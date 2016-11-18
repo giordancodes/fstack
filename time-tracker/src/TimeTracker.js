@@ -63,7 +63,7 @@ class TimeTracker extends Component {
       projects[dataSnapshot.key] = dataSnapshot.val();
       Object.keys(projects).map((id) =>{
         if (id === 'projectsName'){
-          return this.setState({projectsName: projects[id]}) ;
+          return this.setState({projectsName: projects[id]});
         }
       });
       this.setState({projects});
@@ -82,7 +82,7 @@ class TimeTracker extends Component {
   logout = () =>{
     if(confirm("Would you care to sign out?")){
       firebase.auth().signOut();
-      this.setState({loggedIn: false})
+      this.setState({loggedIn: false});
     }
   }
 

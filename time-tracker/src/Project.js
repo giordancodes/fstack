@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 
-import './App.scss';
-import './index.css';
-
 class Project extends Component {
 	
   render(){
@@ -18,6 +15,15 @@ class Project extends Component {
                 <div key={ id } >
                   <h2>{ item.title }</h2>
                   <h3>Current Time Logged: <span>{ item.time }</span></h3>
+                  <div className="modify-time">
+                    <h4>
+                      <label htmlFor="startTimer">Start Timer? =></label>
+                    </h4>
+                    <button className="primary"
+                            id="startTimer" >
+                      Go!
+                    </button>
+                  </div>
                 </div>
               )
             }
