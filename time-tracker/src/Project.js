@@ -17,7 +17,7 @@ class Project extends Component {
               return(
                 <div key={ id } >
                   <h2>{ item.title }</h2>
-                  <h3>Current Time: { item.time } </h3>
+                  <h3>Current Time Logged: <span>{ item.time }</span></h3>
                 </div>
               )
             }
