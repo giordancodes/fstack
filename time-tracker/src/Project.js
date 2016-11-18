@@ -9,8 +9,24 @@ class Project extends Component {
 	
   render(){
     return(
-      <h1>hola</h1>
+      <div>
+        <h1>hola</h1>
+      </div>
     )
+  }
+
+  componentDidMount(){
+    this.getUrl();
+  }
+
+  getUrl = () =>{
+    let currentUrl = window.location.pathname.split('/')[2];
+    this.setState({currentUrl});
+    console.log(this.props.projects);
+  }
+
+  currentProject = () =>{
+
   }
 }
 

@@ -75,7 +75,7 @@ class ProjectsList extends Component {
                     <li>
                       <div>
                       	<span>
-                          <a href={id}>{ item.title }</a>
+                          <a href={ `/project/${id}` }>{ item.title }</a>
                         </span>
                       </div>
                       <div>
