@@ -11,6 +11,7 @@ html, body{
 }
 body {
 	background: $black;
+	font-family: 'Josefin Sans', sans-serif;
 }
 button, a{
 	transition: all .4s;
@@ -58,11 +59,18 @@ header{
 		color: $green;
 	}
 }
-h1 {
+h1, h2, h3{
 	text-align: center;
 	font-weight: 400;
-	font-family: 'Josefin Sans', sans-serif;
+}
+h1 {
 	font-size: 4rem;
+}
+h2{
+	font-size: 3rem;
+}
+h3{
+	font-size: 2.4rem;
 }
 .primary {
 	background: $blue;
@@ -223,7 +231,11 @@ h1 {
 		}
 	}
 }
-
+section.single-project{
+	h3{
+		color: $green;
+	}
+}
 footer{
 	position: fixed;
 	bottom: 0;

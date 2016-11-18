@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import { browserHistory } from 'react-router';
 
 import './App.scss';
 import './index.css';
@@ -8,25 +7,27 @@ import './index.css';
 class Project extends Component {
 	
   render(){
+    let items = this.props.projects;
     return(
-      <div>
-        <h1>hola</h1>
-      </div>
+      <section className="single-project">
+        { Object.keys(items).map((id, val) => {
+            let currentUrl = this.state.currentUrl;
+            let item = items[id];
+            if(id === currentUrl){
+              return(
+                <div key={ id } >
+                  <h2>{ item.title }</h2>
+                  <h3>Current Time: { item.time } </h3>
+                </div>
+              )
+            }
+        })}
+      </section>
     )
   }
 
   componentDidMount(){
     this.setState({currentUrl: window.location.pathname.split('/')[2]});
-  }
-
-  currentProject = () =>{
-    let projects = this.props.projects;
-    // let currentUrl = this.state.currentUrl;
-    Object.keys(projects).map((id) =>{
-      // if ()
-      console.log('**', projects, projects[id], id);
-    })
-    console.log(projects);
   }
 }
 
