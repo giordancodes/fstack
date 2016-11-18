@@ -16,17 +16,17 @@ class Project extends Component {
   }
 
   componentDidMount(){
-    this.getUrl();
-  }
-
-  getUrl = () =>{
-    let currentUrl = window.location.pathname.split('/')[2];
-    this.setState({currentUrl});
-    console.log(this.props.projects);
+    this.setState({currentUrl: window.location.pathname.split('/')[2]});
   }
 
   currentProject = () =>{
-
+    let projects = this.props.projects;
+    // let currentUrl = this.state.currentUrl;
+    Object.keys(projects).map((id) =>{
+      // if ()
+      console.log('**', projects, projects[id], id);
+    })
+    console.log(projects);
   }
 }
 

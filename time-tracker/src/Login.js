@@ -135,7 +135,7 @@ class Login extends Component {
     e.preventDefault();
     let result;
     let creds = this.state.form;
-    let userName = this.state.form.name;
+    // let userName = this.state.form.name;
     if(this.state.mode === "login"){
       result = firebase.auth().signInWithEmailAndPassword(
         creds.email, creds.password)
