@@ -74,7 +74,9 @@ class ProjectsList extends Component {
                   <div key={ id } >
                     <li>
                       <div>
-                      	<span><a href={id}>{ item.title }</a></span>
+                      	<span>
+                          <a href={id}>{ item.title }</a>
+                        </span>
                       </div>
                       <div>
                       	<span>{ item.time }</span>
