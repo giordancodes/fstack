@@ -15,12 +15,22 @@ class Project extends Component {
                 <div key={ id } >
                   <h2>{ item.title }</h2>
                   <h3>Current Time Logged: <span>{ item.time }</span></h3>
+                  <hr/>
                   <div className="modify-time">
                     <h4>
                       <label htmlFor="startTimer">Start Timer? =<span>></span></label>
                     </h4>
                     <button className="primary"
                             id="startTimer" >
+                      Go!
+                    </button>
+                  </div>
+                  <div className="modify-time">
+                    <h4>
+                      <label htmlFor="modifyTime">Modify Current Time? =<span>></span></label>
+                    </h4>
+                    <button className="primary"
+                            id="modifyTime" >
                       Go!
                     </button>
                   </div>

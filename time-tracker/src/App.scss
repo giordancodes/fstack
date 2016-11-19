@@ -26,6 +26,9 @@ code{
 	max-width: 600px;
 	margin: 0 auto;
 }
+hr{
+	border-color: $liver;
+}
 nav{
 	font-family: 'Josefin Sans', sans-serif;
 	color: #DDD;
@@ -251,6 +254,10 @@ section.single-project{
 	h4{
 		label{
 			cursor: pointer;
+			transition: all .4s;
+			&:hover, &:focus{
+				color: $white;
+			}
 			span{
 				color: $green;
 			}
@@ -263,7 +270,7 @@ section.single-project{
 		display: -o-flex;
 		display: flex;
 		flex-direction: row;
-		justify-content: space-around;
+		justify-content: space-between;
 		align-items: center;
 	}
 }
