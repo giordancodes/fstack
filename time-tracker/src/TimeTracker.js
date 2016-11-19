@@ -36,6 +36,9 @@ class TimeTracker extends Component {
               loggedIn: this.state.loggedIn,
               userID: this.state.userID,
               deleteProject: this.deleteProject,
+              updateTime: this.updateTime,
+              singleProjectUrl: this.singleProjectUrl,
+              currentProjectTime: this.state.currentProjectTime,
               firebaseRef: this.firebaseRef })}
           <footer>© 2016 <a href="http://giordan.ca">Giordan Battaglin</a> </footer>
         </div>
@@ -99,6 +102,18 @@ class TimeTracker extends Component {
     if(confirm("Destroy item?")){
       this.firebaseRef.child(id).remove();
     }
+  }
+  updateTime = (e) =>{
+    let t = this.state.currentProjectTime;
+    let p = this.state.projects;
+    let url = this.state.currentUrl;
+    t = e.target.value;
+    console.log(t,p,url);
+    this.setState({currentProjectTime: t});
+
+  }
+  singleProjectUrl = (url) =>{
+    this.setState({projectUrl: url});
   }
 }
 

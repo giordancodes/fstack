@@ -11,10 +11,12 @@ class Project extends Component {
             let currentUrl = this.state.currentUrl;
             let item = items[id];
             if(id === currentUrl){
+              this.state.newTime = item.time;
+              let t = this.state.newTime;
               return(
                 <div key={ id } >
                   <h2>{ item.title }</h2>
-                  <h3>Current Time Logged: <span>{ item.time }</span></h3>
+                  <h3>Current Time Logged: <span>{ t }</span></h3>
                   <hr/>
                   <div className="modify-time">
                     <h4>
@@ -29,10 +31,11 @@ class Project extends Component {
                     <h4>
                       <label htmlFor="modifyTime">Modify Current Time? =<span>></span></label>
                     </h4>
-                    <input  type="text" 
+                    <input  type="number" 
                             id="modifyTime"
                             className="liveText"
-                            value={ item.time } />
+                            onChange={ this.onUpdateTime }
+                            value={ t } />
                   </div>
                 </div>
               )
@@ -42,10 +45,21 @@ class Project extends Component {
     )
   }
 
-  componentDidMount(){
+  componentWillMount(){
     this.setState({currentUrl: window.location.pathname.split('/')[2]});
   }
 
+  componentDidMount(){
+    let url = this.state.currentUrl;
+    this.props.singleProjectUrl(url);
+  }
+
+  onUpdateTime = (e) =>{
+    let t = this.state.newTime;
+    t = e.target.value;
+    this.props.updateTime(t);
+    this.setState({newTime: t});
+  }
 
 }
 

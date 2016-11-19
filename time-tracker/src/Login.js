@@ -163,8 +163,6 @@ class Login extends Component {
   renameConfirm = () =>{
     let newName = this.props.newName;
     this.setState({rename: false, newName: '', originalName: newName })
-
-    // firebaseRef.push({name: newName});
   }
 }
 
