@@ -34,7 +34,6 @@ class Project extends Component {
                     <input  type="number" 
                             id="modifyTime"
                             className="liveText"
-                            onChange={ this.onUpdateTime }
                             value={ t } />
                   </div>
                 </div>
