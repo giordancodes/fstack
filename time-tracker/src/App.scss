@@ -175,6 +175,15 @@ h4{
 		}
 	}
 }
+input.liveText{
+	font-size: 2rem;
+	margin: 0 5px;
+	color: $blue;
+	background: none ;
+	border: none;
+	padding: 0;
+	width: 125px;
+}
 .projects-list{
 	h1{
 		margin-bottom: 10px;
@@ -184,21 +193,14 @@ h4{
 		font-weight: 300;
 		color: $lightblue;
 		font-size: 1.6rem;
+		#rename-input{
+			text-align: center;
+		}
 		label:first-child{
 			margin-right: 2px;
 		}
 		label:last-child{
 			margin-left: 2px;
-		}
-		input{
-			font-size: 2rem;
-			text-align: center;
-			margin: 0 5px;
-			color: $blue;
-			background: none ;
-			border: none;
-			padding: 0;
-			width: 125px;
 		}
 	}
 	section.projects{
@@ -272,6 +274,9 @@ section.single-project{
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
+		input[type=text]{
+			text-align: right;
+		}
 	}
 }
 footer{

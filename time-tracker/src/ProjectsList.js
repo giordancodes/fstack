@@ -25,7 +25,8 @@ class ProjectsList extends Component {
                       >change</label> 
               { this.state.rename ?
                   <input  type="text"
-                          id="rename-input" 
+                          id="rename-input"
+                          className="liveText"
                           placeholder={ this.state.originalName }
                           onChange={ this.updateProjects } /> 
               : null 

@@ -29,10 +29,10 @@ class Project extends Component {
                     <h4>
                       <label htmlFor="modifyTime">Modify Current Time? =<span>></span></label>
                     </h4>
-                    <button className="primary"
-                            id="modifyTime" >
-                      Go!
-                    </button>
+                    <input  type="text" 
+                            id="modifyTime"
+                            className="liveText"
+                            value={ item.time } />
                   </div>
                 </div>
               )
@@ -45,6 +45,8 @@ class Project extends Component {
   componentDidMount(){
     this.setState({currentUrl: window.location.pathname.split('/')[2]});
   }
+
+
 }
 
 export default Project;

@@ -5,7 +5,6 @@ import './App.css';
 class App extends Component {
   constructor(){
     super();
-    this.tick = this.tick.bind(this);
     this.state={
       elapsed: 0,
       start: 0  
@@ -24,7 +23,7 @@ class App extends Component {
     clearInterval(this.timer);
   }
 
-  tick(){
+  tick = () =>{
     this.setState({ elapsed: new Date() - this.state.start });
   }  
 
