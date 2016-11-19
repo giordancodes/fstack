@@ -22,13 +22,19 @@ class Routes extends Component {
 
 export default Routes;
 
-
 class LoginChecker extends React.Component {
   render() {
     if (this.state.loggedIn) {
       <TimeTracker>
         { this.props.children }
       </TimeTracker>
+    } else {
+      browserHistory.push('/login');
+    }
+  }
+  componentDidMount(){
+    if (user){
+      this.setState({ loggedIn: true, currentUser: user.displayName, userID: user.uid });
     }
   }
 }

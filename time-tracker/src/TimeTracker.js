@@ -38,6 +38,7 @@ class TimeTracker extends Component {
               deleteProject: this.deleteProject,
               updateTime: this.updateTime,
               singleProjectUrl: this.singleProjectUrl,
+              projectUrl: this.state.projectUrl,
               currentProjectTime: this.state.currentProjectTime,
               firebaseRef: this.firebaseRef })}
           <footer>© 2016 <a href="http://giordan.ca">Giordan Battaglin</a> </footer>
@@ -79,7 +80,16 @@ class TimeTracker extends Component {
       this.setState({projects});
     });
 
+  }
 
+  componentDidUpdate() {
+    let items = this.state.projects;
+    Object.keys(items).map((id, val) => {
+      let projectUrl = this.state.projectUrl;
+      let item = items[projectUrl];
+      // this.setState({currentTitle: item.title, currentTime: item.time});
+    })
+    // ^^this totally crashes the app with an infinite loop^^
   }
 
   logout = () =>{
@@ -108,7 +118,6 @@ class TimeTracker extends Component {
     let p = this.state.projects;
     let url = this.state.currentUrl;
     t = e.target.value;
-    console.log(t,p,url);
     this.setState({currentProjectTime: t});
 
   }

@@ -8,9 +8,9 @@ class Project extends Component {
     return(
       <section className="single-project">
         { Object.keys(items).map((id, val) => {
-            let currentUrl = this.state.currentUrl;
-            let item = items[id];
-            if(id === currentUrl){
+            let projectUrl = this.props.projectUrl;
+            let item = items[projectUrl];
+            if(id === projectUrl){
               this.state.newTime = item.time;
               let t = this.state.newTime;
               return(
