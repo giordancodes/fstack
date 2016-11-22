@@ -11,7 +11,7 @@ class Project extends Component {
             let projectUrl = this.props.projectUrl;
             let item = items[projectUrl];
             if(id === projectUrl){
-              this.state.newTime = item.time;
+              this.setState({newTime: item.time});
               let t = this.state.newTime;
               return(
                 <div key={ id } >
