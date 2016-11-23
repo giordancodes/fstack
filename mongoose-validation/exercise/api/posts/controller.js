@@ -1,7 +1,7 @@
 var Post = require('./model.js');
 
 exports.index = function(req, res) {
-  Post.find()
+  Post.find().populate('user comments.user').exec()
   .then((posts) => res.send(posts));
 }
 
