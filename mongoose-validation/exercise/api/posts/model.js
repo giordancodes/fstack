@@ -1,9 +1,13 @@
 var mongoose = require('mongoose');
 
-var UserSchema = new mongoose.Schema({
-  name: String,
-  email: String
+var CommentSchema = new mongoose.Schema({
+  content: String,
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
 });
+
 
 var PostSchema = new mongoose.Schema({
   title: {
@@ -17,17 +21,21 @@ var PostSchema = new mongoose.Schema({
   	type: String,
   	enum: ['Toronto', 'Alert', 'Fiji']
   },
-  user: {
-		type: String,
-		required: true
-  },
   image: String,
-  comment_count: {
-		type: Number,
-		min: 0,
-		max: 99
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   },
-  user_details: UserSchema
+  comments: {
+    type: [CommentSchema],
+    default: []
+  },
+  likedBy: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'User',
+    default: []
+  },
 });
+
 
 module.exports = mongoose.model('Post', PostSchema);

@@ -16,17 +16,24 @@ exports.show = function(req, res) {
 
 exports.update = function(req, res) {
   Post.findById(req.params.id)
-  .then((p) => {
-    Object.assign(p, req.body);
+  .then((post) => {
 
-    p.save()
-    .then((p) => res.send(p))
-    .catch((err) => {
+    post.title = req.body.title;
+    post.description = req.body.description;
+    post.image = req.body.image;
+    post.location = req.body.location;
+    post.user = req.body.user;
+
+    post.save()
+    .then(function(post) {
+      res.send(post);
+    })
+    .catch(function(err) {
       res.status(422);
       res.send(err);
     });
   })
-  .catch((err) => res.send(404))
+  .catch(() => res.send(404))
 }
 
 exports.create = function(req, res) {
