@@ -79,17 +79,18 @@ class TimeTracker extends Component {
 
       this.setState({projects});
     });
-
   }
 
   componentDidUpdate() {
-    let items = this.state.projects;
-    Object.keys(items).map((id, val) => {
-      let projectUrl = this.state.projectUrl;
-      let item = items[projectUrl];
-      // this.setState({currentTitle: item.title, currentTime: item.time});
-    })
-    // ^^this totally crashes the app with an infinite loop^^
+    // let items = this.state.projects;
+    // Object.keys(items).map((id, val) => {
+    //   let userProjects = this.state.userProjects;
+    //   let user = this.state.userID;
+    //   let item = items[id];
+    //   if(item.userID === user  && !item[val]){
+    //     console.log(item.title);
+    //   }
+    // })
   }
 
   logout = () =>{
@@ -122,6 +123,7 @@ class TimeTracker extends Component {
 
   }
   singleProjectUrl = (url) =>{
+    let projectUrl = this.state.projectUrl;
     this.setState({projectUrl: url});
   }
 }

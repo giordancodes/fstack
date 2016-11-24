@@ -70,6 +70,7 @@ class ProjectsList extends Component {
             { Object.keys(items).map((id, val) => {
             	let item = items[id];
               let userID = this.props.userID;
+              // check for current user & that it's a project
             	if(item.userID === userID  && !item[val]){
 	              return(
                   <div key={ id } >

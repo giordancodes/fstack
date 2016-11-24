@@ -7,7 +7,8 @@ class Project extends Component {
     let items = this.props.projects;
     return(
       <section className="single-project">
-        { Object.keys(items).map((id, val) => {
+        
+        {/* Object.keys(items).map((id, val) => {
             let projectUrl = this.props.projectUrl;
             let item = items[projectUrl];
             if(id === projectUrl){
@@ -39,18 +40,46 @@ class Project extends Component {
                 </div>
               )
             }
-        })}
+        })*/}
       </section>
     )
   }
 
   componentWillMount(){
-    this.setState({currentUrl: window.location.pathname.split('/')[2]});
   }
 
   componentDidMount(){
-    let url = this.state.currentUrl;
-    this.props.singleProjectUrl(url);
+    this.setState({currentUrl: window.location.pathname.split('/')[2]});
+    // let currentUrl = window.location.pathname.split('/')[2];
+    // this.props.singleProjectUrl(currentUrl);
+    // setTimeout(this.setUrl, 500);
+    // this.grabUrl();
+    // this.setState({currentUrl: window.location.pathname.split('/')[2]}).then(res =>{
+    //   console.log(res);
+    // })
+    // this.setCurrentProject();
+  }
+
+  componentDidUpdate(){
+  }
+
+  // setUrl = () =>{
+  //   let url = this.state.currentUrl;
+  //   this.props.singleProjectUrl(this.state.currentUrl);
+  // }
+
+  setCurrentProject = () =>{
+    let items = this.props.projects;
+    let currentUrl = this.state.currentUrl;
+    let currentProject = this.state.currentProject;
+    Object.keys(items).map((id) => {
+      let item = items[id];
+      // console.log(id);
+      if(id === currentUrl){
+        currentProject = item.title;
+      }
+      this.setState({currentProject});
+    })
   }
 
   onUpdateTime = (e) =>{
