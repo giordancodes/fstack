@@ -18,15 +18,10 @@ var PostSchema = new mongoose.Schema({
   },
   description: String,
   location: {
-  	type: String,
-  	enum: ['Toronto', 'Alert', 'Fiji']
+  	type: String
+  	// enum: ['Toronto', 'Alert', 'Fiji']
   },
   image: String,
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  },
   comments: {
     type: [CommentSchema],
     default: []
@@ -36,6 +31,10 @@ var PostSchema = new mongoose.Schema({
     ref: 'User',
     default: []
   },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
 });
 
 

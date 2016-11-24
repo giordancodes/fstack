@@ -6,7 +6,7 @@ exports.index = function(req, res) {
 }
 
 exports.show = function(req, res) {
-  Post.findById(req.params.id)
+  Post.findById(req.params.id).populate('comments likedBy user')
   .then((posts) => res.send(posts))
   .catch((err) => res.send(404));
 }
@@ -48,4 +48,11 @@ exports.create = function(req, res) {
     console.log(err.errors);
     res.send(err.errors);
   });
+}
+
+exports.createComment = function(req, res) {
+  Post.findById(req.params.id)
+  .then((post) =>{
+    post.comments.push({ user: 'hardcoded user ID', content: req.body.content });
+  })
 }
