@@ -84,11 +84,11 @@ class TimeTracker extends Component {
 
   componentDidUpdate() {
     let items = this.state.projects;
-    Object.keys(items).map((id, val) => {
-      let projectUrl = this.state.projectUrl;
-      let item = items[projectUrl];
+    // Object.keys(items).map((id, val) => {
+    //   let projectUrl = this.state.projectUrl;
+    //   let item = items[projectUrl];
       // this.setState({currentTitle: item.title, currentTime: item.time});
-    })
+    // })
     // ^^this totally crashes the app with an infinite loop^^
   }
 

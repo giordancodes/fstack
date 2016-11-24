@@ -45,12 +45,20 @@ class Project extends Component {
   }
 
   componentWillMount(){
-    this.setState({currentUrl: window.location.pathname.split('/')[2]});
   }
 
   componentDidMount(){
-    let url = this.state.currentUrl;
-    this.props.singleProjectUrl(url);
+    this.grabUrl();
+    // this.setState({currentUrl: window.location.pathname.split('/')[2]}).then(res =>{
+    //   // let url = this.state.currentUrl;
+    //   // this.props.singleProjectUrl(this.state.currentUrl);
+    //   console.log(res);
+    // })
+  }
+
+  grabUrl = (res, err) =>{
+
+    this.setState({currentUrl: window.location.pathname.split('/')[2]});
   }
 
   onUpdateTime = (e) =>{
