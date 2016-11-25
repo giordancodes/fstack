@@ -24,13 +24,13 @@ var App = React.createClass({
   },
 
   refresh: function() {
-    $.get('/api/posts', (data) => this.setState({posts: data}));
+    var q = this.state.searchInput;
+    $.get(`/api/posts/?q=${q}`, (data) => this.setState({posts: data}));
   },
 
   updateSearch: function(e) {
     var q = e.target.value;
-    this.setState({searchInput: q});
-    $.get(`/api/posts/?q=${q}`, (data) => this.setState({posts: data}));
+    this.setState({searchInput: q}, this.refresh);
   },
 
   componentDidMount: function() {
