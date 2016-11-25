@@ -1,21 +1,21 @@
 import React from 'react';
 import Header from './header';
-import Search from './search';
 import styles from './app.scss';
+import SearchBar from './search_bar';
 import $ from 'jquery';
 
 var App = React.createClass({
   getInitialState: function() {
     return {
       posts: [],
-      searchInput: ''
+      search: ''
     }
   },
 
   render: function() {
     return  <div>
       <Header />
-      <Search updateSearch={this.updateSearch} />
+      <SearchBar search={ this.state.search } onSearch={ this.searchChanged } />
       { React.cloneElement(this.props.children, {
         posts: this.state.posts,
         onRefresh: this.refresh
@@ -23,14 +23,12 @@ var App = React.createClass({
     </div>
   },
 
-  refresh: function() {
-    $.get('/api/posts', (data) => this.setState({posts: data}));
+  searchChanged: function(evt) {
+    this.setState({search: evt.target.value }, this.refresh);
   },
 
-  updateSearch: function(e) {
-    var q = e.target.value;
-    this.setState({searchInput: q});
-    $.get(`/api/posts/?q=${q}`, (data) => this.setState({posts: data}));
+  refresh: function() {
+    $.get('/api/posts?q=' + this.state.search, (data) => this.setState({posts: data}));
   },
 
   componentDidMount: function() {

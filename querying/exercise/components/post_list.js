@@ -12,7 +12,9 @@ var PostList = React.createClass({
                 image={ post.image }
                 description={ post.description }
                 location={ post.location }
-                user={ post.user.name } />
+                user={ post.user }
+                likedBy={ post.likedBy }
+                comments={ post.comments } />
         )}
       </div>
     </div>
