@@ -45,9 +45,6 @@ class Project extends Component {
     )
   }
 
-  componentWillMount(){
-  }
-
   componentDidMount(){
     this.setState({currentUrl: window.location.pathname.split('/')[2]}, () =>{
       let c = this.state.currentUrl;

@@ -81,18 +81,6 @@ class TimeTracker extends Component {
     });
   }
 
-  componentDidUpdate() {
-    // let items = this.state.projects;
-    // Object.keys(items).map((id, val) => {
-    //   let userProjects = this.state.userProjects;
-    //   let user = this.state.userID;
-    //   let item = items[id];
-    //   if(item.userID === user  && !item[val]){
-    //     console.log(item.title);
-    //   }
-    // })
-  }
-
   logout = () =>{
     if(confirm("Would you care to sign out?")){
       firebase.auth().signOut();
@@ -120,11 +108,23 @@ class TimeTracker extends Component {
     let url = this.state.currentUrl;
     t = e.target.value;
     this.setState({currentProjectTime: t});
-
   }
+
   singleProjectUrl = (url) =>{
     let projectUrl = this.state.projectUrl;
     this.setState({projectUrl: url});
+  }
+
+  currentProject = () =>{
+
+    let items = this.state.projects;
+    let projectUrl = this.state.projectUrl;
+    Object.keys(items).map((id) => {
+      let item = items[id];
+      console.log(item);
+        // this.setState({newTime: item.time});
+        // let t = this.state.newTime;
+    })
   }
 }
 
