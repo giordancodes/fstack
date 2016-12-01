@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-
 class Project extends Component {
 	
   render(){
-    
+    let p = this.props.projectUrl;
+    let items = this.props.projects;
+    console.log(p, items, items[p]);
     return(
       <section className="single-project">
 
@@ -53,7 +54,8 @@ class Project extends Component {
         let items = this.props.projects;
         this.props.singleProjectUrl(c);
         console.log(items[c], items, c);
-      });
+      }
+    );
   }
 
   onUpdateTime = (e) =>{

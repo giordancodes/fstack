@@ -47,10 +47,6 @@ class TimeTracker extends Component {
     );
   }
 
-  componentWillMount(){
-    
-  }
-
   componentDidMount(){
     this.firebaseRef = firebase.database().ref("projectList");
 
