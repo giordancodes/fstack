@@ -93,7 +93,7 @@ class TimeTracker extends Component {
   }
 
   renameConfirm = (n) =>{
-    this.firebaseRef.update({projectsName: n});
+    this.firebaseRef.update({ projectsName: n });
     this.setState({rename: false, projectsName: n });
   }
 
@@ -102,6 +102,7 @@ class TimeTracker extends Component {
       this.firebaseRef.child(id).remove();
     }
   }
+
   updateTime = (e) =>{
     let t = this.state.currentProjectTime;
     let p = this.state.projects;

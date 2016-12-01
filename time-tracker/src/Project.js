@@ -4,12 +4,13 @@ import firebase from 'firebase';
 class Project extends Component {
 	
   render(){
-    let items = this.props.projects;
+    
     return(
       <section className="single-project">
+
+        
         
         {/* Object.keys(items).map((id, val) => {
-            let projectUrl = this.props.projectUrl;
             let item = items[projectUrl];
             if(id === projectUrl){
               this.setState({newTime: item.time});
@@ -46,10 +47,13 @@ class Project extends Component {
   }
 
   componentDidMount(){
-    this.setState({currentUrl: window.location.pathname.split('/')[2]}, () =>{
-      let c = this.state.currentUrl;
-      this.props.singleProjectUrl(c);
-    });
+    this.setState({currentUrl: window.location.pathname.split('/')[2]}, 
+      () => {
+        let c = this.state.currentUrl;
+        let items = this.props.projects;
+        this.props.singleProjectUrl(c);
+        console.log(items[c], items, c);
+      });
   }
 
   onUpdateTime = (e) =>{
