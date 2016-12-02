@@ -49,15 +49,20 @@ class Project extends Component {
   }
 
   componentWillReceiveProps() {
-    let p = this.props.projectUrl;
-    let items = this.props.projects;
-    if (items[p] !== undefined){
-      this.setState({ currentProjectTitle: items[p]['title'], currentProjectTime: items[p]['time'] });
-    }
   }
 
   componentDidMount() {    
 
+    let p = this.props.projectUrl;
+    let items = this.props.projects;
+    console.log(items[p], p, items);
+    // if (items[p] !== undefined){
+    //   this.setState({ currentProjectTitle: items[p]['title'], currentProjectTime: items[p]['time'] });
+    // }
+    if (items[p] !== undefined){
+      // this.props.setCurrentProjectTimeAndTitle(items[p]['time'], items[p]['title'])
+      // this.props.setCurrentProjectTimeAndTitle(42, 'some')
+    }
   }
 
   timeEdit = () =>{
