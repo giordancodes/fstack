@@ -5,7 +5,7 @@ var webpack = require('webpack');
 var webpackMiddleware = require('webpack-dev-middleware');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/trading');
+mongoose.connect('mongodb://mongo:mongo@ds119748.mlab.com:19748/trading-budz');
 mongoose.Promise = require('bluebird');
 
 var bodyParser = require('body-parser');
