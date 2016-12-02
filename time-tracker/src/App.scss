@@ -105,6 +105,13 @@ h4{
 		color: $blue;
 	}
 }
+.primary.finish{
+	background:$green;
+	color:$black;
+}
+.primary.cancel{
+	background:$red;
+}
 .delete{
 	font-size: 1.4rem;
 	height: 2rem;
@@ -275,11 +282,21 @@ section.single-project{
 		display: -o-flex;
 		display: flex;
 		flex-direction: row;
-		justify-content: space-between;
+		justify-content: space-around;
 		align-items: center;
 		input[type=number]{
 			text-align: right;
 		}
+	}
+	.editing-time{
+		display: -webkit-flex;
+		display: -moz-flex;
+		display: -ms-flex;
+		display: -o-flex;
+		display: flex;
+		justify-content: center;
+		flex-direction: row;
+		margin-top: 4rem;
 	}
 }
 footer{

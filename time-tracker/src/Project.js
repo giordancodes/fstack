@@ -12,7 +12,6 @@ class Project extends Component {
   render(){
     let p = this.props.projectUrl;
     let items = this.props.projects;
-    // console.log(p, items, items[p]);
     return(
       <section className="single-project">
         <h1>{ this.state.currentProjectTitle }</h1>
@@ -26,39 +25,45 @@ class Project extends Component {
             change time?
           </button>
         </div>
-        {/* (this.state.modifyTime){
-          return(
-            <div className="">
-              <button>
-                finish?
-              </button>
-            </div>
-          )
-          }
-        */}
+        { this.state.modifyTime ?
+          <div className="editing-time">
+            <input  type="number" 
+                    value={ this.state.currentProjectTime } />
+            <button className="primary finish"
+                    onClick={ this.timeEdit } >
+              finish?
+            </button>
+            <button className="primary cancel"
+                    onClick={ this.timeEdit } >
+              cancel?
+            </button>
+          </div>
+          : null
+        }
       </section>
     )
   }
 
   componentWillMount(){
-    this.setState({currentUrl: window.location.pathname.split('/')[2]}, 
-      () => {
-        let c = this.state.currentUrl;
-        let items = this.props.projects;
-        this.props.singleProjectUrl(c);
-      }
-    );
+    this.props.singleProjectUrl(window.location.pathname.split('/')[2]);
   }
+
   componentWillReceiveProps() {
     let p = this.props.projectUrl;
     let items = this.props.projects;
     if (items[p] !== undefined){
-      this.setState({ currentProjectTitle: items[p]['title'], currentProjectTime: items[p]['time'] })
+      this.setState({ currentProjectTitle: items[p]['title'], currentProjectTime: items[p]['time'] });
     }
   }
 
+  componentDidMount() {    
+
+  }
+
   timeEdit = () =>{
-    this.setState({modifyTime: true})
+    let m = this.state.modifyTime;
+    m = !m;
+    this.setState({modifyTime: m});
   }
 
   onUpdateTime = (e) =>{
@@ -66,6 +71,12 @@ class Project extends Component {
     t = e.target.value;
     this.props.updateTime(t);
     this.setState({newTime: t});
+  }
+
+  onSetCurrentProjectTimeAndTitle = (x, y) =>{
+    let b = this.state.propsProjectTime;
+    let c = this.state.propsProjectTitle;
+    this.props.setCurrentProjectTimeAndTitle(b, c);
   }
 
 }

@@ -99,7 +99,7 @@ class ProjectsList extends Component {
 
   componentDidMount(){
     let p = this.props.projectsName;
-    let currentUser = this.props.currentUser;
+    // let currentUser = this.props.currentUser;
     this.firebaseRef = firebase.database().ref("projectList");
     this.setState({originalName: p});
   }
