@@ -10,39 +10,14 @@ class Project extends Component {
       <section className="single-project">
         <h1>{ this.state.currentProjectTitle }</h1>
         <h2>current time logged: { this.state.currentProjectTime } </h2>
-        
-        {/* Object.keys(items).map((id, val) => {
-            let item = items[projectUrl];
-            if(id === projectUrl){
-              this.setState({newTime: item.time});
-              let t = this.state.newTime;
-              return(
-                <div key={ id } >
-                  <h2>{ item.title }</h2>
-                  <h3>Current Time Logged: <span>{ t }</span></h3>
-                  <hr/>
-                  <div className="modify-time">
-                    <h4>
-                      <label htmlFor="startTimer">Start Timer? =<span>></span></label>
-                    </h4>
-                    <button className="primary"
-                            id="startTimer" >
-                      Go!
-                    </button>
-                  </div>
-                  <div className="modify-time">
-                    <h4>
-                      <label htmlFor="modifyTime">Modify Current Time? =<span>></span></label>
-                    </h4>
-                    <input  type="number" 
-                            id="modifyTime"
-                            className="liveText"
-                            value={ t } />
-                  </div>
-                </div>
-              )
-            }
-        })*/}
+        <div className="modify-time">
+          <button className="primary">
+            start time?
+          </button>
+          <button className="primary">
+            change time?
+          </button>
+        </div>
       </section>
     )
   }

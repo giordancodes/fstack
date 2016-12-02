@@ -117,18 +117,6 @@ class TimeTracker extends Component {
       }
     );
   }
-
-  currentProject = () =>{
-
-    let items = this.state.projects;
-    let projectUrl = this.state.projectUrl;
-    Object.keys(items).map((id) => {
-      let item = items[id];
-      // console.log(item);
-        // this.setState({newTime: item.time});
-        // let t = this.state.newTime;
-    })
-  }
 }
 
 export default TimeTracker;
