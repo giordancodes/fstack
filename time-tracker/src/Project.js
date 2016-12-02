@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
 class Project extends Component {
+
+  constructor(){
+    super();
+    this.state={
+      modifyTime: false
+    }
+  }
 	
   render(){
     let p = this.props.projectUrl;
@@ -14,10 +21,21 @@ class Project extends Component {
           <button className="primary">
             start time?
           </button>
-          <button className="primary">
+          <button className="primary"
+                  onClick={ this.timeEdit } >
             change time?
           </button>
         </div>
+        {/* (this.state.modifyTime){
+          return(
+            <div className="">
+              <button>
+                finish?
+              </button>
+            </div>
+          )
+          }
+        */}
       </section>
     )
   }
@@ -37,6 +55,10 @@ class Project extends Component {
     if (items[p] !== undefined){
       this.setState({ currentProjectTitle: items[p]['title'], currentProjectTime: items[p]['time'] })
     }
+  }
+
+  timeEdit = () =>{
+    this.setState({modifyTime: true})
   }
 
   onUpdateTime = (e) =>{
