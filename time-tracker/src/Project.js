@@ -5,11 +5,11 @@ class Project extends Component {
   render(){
     let p = this.props.projectUrl;
     let items = this.props.projects;
-    console.log(p, items, items[p]);
+    // console.log(p, items, items[p]);
     return(
       <section className="single-project">
-
-        
+        <h1>{ this.state.currentProjectTitle }</h1>
+        <h2>current time logged: { this.state.currentProjectTime } </h2>
         
         {/* Object.keys(items).map((id, val) => {
             let item = items[projectUrl];
@@ -47,15 +47,21 @@ class Project extends Component {
     )
   }
 
-  componentDidMount(){
+  componentWillMount(){
     this.setState({currentUrl: window.location.pathname.split('/')[2]}, 
       () => {
         let c = this.state.currentUrl;
         let items = this.props.projects;
         this.props.singleProjectUrl(c);
-        console.log(items[c], items, c);
       }
     );
+  }
+  componentWillReceiveProps() {
+    let p = this.props.projectUrl;
+    let items = this.props.projects;
+    if (items[p] !== undefined){
+      this.setState({ currentProjectTitle: items[p]['title'], currentProjectTime: items[p]['time'] })
+    }
   }
 
   onUpdateTime = (e) =>{

@@ -109,7 +109,13 @@ class TimeTracker extends Component {
 
   singleProjectUrl = (url) =>{
     let projectUrl = this.state.projectUrl;
-    this.setState({projectUrl: url});
+    let items = this.state.projects;
+    // console.log(items, url, items[url]);
+    this.setState({projectUrl: url},
+      () => {
+        // console.log(items, url, items[url]);
+      }
+    );
   }
 
   currentProject = () =>{
@@ -118,7 +124,7 @@ class TimeTracker extends Component {
     let projectUrl = this.state.projectUrl;
     Object.keys(items).map((id) => {
       let item = items[id];
-      console.log(item);
+      // console.log(item);
         // this.setState({newTime: item.time});
         // let t = this.state.newTime;
     })
