@@ -41,6 +41,7 @@ class TimeTracker extends Component {
               projectUrl: this.state.projectUrl,
               setCurrentProjectTimeAndTitle: this.setCurrentProjectTimeAndTitle,
               currentProjectTime: this.state.currentProjectTime,
+              currentProjectTitle: this.state.currentProjectTitle,
               firebaseRef: this.firebaseRef })}
           <footer>© 2016 <a href="http://giordan.ca">Giordan Battaglin</a> </footer>
         </div>

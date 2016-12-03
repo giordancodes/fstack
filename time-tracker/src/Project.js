@@ -45,24 +45,43 @@ class Project extends Component {
   }
 
   componentWillMount(){
-    this.props.singleProjectUrl(window.location.pathname.split('/')[2]);
+    let url = window.location.pathname.split('/')[2];
+    this.props.singleProjectUrl(url);
+    let items = this.props.projects;
+    // console.log(items, url, items.url);
   }
 
   componentWillReceiveProps() {
+    let url = this.props.projectUrl;
+    let items = this.props.projects;
+    if (url !== undefined){
+    // this.setState({ currentProjectTitle: items[url]['title'], currentProjectTime: items[url]['time'] });
+      // console.log(url)
+      // this.props.setCurrentProjectTimeAndTitle(items[url]['time'], items[url]['title'])
+    }
+    console.log(url, items, items[url]);
   }
 
-  componentDidMount() {    
-
-    let p = this.props.projectUrl;
+  shouldComponentUpdate(nextProps, nextState) {
+    let url = window.location.pathname.split('/')[2];
     let items = this.props.projects;
-    console.log(items[p], p, items);
+    // console.log(items, url, items[url]);
+    return nextProps.projectUrl !== this.props.projectUrl;
+    // return items[url] !== this.props.;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    
+  }
+
+  componentDidMount() {
+    // console.log(this.props.projectUrl);
+
     // if (items[p] !== undefined){
-    //   this.setState({ currentProjectTitle: items[p]['title'], currentProjectTime: items[p]['time'] });
     // }
-    if (items[p] !== undefined){
+    // if (items[p] !== undefined){
       // this.props.setCurrentProjectTimeAndTitle(items[p]['time'], items[p]['title'])
-      // this.props.setCurrentProjectTimeAndTitle(42, 'some')
-    }
+    // }
   }
 
   timeEdit = () =>{
