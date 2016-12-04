@@ -77,6 +77,12 @@ class TimeTracker extends Component {
 
       this.setState({projects});
     });
+    let url = window.location.pathname.split('/')[2];
+    let items = this.state.projects;
+    console.log(url, items, items[url]);
+    // if (items[url] !== undefined){
+    //   this.props.setCurrentProjectTimeAndTitle(items[p]['time'], items[p]['title'])
+    // }
   }
 
   logout = () =>{
@@ -103,7 +109,6 @@ class TimeTracker extends Component {
 
   updateTime = (e) =>{
     let t = this.state.currentProjectTime;
-    let p = this.state.projects;
     let url = this.state.currentUrl;
     t = e.target.value;
     this.setState({currentProjectTime: t});

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import Timer from './Timer';
 class Project extends Component {
 
   constructor(){
@@ -40,6 +41,7 @@ class Project extends Component {
           </div>
           : null
         }
+        <Timer />
       </section>
     )
   }
