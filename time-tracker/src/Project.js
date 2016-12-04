@@ -56,13 +56,18 @@ class Project extends Component {
   componentWillReceiveProps(nextProps) {
     let url = this.props.projectUrl;
     let items = this.props.projects;
-    if (nextProps.projectUrl !== typeof 'undefined'){
-      console.log(nextProps.projectUrl);
+    if (url !== nextProps.projectUrl && nextProps.projectUrl !== typeof 'undefined' && typeof nextProps.projects !== 'undefined' ){
+      // console.log(nextProps.projectUrl);
     // this.setState({ currentProjectTitle: items[url]['title'], currentProjectTime: items[url]['time'] });
-      // console.log(url)
-      // this.props.setCurrentProjectTimeAndTitle(items[url]['time'], items[url]['title'])
+      console.log('string update');
+      console.log({
+        url: nextProps.projectUrl,
+        projectList: nextProps.projects,
+        current: nextProps.projects[nextProps.projectUrl]
+      })
+      // this.props.setCurrentProjectTimeAndTitle(nextProps.projects[nextProps.projectUrl]['time'], nextProps.projects[nextProps.projectUrl]['title'])
     }
-    console.log(url, items, items[url]);
+    // console.log(url, items, items[url]);
   }
 
   // shouldComponentUpdate(nextProps, nextState) {

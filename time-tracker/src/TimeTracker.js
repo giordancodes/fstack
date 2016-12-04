@@ -47,7 +47,12 @@ class TimeTracker extends Component {
       </div>
     );
   }
-
+  componentWillMount(){
+    let url = window.location.pathname.split('/')[2];
+    // this.props.singleProjectUrl(url);
+    let items = this.props.projects;
+    console.log(url);
+  }
   componentDidMount(){
     this.firebaseRef = firebase.database().ref("projectList");
 
@@ -114,6 +119,7 @@ class TimeTracker extends Component {
 
   setCurrentProjectTimeAndTitle = (x, y) =>{
     this.setState({ currentProjectTime: x , currentProjectTitle: y });
+    console.log('setCurrentProjectTimeAndTitle called' , x, y)
   }
 }
 
