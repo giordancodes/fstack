@@ -53,10 +53,11 @@ class Project extends Component {
     // console.log(items, url, items.url);
   }
 
-  componentWillReceiveProps() {
+  componentWillReceiveProps(nextProps) {
     let url = this.props.projectUrl;
     let items = this.props.projects;
-    if (url !== undefined){
+    if (nextProps.projectUrl !== typeof 'undefined'){
+      console.log(nextProps.projectUrl);
     // this.setState({ currentProjectTitle: items[url]['title'], currentProjectTime: items[url]['time'] });
       // console.log(url)
       // this.props.setCurrentProjectTimeAndTitle(items[url]['time'], items[url]['title'])
@@ -64,13 +65,13 @@ class Project extends Component {
     console.log(url, items, items[url]);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    let url = window.location.pathname.split('/')[2];
-    let items = this.props.projects;
-    // console.log(items, url, items[url]);
-    return nextProps.projectUrl !== this.props.projectUrl;
-    // return items[url] !== this.props.;
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   let url = window.location.pathname.split('/')[2];
+  //   let items = this.props.projects;
+  //   // console.log(items, url, items[url]);
+  //   return nextProps.projectUrl !== this.props.projectUrl;
+  //   // return items[url] !== this.props.;
+  // }
 
   componentDidUpdate(prevProps, prevState) {
     

@@ -41,7 +41,6 @@ class TimeTracker extends Component {
               projectUrl: this.state.projectUrl,
               setCurrentProjectTimeAndTitle: this.setCurrentProjectTimeAndTitle,
               currentProjectTime: this.state.currentProjectTime,
-              currentProjectTitle: this.state.currentProjectTitle,
               firebaseRef: this.firebaseRef })}
           <footer>© 2016 <a href="http://giordan.ca">Giordan Battaglin</a> </footer>
         </div>
@@ -77,12 +76,6 @@ class TimeTracker extends Component {
 
       this.setState({projects});
     });
-    let url = window.location.pathname.split('/')[2];
-    let items = this.state.projects;
-    console.log(url, items, items[url]);
-    // if (items[url] !== undefined){
-    //   this.props.setCurrentProjectTimeAndTitle(items[p]['time'], items[p]['title'])
-    // }
   }
 
   logout = () =>{
@@ -109,6 +102,7 @@ class TimeTracker extends Component {
 
   updateTime = (e) =>{
     let t = this.state.currentProjectTime;
+    let p = this.state.projects;
     let url = this.state.currentUrl;
     t = e.target.value;
     this.setState({currentProjectTime: t});
