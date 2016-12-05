@@ -38,7 +38,7 @@ class Timer extends Component {
           </h2>
         </div>
         <p className="App-intro">
-          timer started almost precisely <code>{ seconds }</code> ago.
+          timer started almost precisely <code>{ seconds }</code> seconds ago.
         </p>
       </div>
     );

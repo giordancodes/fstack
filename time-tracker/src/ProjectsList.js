@@ -78,7 +78,7 @@ class ProjectsList extends Component {
                     <li>
                       <div>
                       	<span>
-                          <a  onClick={ () => this.chooseProject(id) } >{ item.title }</a>
+                          <a onClick={ () => this.chooseProject(id) } >{ item.title }</a>
                         </span>
                       </div>
                       <div>
@@ -100,7 +100,6 @@ class ProjectsList extends Component {
 
   componentDidMount(){
     let p = this.props.projectsName;
-    // let currentUser = this.props.currentUser;
     this.firebaseRef = firebase.database().ref("projectList");
     this.setState({originalName: p});
   }
@@ -110,9 +109,7 @@ class ProjectsList extends Component {
     let b = items[id]['time'];
     let c = items[id]['title'];
     this.props.setCurrentProjectTimeAndTitle(b, c);
-    console.log(b, c);
     browserHistory.push(`/project/${id}`);
-    // this.props.setCurrentProjectTimeAndTitle(items[url]['time'], items[url]['title']);
   }
 
   onUpdateProjects = (e) =>{

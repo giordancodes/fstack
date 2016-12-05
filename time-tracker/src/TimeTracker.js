@@ -37,6 +37,7 @@ class TimeTracker extends Component {
               userID: this.state.userID,
               deleteProject: this.deleteProject,
               updateTime: this.updateTime,
+              startTimer: this.startTimer,
               singleProjectUrl: this.singleProjectUrl,
               projectUrl: this.state.projectUrl,
               setCurrentProjectTimeAndTitle: this.setCurrentProjectTimeAndTitle,
@@ -110,24 +111,21 @@ class TimeTracker extends Component {
 
   updateTime = (e) =>{
     let t = this.state.currentProjectTime;
-    let p = this.state.projects;
-    let url = this.state.currentUrl;
     t = e.target.value;
     this.setState({currentProjectTime: t});
   }
 
   singleProjectUrl = (url) =>{
     let items = this.state.projects;
-    this.setState({projectUrl: url},
-    () => {
-      console.log(url, items, items[url]);
-    }
-    );
+    this.setState({projectUrl: url});
   }
 
   setCurrentProjectTimeAndTitle = (x, y) =>{
     this.setState({ currentProjectTime: x , currentProjectTitle: y });
-    // console.log('setCurrentProjectTimeAndTitle called' , x, y)
+  }
+
+  startTimer = () =>{
+
   }
 }
 

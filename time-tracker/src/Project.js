@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
+import { browserHistory } from 'react-router';
+
 import Timer from './Timer';
 class Project extends Component {
 
@@ -11,14 +12,13 @@ class Project extends Component {
   }
 	
   render(){
-    let p = this.props.projectUrl;
-    let items = this.props.projects;
     return(
       <section className="single-project">
         <h1>{ this.props.currentProjectTitle }</h1>
         <h2>current time logged: { this.props.currentProjectTime } </h2>
         <div className="modify-time">
-          <button className="primary">
+          <button className="primary"
+                  onClick={ this.props.startTimer } >
             start time?
           </button>
           <button className="primary"
@@ -47,53 +47,9 @@ class Project extends Component {
   }
 
   componentWillMount(){
-    let url = window.location.pathname.split('/')[2];
-    this.props.singleProjectUrl(url);
-    let items = this.props.projects;
-    // console.log(items, url, items.url);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    let url = this.props.projectUrl;
-    let items = this.props.projects;
-    // if (url !== nextProps.projectUrl && nextProps.projectUrl !== typeof 'undefined' && typeof nextProps.projects !== 'undefined' ){
-      // console.log(nextProps.projectUrl);
-    // this.setState({ currentProjectTitle: items[url]['title'], currentProjectTime: items[url]['time'] });
-    //   console.log('string update');
-    //   console.log({
-    //     url: nextProps.projectUrl,
-    //     projectList: nextProps.projects,
-    //     current: nextProps.projects[nextProps.projectUrl]
-    //   })
-    //   this.props.setCurrentProjectTimeAndTitle(nextProps.projects[nextProps.projectUrl]['time'], nextProps.projects[nextProps.projectUrl]['title'])
-    // }
-    // let items = this.props.projects;
-    // let url = this.props.projectUrl;
-    // console.log(url, items, items[url]);
-    // console.log(url, items, items[url]);
-  }
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   let url = window.location.pathname.split('/')[2];
-  //   let items = this.props.projects;
-  //   // console.log(items, url, items[url]);
-  //   return nextProps.projectUrl !== this.props.projectUrl;
-  //   // return items[url] !== this.props.;
-  // }
-
-  componentDidUpdate(prevProps, prevState) {
-    
-  }
-
-  componentDidMount() {
-    
-    // console.log(this.props.projectUrl);
-
-    // if (items[p] !== undefined){
-    // }
-    // if (items[p] !== undefined){
-      // this.props.setCurrentProjectTimeAndTitle(items[p]['time'], items[p]['title'])
-    // }
+    if(this.props.currentProjectTitle === undefined){
+      browserHistory.push('/');
+    }
   }
 
   timeEdit = () =>{
@@ -114,7 +70,6 @@ class Project extends Component {
     let c = this.state.propsProjectTitle;
     this.props.setCurrentProjectTimeAndTitle(b, c);
   }
-
 }
 
 export default Project;
