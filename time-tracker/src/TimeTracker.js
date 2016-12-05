@@ -41,6 +41,7 @@ class TimeTracker extends Component {
               projectUrl: this.state.projectUrl,
               setCurrentProjectTimeAndTitle: this.setCurrentProjectTimeAndTitle,
               currentProjectTime: this.state.currentProjectTime,
+              currentProjectTitle: this.state.currentProjectTitle,
               firebaseRef: this.firebaseRef })}
           <footer>© 2016 <a href="http://giordan.ca">Giordan Battaglin</a> </footer>
         </div>
@@ -49,9 +50,7 @@ class TimeTracker extends Component {
   }
   componentWillMount(){
     let url = window.location.pathname.split('/')[2];
-    // this.props.singleProjectUrl(url);
-    let items = this.props.projects;
-    console.log(url);
+    this.setState({projectUrl: url});
   }
   componentDidMount(){
     this.firebaseRef = firebase.database().ref("projectList");
@@ -81,6 +80,10 @@ class TimeTracker extends Component {
 
       this.setState({projects});
     });
+  }
+
+  componentDidUpdate(){
+
   }
 
   logout = () =>{
@@ -114,12 +117,17 @@ class TimeTracker extends Component {
   }
 
   singleProjectUrl = (url) =>{
-    this.setState({projectUrl: url});
+    let items = this.state.projects;
+    this.setState({projectUrl: url},
+    () => {
+      console.log(url, items, items[url]);
+    }
+    );
   }
 
   setCurrentProjectTimeAndTitle = (x, y) =>{
     this.setState({ currentProjectTime: x , currentProjectTitle: y });
-    console.log('setCurrentProjectTimeAndTitle called' , x, y)
+    // console.log('setCurrentProjectTimeAndTitle called' , x, y)
   }
 }
 

@@ -15,8 +15,8 @@ class Project extends Component {
     let items = this.props.projects;
     return(
       <section className="single-project">
-        <h1>{ this.state.currentProjectTitle }</h1>
-        <h2>current time logged: { this.state.currentProjectTime } </h2>
+        <h1>{ this.props.currentProjectTitle }</h1>
+        <h2>current time logged: { this.props.currentProjectTime } </h2>
         <div className="modify-time">
           <button className="primary">
             start time?
@@ -56,17 +56,20 @@ class Project extends Component {
   componentWillReceiveProps(nextProps) {
     let url = this.props.projectUrl;
     let items = this.props.projects;
-    if (url !== nextProps.projectUrl && nextProps.projectUrl !== typeof 'undefined' && typeof nextProps.projects !== 'undefined' ){
+    // if (url !== nextProps.projectUrl && nextProps.projectUrl !== typeof 'undefined' && typeof nextProps.projects !== 'undefined' ){
       // console.log(nextProps.projectUrl);
     // this.setState({ currentProjectTitle: items[url]['title'], currentProjectTime: items[url]['time'] });
-      console.log('string update');
-      console.log({
-        url: nextProps.projectUrl,
-        projectList: nextProps.projects,
-        current: nextProps.projects[nextProps.projectUrl]
-      })
-      // this.props.setCurrentProjectTimeAndTitle(nextProps.projects[nextProps.projectUrl]['time'], nextProps.projects[nextProps.projectUrl]['title'])
-    }
+    //   console.log('string update');
+    //   console.log({
+    //     url: nextProps.projectUrl,
+    //     projectList: nextProps.projects,
+    //     current: nextProps.projects[nextProps.projectUrl]
+    //   })
+    //   this.props.setCurrentProjectTimeAndTitle(nextProps.projects[nextProps.projectUrl]['time'], nextProps.projects[nextProps.projectUrl]['title'])
+    // }
+    // let items = this.props.projects;
+    // let url = this.props.projectUrl;
+    // console.log(url, items, items[url]);
     // console.log(url, items, items[url]);
   }
 
@@ -83,6 +86,7 @@ class Project extends Component {
   }
 
   componentDidMount() {
+    
     // console.log(this.props.projectUrl);
 
     // if (items[p] !== undefined){

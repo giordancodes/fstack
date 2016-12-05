@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import { browserHistory } from 'react-router';
 
 import './App.scss';
 import './index.css';
@@ -77,7 +78,7 @@ class ProjectsList extends Component {
                     <li>
                       <div>
                       	<span>
-                          <a href={ `/project/${id}` }>{ item.title }</a>
+                          <a  onClick={ () => this.chooseProject(id) } >{ item.title }</a>
                         </span>
                       </div>
                       <div>
@@ -102,6 +103,16 @@ class ProjectsList extends Component {
     // let currentUser = this.props.currentUser;
     this.firebaseRef = firebase.database().ref("projectList");
     this.setState({originalName: p});
+  }
+
+  chooseProject = (id) =>{
+    let items = this.props.projects;
+    let b = items[id]['time'];
+    let c = items[id]['title'];
+    this.props.setCurrentProjectTimeAndTitle(b, c);
+    console.log(b, c);
+    browserHistory.push(`/project/${id}`);
+    // this.props.setCurrentProjectTimeAndTitle(items[url]['time'], items[url]['title']);
   }
 
   onUpdateProjects = (e) =>{
