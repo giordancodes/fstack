@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 
+import Rename from './Rename';
 import Timer from './Timer';
 class Project extends Component {
 
@@ -15,6 +16,8 @@ class Project extends Component {
     return(
       <section className="single-project">
         <h1>{ this.props.currentProjectTitle }</h1>
+        
+        
         <h2>current time logged: { this.props.currentProjectTime } </h2>
         <div className="modify-time">
           { !this.props.useTimer ? 

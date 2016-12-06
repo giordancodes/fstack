@@ -8,14 +8,6 @@ class Timer extends Component {
     }
   }
 
-  componentDidMount(){
-
-    // this.setState({ start: new Date().getTime() })
-    // console.log(this.state.start);
-    // this.setState({ start: new Date() })
-    // this.timer = setInterval(this.tick, 50);
-  }
-
   render() {
 
     let elapsed = Math.round(this.props.elapsed / 100);
