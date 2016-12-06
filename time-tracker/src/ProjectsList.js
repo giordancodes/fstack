@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import { browserHistory } from 'react-router';
 
+import Rename from './Rename';
 import './App.scss';
 import './index.css';
 
@@ -18,41 +19,49 @@ class ProjectsList extends Component {
     return (
       <div className="projects-list wrapper">
         <h1>{ this.props.projectsName } List</h1>
-        <section id="renameProjects">
-          <div>
-            <form onSubmit={ this.onRenameConfirm }>
-              <label  htmlFor="rename-input"
-                      onClick={ this.showRename }
-                      >change</label> 
-              { this.state.rename ?
-                  <input  type="text"
-                          id="rename-input"
-                          className="liveText"
-                          placeholder={ this.state.originalName }
-                          onChange={ this.updateProjects } /> 
-              : null 
-              }
-              <label  htmlFor="rename-input"
-                      onClick={ this.showRename }
-                      >name?</label>
-            </form>
-          </div>
-          { this.state.rename ?
-            <div>
-              <button onClick={ this.onRenameConfirm }
-                      className="secondary"
-                      id="renameProjectsButton" >
-                <code>confirm</code>
-              </button>
-              <button onClick={ this.renameCancel }
-                      className="secondary"
-                      id="cancelRenameProjectsButton" >
-                <code>cancel</code>
-              </button>
-            </div> 
-            : null
-          }
-        </section>
+        <Rename showRename={ this.showRename }
+                originalName={ this.state.originalName }
+                updateProjects={ this.updateProjects }
+                onRenameConfirm={ this.onRenameConfirm }
+                renameConfirm={ this.props.renameConfirm }
+                rename={ this.state.rename }
+                renameCancel={ this.renameCancel } />
+
+        { /*<section id="renameProjects">
+                  <div>
+                    <form onSubmit={ this.onRenameConfirm }>
+                      <label  htmlFor="rename-input"
+                              onClick={ this.showRename }
+                              >change</label> 
+                      { this.state.rename ?
+                          <input  type="text"
+                                  id="rename-input"
+                                  className="liveText"
+                                  placeholder={ this.state.originalName }
+                                  onChange={ this.updateProjects } /> 
+                      : null 
+                      }
+                      <label  htmlFor="rename-input"
+                              onClick={ this.showRename }
+                              >name?</label>
+                    </form>
+                  </div>
+                  { this.state.rename ?
+                    <div>
+                      <button onClick={ this.onRenameConfirm }
+                              className="secondary"
+                              id="renameProjectsButton" >
+                        <code>confirm</code>
+                      </button>
+                      <button onClick={ this.renameCancel }
+                              className="secondary"
+                              id="cancelRenameProjectsButton" >
+                        <code>cancel</code>
+                      </button>
+                    </div> 
+                    : null
+                  }
+                </section> */}
         <section  className="projects" 
                   onSubmit={ this.newProject } >
           <ul>
