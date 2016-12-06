@@ -42,7 +42,7 @@ class Project extends Component {
           </div>
           : null
         }
-        <Timer />
+        <Timer elapsed={ this.props.elapsed } />
       </section>
     )
   }

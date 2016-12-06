@@ -11,7 +11,8 @@ class TimeTracker extends Component {
     this.state={
       loggedIn: true,
       currentUser: null,
-      projects: {}
+      projects: {},
+      elapsed: 0
     }
   }
   render() {
@@ -38,6 +39,7 @@ class TimeTracker extends Component {
               deleteProject: this.deleteProject,
               updateTime: this.updateTime,
               startTimer: this.startTimer,
+              elapsed: this.state.elapsed,
               setCurrentProjectTimeAndTitle: this.setCurrentProjectTimeAndTitle,
               currentProjectTime: this.state.currentProjectTime,
               currentProjectTitle: this.state.currentProjectTitle,
@@ -102,20 +104,32 @@ class TimeTracker extends Component {
     }
   }
 
-  updateTime = (newTime) =>{
-    let projects = this.state.projects;
-    let url = this.state.currentProject;
-    this.firebaseRef.child(url).update({ 'time': newTime });
-    this.setState({currentProjectTime: newTime, projects: projects});
-  }
-
   setCurrentProjectTimeAndTitle = (x, y, id) =>{
     let items = this.state.projects;
     this.setState({ currentProjectTime: x , currentProjectTitle: y, currentProject: id });
   }
 
-  startTimer = () =>{
+  updateTime = (newTime) =>{
+    let projects = this.state.projects;
+    let url = this.state.currentProject;
+    this.firebaseRef.child(url).update({ 'time': newTime });
+    this.setState({ currentProjectTime: newTime });
+  }
 
+  startTimer = () =>{
+    this.setState({ start: new Date() })
+    this.timer = setInterval(this.tick, 50);
+  }
+
+  tick = () =>{
+    this.setState({ elapsed: new Date() - this.state.start });
+  }
+
+  updateTitle = (newTitle) =>{
+    let projects = this.state.projects;
+    let url = this.state.currentProject;
+    this.firebaseRef.child(url).update({ 'title': newTitle });
+    this.setState({ currentProjectTitle: newTitle });
   }
 }
 

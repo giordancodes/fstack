@@ -4,7 +4,6 @@ class Timer extends Component {
   constructor(){
     super();
     this.state={
-      elapsed: 0,
       start: 0  
     }
   }
@@ -13,22 +12,18 @@ class Timer extends Component {
 
     // this.setState({ start: new Date().getTime() })
     // console.log(this.state.start);
-    this.setState({ start: new Date() })
-    this.timer = setInterval(this.tick, 50);
+    // this.setState({ start: new Date() })
+    // this.timer = setInterval(this.tick, 50);
   }
 
   componentWillUnmount(){
     clearInterval(this.timer);
-  }
-
-  tick = () =>{
-    this.setState({ elapsed: new Date() - this.state.start });
-  }  
+  } 
 
   render() {
 
-    const elapsed = Math.round(this.state.elapsed / 100);
-    const seconds = (elapsed / 10).toFixed(1);
+    let elapsed = Math.round(this.props.elapsed / 100);
+    let seconds = (elapsed / 10).toFixed(1);
 
     return (
       <div className="App">
