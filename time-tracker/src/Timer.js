@@ -4,7 +4,7 @@ class Timer extends Component {
   constructor(){
     super();
     this.state={
-      start: 0  
+      start: 0
     }
   }
 
@@ -26,16 +26,11 @@ class Timer extends Component {
     let seconds = (elapsed / 10).toFixed(1);
 
     return (
-      <div className="App">
-        <div className="App-header">
-          <h2>
-            <code>timer.js</code>
-          </h2>
-        </div>
-        <p className="App-intro">
+      <section className="timer">
+        <code>
           timer started almost precisely <code>{ seconds }</code> seconds ago.
-        </p>
-      </div>
+        </code>
+      </section>
     );
   }
 }

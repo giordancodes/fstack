@@ -12,7 +12,8 @@ class TimeTracker extends Component {
       loggedIn: true,
       currentUser: null,
       projects: {},
-      elapsed: 0
+      elapsed: 0,
+      useTimer: false
     }
   }
   render() {
@@ -39,7 +40,9 @@ class TimeTracker extends Component {
               deleteProject: this.deleteProject,
               updateTime: this.updateTime,
               startTimer: this.startTimer,
+              stopTimer: this.stopTimer,
               elapsed: this.state.elapsed,
+              useTimer: this.state.useTimer,
               setCurrentProjectTimeAndTitle: this.setCurrentProjectTimeAndTitle,
               currentProjectTime: this.state.currentProjectTime,
               currentProjectTitle: this.state.currentProjectTitle,
@@ -117,8 +120,17 @@ class TimeTracker extends Component {
   }
 
   startTimer = () =>{
-    this.setState({ start: new Date() })
+    let useTimer = this.state.useTimer;
+    useTimer = !useTimer;
+    this.setState({ start: new Date(), useTimer })
     this.timer = setInterval(this.tick, 50);
+  }
+
+  stopTimer = () =>{
+    let useTimer = this.state.useTimer;
+    useTimer = !useTimer;
+    this.setState({ start: new Date(), useTimer })
+    clearInterval(this.timer);
   }
 
   tick = () =>{

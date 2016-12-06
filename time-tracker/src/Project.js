@@ -17,10 +17,22 @@ class Project extends Component {
         <h1>{ this.props.currentProjectTitle }</h1>
         <h2>current time logged: { this.props.currentProjectTime } </h2>
         <div className="modify-time">
-          <button className="primary"
-                  onClick={ this.props.startTimer } >
-            start time?
-          </button>
+          { !this.props.useTimer ? 
+              <button className="primary"
+                      onClick={ this.props.startTimer } >
+                      start time?
+              </button> 
+              :
+              <div>
+                <button className="primary"
+                        onClick={ this.props.stopTimer } >
+                        stop time?
+                </button> 
+                <button className="primary">
+                        
+                </button>
+              </div>
+               }
           <button className="primary"
                   onClick={ this.timeEdit } >
             change time?
