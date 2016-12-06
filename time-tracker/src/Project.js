@@ -65,8 +65,9 @@ class Project extends Component {
   }
 
   onUpdateTime = () =>{
-    this.props.updateTime(42);
-    // let t = this.state.newTime;
+    let t = this.state.newTime;
+    this.props.updateTime(t);
+    this.timeEdit();
     // t = e.target.value;
     // this.props.updateTime();
     // this.setState({newTime: t});
