@@ -298,6 +298,11 @@ section.single-project{
 		justify-content: center;
 		flex-direction: row;
 		margin-top: 4rem;
+		input{
+			font-size: 1.8rem;
+			width: 10rem;
+			padding: 0 1rem;
+		}
 	}
 }
 section.timer{

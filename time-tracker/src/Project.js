@@ -25,7 +25,7 @@ class Project extends Component {
               :
               <div>
                 <button className="primary"
-                        onClick={ this.props.stopTimer } >
+                        onClick={ this.props.stopAndSaveTimer } >
                         stop and save?
                 </button> 
                 <button className="primary">
@@ -42,7 +42,8 @@ class Project extends Component {
           <div className="editing-time">
             <input  type="number" 
                     value={ this.state.newTime }
-                    onChange={ this.newProjectTime } />
+                    onChange={ this.newProjectTime }
+                    min='0' />
             <button className="primary finish"
                     onClick={ this.onUpdateTime } >
               finish?

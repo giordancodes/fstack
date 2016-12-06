@@ -41,6 +41,7 @@ class TimeTracker extends Component {
               updateTime: this.updateTime,
               startTimer: this.startTimer,
               stopTimer: this.stopTimer,
+              stopAndSaveTimer: this.stopAndSaveTimer,
               elapsed: this.state.elapsed,
               useTimer: this.state.useTimer,
               setCurrentProjectTimeAndTitle: this.setCurrentProjectTimeAndTitle,
@@ -134,6 +135,15 @@ class TimeTracker extends Component {
 
     this.setState({ start: new Date(), useTimer })
     clearInterval(this.timer);
+  }
+
+  stopAndSaveTimer = () =>{
+    let elapsed = Math.floor(this.state.elapsed);
+    let currentProjectTime = Math.floor(this.state.currentProjectTime);
+    console.log( elapsed , currentProjectTime );
+    this.updateTime( elapsed + currentProjectTime );
+
+    this.stopTimer();
   }
 
   tick = () =>{
