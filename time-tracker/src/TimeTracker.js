@@ -66,10 +66,10 @@ class TimeTracker extends Component {
       }
     });
 
+    // update state when child added
     this.firebaseRef.on("child_added", (dataSnapshot) =>{
       let projects = this.state.projects;
       projects[dataSnapshot.key] = dataSnapshot.val();
-      // console.log(projects[dataSnapshot.key])
       Object.keys(projects).map((id) =>{
         if (id === 'projectsName'){
           return this.setState({projectsName: projects[id]});
@@ -78,12 +78,25 @@ class TimeTracker extends Component {
       this.setState({projects});
     });
 
+    // update state when child deleted
     this.firebaseRef.on("child_removed", (dataSnapshot) =>{
       let projects = this.state.projects;
       delete projects[dataSnapshot.key];
 
       this.setState({projects});
     });
+    
+    // update state when child changes
+    this.firebaseRef.on("child_changed", (dataSnapshot) =>{
+      let projects = this.state.projects;
+      projects[dataSnapshot.key] = dataSnapshot.val();
+      Object.keys(projects).map((id) =>{
+        if (id === 'projectsName'){
+          return this.setState({projectsName: projects[id]});
+        }
+      });
+      this.setState({projects});
+    })
   }
 
   logout = () =>{
@@ -140,7 +153,6 @@ class TimeTracker extends Component {
   stopAndSaveTimer = () =>{
     let elapsed = Math.floor(this.state.elapsed);
     let currentProjectTime = Math.floor(this.state.currentProjectTime);
-    console.log( elapsed , currentProjectTime );
     this.updateTime( elapsed + currentProjectTime );
 
     this.stopTimer();
