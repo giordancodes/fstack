@@ -108,7 +108,7 @@ class ProjectsList extends Component {
     let items = this.props.projects;
     let b = items[id]['time'];
     let c = items[id]['title'];
-    this.props.setCurrentProjectTimeAndTitle(b, c);
+    this.props.setCurrentProjectTimeAndTitle(b, c, id);
     browserHistory.push(`/project/${id}`);
   }
 

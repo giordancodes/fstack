@@ -31,7 +31,7 @@ class Project extends Component {
             <input  type="number" 
                     value={ this.state.currentProjectTime } />
             <button className="primary finish"
-                    onClick={ this.timeEdit } >
+                    onClick={ this.onUpdateTime } >
               finish?
             </button>
             <button className="primary cancel"
@@ -56,13 +56,14 @@ class Project extends Component {
     let m = this.state.modifyTime;
     m = !m;
     this.setState({modifyTime: m});
+    this.props.updateTime(42);
   }
 
-  onUpdateTime = (e) =>{
-    let t = this.state.newTime;
-    t = e.target.value;
-    this.props.updateTime(t);
-    this.setState({newTime: t});
+  onUpdateTime = () =>{
+    // let t = this.state.newTime;
+    // t = e.target.value;
+    this.props.updateTime();
+    // this.setState({newTime: t});
   }
 
   onSetCurrentProjectTimeAndTitle = (x, y) =>{

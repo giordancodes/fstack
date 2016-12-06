@@ -38,21 +38,17 @@ class TimeTracker extends Component {
               deleteProject: this.deleteProject,
               updateTime: this.updateTime,
               startTimer: this.startTimer,
-              singleProjectUrl: this.singleProjectUrl,
-              projectUrl: this.state.projectUrl,
               setCurrentProjectTimeAndTitle: this.setCurrentProjectTimeAndTitle,
               currentProjectTime: this.state.currentProjectTime,
               currentProjectTitle: this.state.currentProjectTitle,
+              currentProject: this.state.currentProject,
               firebaseRef: this.firebaseRef })}
           <footer>© 2016 <a href="http://giordan.ca">Giordan Battaglin</a> </footer>
         </div>
       </div>
     );
   }
-  componentWillMount(){
-    let url = window.location.pathname.split('/')[2];
-    this.setState({projectUrl: url});
-  }
+
   componentDidMount(){
     this.firebaseRef = firebase.database().ref("projectList");
 
@@ -67,6 +63,7 @@ class TimeTracker extends Component {
     this.firebaseRef.on("child_added", (dataSnapshot) =>{
       let projects = this.state.projects;
       projects[dataSnapshot.key] = dataSnapshot.val();
+      // console.log(projects[dataSnapshot.key])
       Object.keys(projects).map((id) =>{
         if (id === 'projectsName'){
           return this.setState({projectsName: projects[id]});
@@ -81,10 +78,6 @@ class TimeTracker extends Component {
 
       this.setState({projects});
     });
-  }
-
-  componentDidUpdate(){
-
   }
 
   logout = () =>{
@@ -111,17 +104,20 @@ class TimeTracker extends Component {
 
   updateTime = (e) =>{
     let t = this.state.currentProjectTime;
-    t = e.target.value;
-    this.setState({currentProjectTime: t});
-  }
-
-  singleProjectUrl = (url) =>{
     let items = this.state.projects;
-    this.setState({projectUrl: url});
+    let url = this.state.currentProject;
+    // t = e.target.value;
+    let project = items[url];
+    console.log(project);
+    this.firebaseRef.update({ project: { 'time': 42 } })
+    // this.setState({currentProjectTime: t});
   }
 
-  setCurrentProjectTimeAndTitle = (x, y) =>{
-    this.setState({ currentProjectTime: x , currentProjectTitle: y });
+  setCurrentProjectTimeAndTitle = (x, y, id) =>{
+    let items = this.state.projects;
+    // this.firebaseRef.update({ items[id] })
+    this.setState({ currentProjectTime: x , currentProjectTitle: y, currentProject: id });
+    console.log(items[id]['title']);
   }
 
   startTimer = () =>{
