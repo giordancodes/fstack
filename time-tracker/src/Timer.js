@@ -16,19 +16,15 @@ class Timer extends Component {
     // this.timer = setInterval(this.tick, 50);
   }
 
-  componentWillUnmount(){
-    clearInterval(this.timer);
-  } 
-
   render() {
 
     let elapsed = Math.round(this.props.elapsed / 100);
-    let seconds = (elapsed / 10).toFixed(1);
+    // let seconds = (elapsed / 10).toFixed(1);
 
     return (
       <section className="timer">
         <code>
-          timer started almost precisely <code>{ seconds }</code> seconds ago.
+          timer started almost precisely <code>{ this.props.elapsed }</code> seconds ago.
         </code>
       </section>
     );

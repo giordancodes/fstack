@@ -129,12 +129,15 @@ class TimeTracker extends Component {
   stopTimer = () =>{
     let useTimer = this.state.useTimer;
     useTimer = !useTimer;
+
+    let elapsed = this.state.elapsed;
+
     this.setState({ start: new Date(), useTimer })
     clearInterval(this.timer);
   }
 
   tick = () =>{
-    this.setState({ elapsed: new Date() - this.state.start });
+    this.setState({ elapsed: ((new Date() - this.state.start) /1000).toFixed(1) });
   }
 
   updateTitle = (newTitle) =>{

@@ -26,10 +26,10 @@ class Project extends Component {
               <div>
                 <button className="primary"
                         onClick={ this.props.stopTimer } >
-                        stop time?
+                        stop and save?
                 </button> 
                 <button className="primary">
-                        
+                        revert?
                 </button>
               </div>
                }
