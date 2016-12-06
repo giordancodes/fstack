@@ -34,10 +34,13 @@ class Project extends Component {
                 </button>
               </div>
                }
-          <button className="primary"
-                  onClick={ this.timeEdit } >
-            change time?
-          </button>
+          { !this.props.useTimer ? 
+            <button className="primary"
+                    onClick={ this.timeEdit } >
+              change time?
+            </button>
+            : null
+          }
         </div>
         { this.state.modifyTime ?
           <div className="editing-time">
@@ -56,7 +59,10 @@ class Project extends Component {
           </div>
           : null
         }
-        <Timer elapsed={ this.props.elapsed } />
+        { this.props.useTimer ?  
+          <Timer elapsed={ this.props.elapsed } />
+          : null
+        }
       </section>
     )
   }
@@ -74,8 +80,9 @@ class Project extends Component {
 
   timeEdit = () =>{
     let m = this.state.modifyTime;
+    let p = this.props.currentProjectTime;
     m = !m;
-    this.setState({modifyTime: m});
+    this.setState({modifyTime: m, newTime: p});
   }
 
   onUpdateTime = () =>{
