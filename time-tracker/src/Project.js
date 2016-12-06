@@ -29,13 +29,14 @@ class Project extends Component {
         { this.state.modifyTime ?
           <div className="editing-time">
             <input  type="number" 
-                    value={ this.state.currentProjectTime } />
+                    value={ this.state.newTime }
+                    onChange={ this.newProjectTime } />
             <button className="primary finish"
                     onClick={ this.onUpdateTime } >
               finish?
             </button>
             <button className="primary cancel"
-                    onClick={ this.timeEdit } >
+                    onClick={ this.cancelTimeEdit } >
               cancel?
             </button>
           </div>
@@ -52,18 +53,30 @@ class Project extends Component {
     }
   }
 
+  componentDidMount(){
+    let newTime = this.props.currentProjectTime;
+    this.setState({ newTime });
+  }
+
   timeEdit = () =>{
     let m = this.state.modifyTime;
     m = !m;
     this.setState({modifyTime: m});
-    this.props.updateTime(42);
   }
 
   onUpdateTime = () =>{
+    this.props.updateTime(42);
     // let t = this.state.newTime;
     // t = e.target.value;
-    this.props.updateTime();
+    // this.props.updateTime();
     // this.setState({newTime: t});
+  }
+
+  cancelTimeEdit = () =>{
+    let newTime = this.state.newTime;
+    newTime = this.props.currentProjectTime;
+    this.setState({ newTime });
+    this.timeEdit();
   }
 
   onSetCurrentProjectTimeAndTitle = (x, y) =>{
@@ -71,6 +84,13 @@ class Project extends Component {
     let c = this.state.propsProjectTitle;
     this.props.setCurrentProjectTimeAndTitle(b, c);
   }
+
+  newProjectTime = (e) =>{
+    let newTime = this.state.newTime;
+    newTime = e.target.value;
+    this.setState({ newTime });
+  }
+
 }
 
 export default Project;
