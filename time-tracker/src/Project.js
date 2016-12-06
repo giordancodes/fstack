@@ -68,9 +68,6 @@ class Project extends Component {
     let t = this.state.newTime;
     this.props.updateTime(t);
     this.timeEdit();
-    // t = e.target.value;
-    // this.props.updateTime();
-    // this.setState({newTime: t});
   }
 
   cancelTimeEdit = () =>{
