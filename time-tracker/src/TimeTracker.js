@@ -108,16 +108,14 @@ class TimeTracker extends Component {
     let url = this.state.currentProject;
     // t = e.target.value;
     let project = items[url];
-    console.log(project);
-    this.firebaseRef.update({ project: { 'time': 42 } })
+    console.log(this.firebaseRef.child(url));
+    this.firebaseRef.child(url).update({ 'time': 42 })
     // this.setState({currentProjectTime: t});
   }
 
   setCurrentProjectTimeAndTitle = (x, y, id) =>{
     let items = this.state.projects;
-    // this.firebaseRef.update({ items[id] })
     this.setState({ currentProjectTime: x , currentProjectTitle: y, currentProject: id });
-    console.log(items[id]['title']);
   }
 
   startTimer = () =>{
