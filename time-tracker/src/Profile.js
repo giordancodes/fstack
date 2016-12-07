@@ -51,7 +51,9 @@ class Profile extends Component {
 			  	</div>
 			  	<form>
 			  		<label htmlFor=""><span>delete account??</span>
-				  		<button className="primary cancel">damn { this.props.currentUser }</button>
+				  		<button className="primary cancel"
+				  						onClick={ this.props.deleteUser } >
+					  		damn { this.props.currentUser }</button>
 			  		</label>
 			  	</form>
 			  </div>
@@ -68,6 +70,7 @@ class Profile extends Component {
 	updateUserInfo = () =>{
 
 	}
+
 }
 
 export default Profile;

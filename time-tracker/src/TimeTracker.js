@@ -50,6 +50,7 @@ class TimeTracker extends Component {
               currentProjectTime: this.state.currentProjectTime,
               currentProjectTitle: this.state.currentProjectTitle,
               currentProject: this.state.currentProject,
+              deleteUser: this.deleteUser,
               firebaseRef: this.firebaseRef })}
           <footer>© 2016 <a href="http://giordan.ca">Giordan Battaglin</a> </footer>
         </div>
@@ -164,6 +165,13 @@ class TimeTracker extends Component {
     let url = this.state.currentProject;
     this.firebaseRef.child(url).update({ 'title': newTitle });
     this.setState({ currentProjectTitle: newTitle });
+  }
+
+  deleteUser = () =>{
+    if(confirm("This CANNOT be undone; are you absolutely, positively sure you want to destroy all the hard work you've done and salt the earth?")){
+      alert("nice");
+      
+    }
   }
 }
 

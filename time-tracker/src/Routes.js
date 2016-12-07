@@ -18,7 +18,6 @@ class Routes extends Component {
           <Route path='/project/:projectId' component={ Project } />
           <Route path='/profile' component={ Profile } />
         </Route>
-
       </Router>
     )
   }
