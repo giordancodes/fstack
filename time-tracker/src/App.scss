@@ -142,6 +142,7 @@ h4{
 		color: $red;
 	}
 }
+
 .login {
 	.error{
 		color: red;
@@ -332,7 +333,9 @@ section.timer{
 #profilePage{
 	h1{
 		margin-bottom: 5rem;
-		
+	}
+	.main-options{
+		margin-bottom: 15rem;
 	}
 	form{
 		display: -webkit-flex;
@@ -342,6 +345,24 @@ section.timer{
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		input {
+			width: 160px;
+			background: none;
+			border: none;
+			color: $lightblue;
+		}
+		::-webkit-input-placeholder {
+		   color: $lightblue;
+		}
+		::-moz-placeholder{
+			color: $lightblue;
+		}
+		:-ms-input-placeholder {
+			color: $lightblue;
+		}
+	}
+	button{
+		min-width: 12rem;
 	}
 	label{
 		font-size: 2.4rem;
