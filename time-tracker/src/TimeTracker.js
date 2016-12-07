@@ -60,7 +60,6 @@ class TimeTracker extends Component {
 
   componentDidMount(){
     this.firebaseRef = firebase.database().ref("projectList");
-
     firebase.auth().onAuthStateChanged((user) => {
       if (user){
         this.setState({ loggedIn: true, currentUser: user.displayName, userID: user.uid, userEmail: user.email });
@@ -76,7 +75,7 @@ class TimeTracker extends Component {
       Object.keys(projects).map((id) =>{
         if (id === 'projectsName'){
           return this.setState({projectsName: projects[id]});
-        }
+        } 
       });
       this.setState({projects});
     });
@@ -114,6 +113,11 @@ class TimeTracker extends Component {
   }
 
   renameConfirm = (n) =>{
+    let userID = this.state.userID;
+    let projectsName = {
+      title: n,
+      userID: userID
+    }
     this.firebaseRef.update({ projectsName: n });
     this.setState({rename: false, projectsName: n });
   }
