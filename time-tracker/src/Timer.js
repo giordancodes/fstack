@@ -1,26 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Timer extends Component {
-  constructor(){
-    super();
-    this.state={
-      start: 0
-    }
-  }
-
-  render() {
-
-    let elapsed = Math.round(this.props.elapsed / 100);
-    // let seconds = (elapsed / 10).toFixed(1);
-
-    return (
-      <section className="timer">
+const Timer = (props) => <section className="timer">
         <code>
-          timer started almost precisely <code>{ this.props.elapsed }</code> seconds ago.
+          timer started almost precisely <code>{ props.elapsed }</code> seconds ago.
         </code>
-      </section>
-    );
-  }
-}
+      </section>;
 
 export default Timer;

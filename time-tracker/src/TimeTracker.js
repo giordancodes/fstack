@@ -38,6 +38,7 @@ class TimeTracker extends Component {
               currentUser: this.state.currentUser,
               loggedIn: this.state.loggedIn,
               userID: this.state.userID,
+              userEmail: this.state.userEmail,
               deleteProject: this.deleteProject,
               updateTime: this.updateTime,
               startTimer: this.startTimer,
@@ -61,7 +62,7 @@ class TimeTracker extends Component {
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user){
-        this.setState({ loggedIn: true, currentUser: user.displayName, userID: user.uid });
+        this.setState({ loggedIn: true, currentUser: user.displayName, userID: user.uid, userEmail: user.email });
       } else {
         browserHistory.push('/login');
       }
@@ -123,12 +124,10 @@ class TimeTracker extends Component {
   }
 
   setCurrentProjectTimeAndTitle = (x, y, id) =>{
-    let items = this.state.projects;
     this.setState({ currentProjectTime: x , currentProjectTitle: y, currentProject: id });
   }
 
   updateTime = (newTime) =>{
-    let projects = this.state.projects;
     let url = this.state.currentProject;
     this.firebaseRef.child(url).update({ 'time': newTime });
     this.setState({ currentProjectTime: newTime });
@@ -144,8 +143,6 @@ class TimeTracker extends Component {
   stopTimer = () =>{
     let useTimer = this.state.useTimer;
     useTimer = !useTimer;
-
-    let elapsed = this.state.elapsed;
 
     this.setState({ start: new Date(), useTimer })
     clearInterval(this.timer);
@@ -164,7 +161,6 @@ class TimeTracker extends Component {
   }
 
   updateTitle = (newTitle) =>{
-    let projects = this.state.projects;
     let url = this.state.currentProject;
     this.firebaseRef.child(url).update({ 'title': newTitle });
     this.setState({ currentProjectTitle: newTitle });

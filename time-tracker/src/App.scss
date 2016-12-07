@@ -329,6 +329,31 @@ section.timer{
 	text-align: center;
 	font-size: 2.2rem;
 }
+#profilePage{
+	h1{
+		margin-bottom: 5rem;
+		
+	}
+	form{
+		display: -webkit-flex;
+		display: -moz-flex;
+		display: -ms-flex;
+		display: -o-flex;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	label{
+		font-size: 2.4rem;
+		margin: 2rem 0;
+		color: $lightblue;
+		span{
+			margin-right: 1rem;
+			font-size: 2rem;
+			color: $white;
+		}
+	}
+}
 footer{
 	position: fixed;
 	bottom: 0;
