@@ -1,6 +1,5 @@
 import { createStore } from 'redux';
 
-
 let initialState = {
   todos: [
     { text: 'Mow the lawn', completed: false },
@@ -60,3 +59,5 @@ store.subscribe(() => console.log(store.getState()));
 store.dispatch({ type: 'SET_VISIBILITY_FILTER', filter: 'completed' });
 store.dispatch({ type: 'ADD_TODO', filter: 'completed' });
 store.dispatch({ type: 'TOGGLE_TODO', id: 3 });
+
+export default store;
