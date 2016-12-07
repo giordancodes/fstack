@@ -5,6 +5,7 @@ import TimeTracker from './TimeTracker';
 import Login from './Login';
 import ProjectsList from './ProjectsList';
 import Project from './Project';
+import Profile from './Profile';
 
 class Routes extends Component {
   
@@ -15,6 +16,7 @@ class Routes extends Component {
         <Route path='/' component={ TimeTracker }>
           <IndexRoute component={ ProjectsList } />
           <Route path='/project/:projectId' component={ Project } />
+          <Route path='/profile' component={ Profile } />
         </Route>
 
       </Router>

@@ -53,6 +53,11 @@ nav{
 			color: $white;
 			font-weight:800;
 		}
+		&:last-child{
+			&:focus, &:hover{
+				color: $red;
+			} 
+		}
 	}
 }
 header{
@@ -205,6 +210,12 @@ input.liveText{
 		#rename-input{
 			text-align: center;
 		}
+		label{
+			cursor: pointer;
+			&:hover, &:focus{
+				color: $liver;
+			}
+		}
 		label:first-child{
 			margin-right: 2px;
 		}
@@ -287,6 +298,14 @@ section.single-project{
 		align-items: center;
 		input[type=number]{
 			text-align: right;
+		}
+		.timer-buttons{
+			display: -webkit-flex;
+			display: -moz-flex;
+			display: -ms-flex;
+			display: -o-flex;
+			display: flex;
+
 		}
 	}
 	.editing-time{

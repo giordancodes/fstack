@@ -26,12 +26,12 @@ class Project extends Component {
                       start time?
               </button> 
               :
-              <div>
+              <div className="timer-buttons">
                 <button className="primary"
                         onClick={ this.props.stopAndSaveTimer } >
                         stop and save?
                 </button> 
-                <button className="primary"
+                <button className="primary cancel"
                         onClick={ this.props.stopTimer } >
                         revert?
                 </button>

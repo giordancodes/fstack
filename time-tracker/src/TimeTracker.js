@@ -24,6 +24,7 @@ class TimeTracker extends Component {
       <div>
         <nav className="home">
           <Link to='/'>projects</Link>
+          <Link to='/profile'>profile</Link>
           <Link to='/login' onClick={ this.logout }>sign out</Link>
         </nav>
         <div className="home wrapper">
