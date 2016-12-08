@@ -77,6 +77,7 @@ class TimeTracker extends Component {
       let userID = this.state.userID;
       let projects = this.state.projects;
       projects[dataSnapshot.key] = dataSnapshot.val();
+
       if (dataSnapshot.key === userID){
         this.setState({projects: projects[dataSnapshot.key]});
       }
@@ -85,7 +86,6 @@ class TimeTracker extends Component {
           return this.setState({projectsName: projects[userID]['projectsName']});
         } 
       });
-      // this.setState({projects});
     });
 
     // update state when child deleted
@@ -149,9 +149,10 @@ class TimeTracker extends Component {
 
   deleteProject = (id) =>{
     let userID = this.state.userID;
-    console.log(id)
+    let userRef = this.firebaseRef.child(userID);
+    console.log(id, userRef)
     if(confirm("Destroy item?")){
-      this.firebaseRef.child(id).remove();
+      userRef.child(id).remove();
     }
   }
 
