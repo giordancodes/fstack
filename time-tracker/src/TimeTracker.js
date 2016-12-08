@@ -68,9 +68,7 @@ class TimeTracker extends Component {
       }
     });
 
-    this.firebaseRef = firebase.database().ref("projectList");
-    let userID = this.state.userID;
-    // let this.userRef = this.firebaseRef.child(userID);
+    this.firebaseRef = firebase.database().ref("projectList");    
 
     // update state when child added
     this.firebaseRef.on("child_added", (dataSnapshot) =>{
@@ -92,7 +90,6 @@ class TimeTracker extends Component {
     this.firebaseRef.on("child_removed", (dataSnapshot) =>{
       let projects = this.state.projects;
       delete projects[dataSnapshot.key];
-
       this.setState({projects});
     });
     
@@ -162,7 +159,9 @@ class TimeTracker extends Component {
 
   updateTime = (newTime) =>{
     let url = this.state.currentProject;
-    this.firebaseRef.child(url).update({ 'time': newTime });
+    let userID = this.state.userID;
+    let userRef = this.firebaseRef.child(userID);
+    userRef.child(url).update({ 'time': newTime });
     this.setState({ currentProjectTime: newTime });
   }
 

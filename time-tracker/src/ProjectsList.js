@@ -3,8 +3,6 @@ import firebase from 'firebase';
 import { browserHistory } from 'react-router';
 
 import Rename from './Rename';
-// import './App.scss';
-// import './index.css';
 
 class ProjectsList extends Component {
   constructor() {
@@ -75,7 +73,6 @@ class ProjectsList extends Component {
 
   componentDidMount(){
     let p = this.props.projectsName;
-    let userID = this.state.userID;
     this.firebaseRef = firebase.database().ref("projectList");
     this.setState({originalName: p});
   }
