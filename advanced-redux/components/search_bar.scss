@@ -1,0 +1,14 @@
+:local {
+  .bar {
+    padding: 20px;
+    padding-top: 0;
+
+    input {
+      box-sizing: border-box;
+      padding: 10px;
+      border-radius: 5px;
+      border: solid 1px #999;
+      width: 100%;
+    }
+  }
+}
