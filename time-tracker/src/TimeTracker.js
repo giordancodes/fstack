@@ -69,6 +69,8 @@ class TimeTracker extends Component {
     });
 
     this.firebaseRef = firebase.database().ref("projectList");
+    let userID = this.state.userID;
+    // let this.userRef = this.firebaseRef.child(userID);
 
     // update state when child added
     this.firebaseRef.on("child_added", (dataSnapshot) =>{
@@ -76,8 +78,8 @@ class TimeTracker extends Component {
       let projects = this.state.projects;
       projects[dataSnapshot.key] = dataSnapshot.val();
       Object.keys(projects).map((id) =>{
-        if (id === 'projectsName'){
-          return this.setState({projectsName: projects[id]});
+        if (id === userID){
+          return this.setState({projectsName: projects[userID]['projectsName']});
         } 
       });
       this.setState({projects});
@@ -98,7 +100,7 @@ class TimeTracker extends Component {
       projects[dataSnapshot.key] = dataSnapshot.val();
       Object.keys(projects).map((id) =>{
         if (id === 'projectsName'){
-          return this.setState({projectsName: projects[id]});
+          return this.setState({projectsName: projects[userID]['projectsName']});
         }
       });
       this.setState({projects});
