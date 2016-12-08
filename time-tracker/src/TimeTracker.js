@@ -68,7 +68,7 @@ class TimeTracker extends Component {
       }
     });
 
-    this.firebaseRef = firebase.database().ref("projectList");    
+    this.firebaseRef = firebase.database().ref("projectList");
 
     // update state when child added
     this.firebaseRef.on("child_added", (dataSnapshot) =>{
@@ -126,23 +126,6 @@ class TimeTracker extends Component {
     // this.firebaseRef.update({ projectsName: n });
     this.setState({rename: false, projectsName: n });
   }
-
-  // newProject = (e) =>{
-  //   e.preventDefault();
-
-  //   let userID = this.props.userID;
-  //   let projects = this.props.projects;
-  //   let newProject = {
-  //     title: this.state.newProjectName,
-  //     time: 0,
-  //     userID: userID
-  //   }
-
-  //   if (this.state.newProjectName !== ''){
-  //     this.firebaseRef.child(userID).push(newProject);
-  //     this.setState({newProjectName: '', projects: projects})
-  //   }
-  // }
 
   deleteProject = (id) =>{
     let userID = this.state.userID;
