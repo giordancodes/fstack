@@ -39,6 +39,7 @@ class TimeTracker extends Component {
               loggedIn: this.state.loggedIn,
               userID: this.state.userID,
               userEmail: this.state.userEmail,
+              newProject: this.newProject,
               deleteProject: this.deleteProject,
               updateTime: this.updateTime,
               startTimer: this.startTimer,
@@ -71,6 +72,7 @@ class TimeTracker extends Component {
 
     // update state when child added
     this.firebaseRef.on("child_added", (dataSnapshot) =>{
+      let userID = this.state.userID;
       let projects = this.state.projects;
       projects[dataSnapshot.key] = dataSnapshot.val();
       Object.keys(projects).map((id) =>{
@@ -91,6 +93,7 @@ class TimeTracker extends Component {
     
     // update state when child changes
     this.firebaseRef.on("child_changed", (dataSnapshot) =>{
+      let userID = this.state.userID;
       let projects = this.state.projects;
       projects[dataSnapshot.key] = dataSnapshot.val();
       Object.keys(projects).map((id) =>{
@@ -115,10 +118,27 @@ class TimeTracker extends Component {
 
   renameConfirm = (n) =>{
     let userID = this.state.userID;
-    this.firebaseRef.child(userID).set({projectsName: n}); 
+    this.firebaseRef.child(userID).update({projectsName: n}); 
     // this.firebaseRef.update({ projectsName: n });
     this.setState({rename: false, projectsName: n });
   }
+
+  // newProject = (e) =>{
+  //   e.preventDefault();
+
+  //   let userID = this.props.userID;
+  //   let projects = this.props.projects;
+  //   let newProject = {
+  //     title: this.state.newProjectName,
+  //     time: 0,
+  //     userID: userID
+  //   }
+
+  //   if (this.state.newProjectName !== ''){
+  //     this.firebaseRef.child(userID).push(newProject);
+  //     this.setState({newProjectName: '', projects: projects})
+  //   }
+  // }
 
   deleteProject = (id) =>{
     if(confirm("Destroy item?")){

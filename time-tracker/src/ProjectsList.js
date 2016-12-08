@@ -75,6 +75,7 @@ class ProjectsList extends Component {
 
   componentDidMount(){
     let p = this.props.projectsName;
+    let userID = this.state.userID;
     this.firebaseRef = firebase.database().ref("projectList");
     this.setState({originalName: p});
   }
@@ -127,8 +128,8 @@ class ProjectsList extends Component {
   newProject = (e) =>{
     e.preventDefault();
 
-    let projects = this.props.projects;
     let userID = this.props.userID;
+    let projects = this.props.projects[userID];
     let newProject = {
       title: this.state.newProjectName,
       time: 0,
@@ -137,6 +138,7 @@ class ProjectsList extends Component {
 
     if (this.state.newProjectName !== ''){
       this.firebaseRef.push(newProject);
+      // this.firebaseRef.child(userID).push(newProject);
       this.setState({newProjectName: '', projects: projects})
     }
   }
