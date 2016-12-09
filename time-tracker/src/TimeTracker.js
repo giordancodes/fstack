@@ -30,6 +30,7 @@ class TimeTracker extends Component {
         <div className="home wrapper">
           <header>
             <p>Hello, { this.state.currentUser }. </p>
+            <img src={ this.state.userImage } alt=""/>
           </header>
           { React.cloneElement(this.props.children, 
             { renameConfirm: this.renameConfirm,
@@ -39,6 +40,8 @@ class TimeTracker extends Component {
               loggedIn: this.state.loggedIn,
               userID: this.state.userID,
               userEmail: this.state.userEmail,
+              userImage: this.state.userImage,
+              reloadUser: this.reloadUser,
               newProject: this.newProject,
               deleteProject: this.deleteProject,
               updateTime: this.updateTime,
@@ -62,7 +65,7 @@ class TimeTracker extends Component {
   componentDidMount(){
     firebase.auth().onAuthStateChanged((user) => {
       if (user){
-        this.setState({ loggedIn: true, currentUser: user.displayName, userID: user.uid, userEmail: user.email });
+        this.setState({ loggedIn: true, currentUser: user.displayName, userID: user.uid, userEmail: user.email, userImage: user.photoURL });
       } else {
         browserHistory.push('/login');
       }
@@ -179,6 +182,11 @@ class TimeTracker extends Component {
     let url = this.state.currentProject;
     this.firebaseRef.child(url).update({ 'title': newTitle });
     this.setState({ currentProjectTitle: newTitle });
+  }
+
+  reloadUser = () =>{
+    let user = firebase.auth().currentUser;
+    this.setState({ loggedIn: true, currentUser: user.displayName, userID: user.uid, userEmail: user.email, userImage: user.photoURL });
   }
 
   deleteUser = () =>{

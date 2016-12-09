@@ -107,7 +107,7 @@ class Login extends Component {
   }
 
   componentWillMount(){
-    this.firebaseRef = firebase.database().ref("root");
+    // this.firebaseRef = firebase.database().ref("root");
     firebase.auth().onAuthStateChanged((user) =>{
       if (user){
         browserHistory.push('/');
@@ -135,7 +135,6 @@ class Login extends Component {
     e.preventDefault();
     let result;
     let creds = this.state.form;
-    // let userName = this.state.form.name;
     if(this.state.mode === "login"){
       result = firebase.auth().signInWithEmailAndPassword(
         creds.email, creds.password)

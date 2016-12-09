@@ -61,11 +61,17 @@ nav{
 	}
 }
 header{
+	text-align: center;
 	p{
 		font-size: 2rem;
 		text-align: center;
 		font-weight: 300;
 		color: $green;
+	}
+	img{
+		max-width: 640px;
+		max-height: 140px;
+		height: auto;
 	}
 }
 h1, h2, h3{
@@ -378,6 +384,10 @@ section.timer{
 			font-size: 2rem;
 			color: $white;
 		}
+	}
+	.update{
+		text-align: right;
+		margin-top: 3rem;
 	}
 }
 footer{

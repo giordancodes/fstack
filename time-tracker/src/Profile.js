@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import firebase from 'firebase';
 
 class Profile extends Component {
 	constructor(){
 		super();
 		this.state={
 			form:{
-				profileUser: '',
-				profileEmail: '',
-				profilePassword: ''
+				profileUser: null,
+				profileEmail: null,
+				profilePassword: null,
+				profileImage: null
 			}
 		}
 	}
@@ -39,6 +41,16 @@ class Profile extends Component {
 							</label>
 			  		</form>
 			  		<form>
+			  			<label htmlFor="profileImage">
+				  			<span>your image:</span>
+				  			<input 	type="text"
+				  							id="profileImage"
+				  							onChange={ this.updateField }
+				  							value={ this.state.form.image }
+				  							placeholder={ this.props.userImage } />
+			  			</label>
+			  		</form>
+			  		<form>
 			  			<label htmlFor="profilePassword">
 				  			<span>your password:</span>
 				  			<input 	type="password"
@@ -48,9 +60,16 @@ class Profile extends Component {
 				  							placeholder="just kidding" />
 			  			</label>
 			  		</form>
+			  	<div className="update">
+			  		<button className="primary"
+			  						onClick={ this.updateUserInfo } >
+			  			update entered info?
+			  		</button>
+			  	</div>
 			  	</div>
 			  	<form>
-			  		<label htmlFor=""><span>delete account??</span>
+			  		<label>
+			  			<span>delete account??</span>
 				  		<button className="primary cancel"
 				  						onClick={ this.props.deleteUser } >
 					  		damn { this.props.currentUser }</button>
@@ -68,7 +87,18 @@ class Profile extends Component {
 	}
 
 	updateUserInfo = () =>{
+		let result;
+		let creds = this.state.form;
+		let user = firebase.auth().currentUser;
 
+		// console.log(user, creds, (!creds.profileImage));
+		if (creds.profileImage){
+			user.updateProfile({photoURL: creds.profileImage})
+			.then(() => {
+				this.props.reloadUser();
+				
+			})
+		}
 	}
 
 }
