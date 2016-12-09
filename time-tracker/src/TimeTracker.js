@@ -13,7 +13,8 @@ class TimeTracker extends Component {
       currentUser: null,
       projects: {},
       elapsed: 0,
-      useTimer: false
+      useTimer: false,
+      projectsName: 'default'
     }
   }
   render() {
@@ -57,7 +58,9 @@ class TimeTracker extends Component {
               currentProject: this.state.currentProject,
               deleteUser: this.deleteUser,
               firebaseRef: this.firebaseRef })}
-          <footer>© 2016 <a href="http://giordan.ca">Giordan Battaglin</a> </footer>
+          <footer>
+            © 2016 <a href="http://giordan.ca">Giordan Battaglin</a>
+          </footer>
         </div>
       </div>
     );
@@ -79,12 +82,13 @@ class TimeTracker extends Component {
       let userID = this.state.userID;
       let projects = this.state.projects;
       projects[dataSnapshot.key] = dataSnapshot.val();
+      console.log(dataSnapshot.key);
 
       if (dataSnapshot.key === userID){
         this.setState({projects: projects[dataSnapshot.key]});
       }
       Object.keys(projects).map((id) =>{
-        if (id === userID){
+        if (id === userID && (projects[userID]['projectsName']) !== undefined ){
           return this.setState({projectsName: projects[userID]['projectsName']});
         } 
       });

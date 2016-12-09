@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import { browserHistory } from 'react-router';
 
+import IndividualProject from './IndividualProject';
 import Rename from './Rename';
 
 class ProjectsList extends Component {
@@ -13,7 +14,6 @@ class ProjectsList extends Component {
     }
   }
   render() {
-    let items = this.props.projects;
     return (
       <div className="projects-list wrapper">
         <h1>{ this.props.projectsName } List</h1>
@@ -41,30 +41,9 @@ class ProjectsList extends Component {
                 >add new</button>
               </form>
             </li>
-            { Object.keys(items).map((id, val) => {
-            	let item = items[id];
-              let userID = this.props.userID;
-              // check for current user & that it's a project
-            	if(item.userID === userID  && !item[val]){
-	              return(
-                  <div key={ id } >
-                    <li>
-                      <div>
-                      	<span>
-                          <a onClick={ () => this.chooseProject(id) } >{ item.title }</a>
-                        </span>
-                      </div>
-                      <div>
-                      	<span>{ item.time }</span>
-                      	<button className="delete"
-                      					onClick={ () => this.onDeleteProject(id) }
-                      	>delete?</button>
-                      </div>
-                    </li>
-                  </div>
-                )
-            	}
-            })}
+            <IndividualProject  chooseProject={ this.chooseProject }
+                                projects={ this.props.projects }
+                                onDeleteProject={ this.onDeleteProject } />
           </ul>
         </section>
       </div>

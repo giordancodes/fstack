@@ -20,7 +20,7 @@ class Profile extends Component {
 			<section id="profilePage">
 				<h1>{ this.props.currentUser }'s Profile</h1>
 				{ this.state.error ?  
-						<h2>something went wrong, pally</h2>
+						<h2>something went wrong, pally => { this.state.error.message }</h2>
 					: null
 				}
 			  <div className="options">
