@@ -10,7 +10,8 @@ class Profile extends Component {
 				profileEmail: null,
 				profilePassword: null,
 				profileImage: null
-			}
+			},
+			error: null
 		}
 	}
 
@@ -18,6 +19,10 @@ class Profile extends Component {
 		return(
 			<section id="profilePage">
 				<h1>{ this.props.currentUser }'s Profile</h1>
+				{ this.state.error ?  
+						<h2>something went wrong, pally</h2>
+					: null
+				}
 			  <div className="options">
 			  	<div className="main-options">
 			  		<form>
@@ -29,18 +34,6 @@ class Profile extends Component {
 			  								value={ this.state.form.user }
 			  								placeholder={ this.props.currentUser } /> 
 							</label>
-			  		</form>
-			  		<form>
-			  			<label htmlFor="profileEmail">
-				  			<span>your email:</span>
-				  			<input 	type="text"
-				  							id="profileEmail"
-				  							onChange={ this.updateField }
-				  							value={ this.state.form.email }
-				  							placeholder={ this.props.userEmail } />
-							</label>
-			  		</form>
-			  		<form>
 			  			<label htmlFor="profileImage">
 				  			<span>your image:</span>
 				  			<input 	type="text"
@@ -49,8 +42,14 @@ class Profile extends Component {
 				  							value={ this.state.form.image }
 				  							placeholder={ this.props.userImage } />
 			  			</label>
-			  		</form>
-			  		<form>
+			  			<label htmlFor="profileEmail">
+				  			<span>your email:</span>
+				  			<input 	type="text"
+				  							id="profileEmail"
+				  							onChange={ this.updateField }
+				  							value={ this.state.form.email }
+				  							placeholder={ this.props.userEmail } />
+							</label>
 			  			<label htmlFor="profilePassword">
 				  			<span>your password:</span>
 				  			<input 	type="password"
@@ -59,13 +58,13 @@ class Profile extends Component {
 				  							value={ this.state.form.password }
 				  							placeholder="just kidding" />
 			  			</label>
+					  	<div className="update">
+					  		<button className="primary"
+					  						onClick={ this.updateUserInfo } >
+					  			update entered info?
+					  		</button>
+					  	</div>
 			  		</form>
-			  	<div className="update">
-			  		<button className="primary"
-			  						onClick={ this.updateUserInfo } >
-			  			update entered info?
-			  		</button>
-			  	</div>
 			  	</div>
 			  	<form>
 			  		<label>
@@ -86,19 +85,47 @@ class Profile extends Component {
 		this.setState({form});
 	}
 
-	updateUserInfo = () =>{
+	updateUserInfo = (e) =>{
+		e.preventDefault();
 		let result;
 		let creds = this.state.form;
 		let user = firebase.auth().currentUser;
 
-		// console.log(user, creds, (!creds.profileImage));
+		// console.log(user, creds, (!creds));
 		if (creds.profileImage){
 			user.updateProfile({photoURL: creds.profileImage})
 			.then(() => {
 				this.props.reloadUser();
-				
 			})
+			.catch((error) =>{
+				console.log('error ' + error);
+				this.resetError(error);
+			});
 		}
+		if (creds.profileUser){
+			user.updateProfile({displayName: creds.profileUser})
+			.then(() => {
+				this.props.reloadUser();
+			})
+			.catch((error) =>{
+				console.log('error ' + error);
+				this.resetError(error);
+			});
+		}
+		// creds = {
+		// 	profileUser: null,
+		// 	profileEmail: null,
+		// 	profilePassword: null,
+		// 	profileImage: null
+		// };
+		// this.setState({form:creds})
+	}
+
+	resetError = (error) =>{
+	  this.setState({error: error.message})
+	  setTimeout(() => {
+	    this.setState({error: null})}
+	    , 5000);
 	}
 
 }

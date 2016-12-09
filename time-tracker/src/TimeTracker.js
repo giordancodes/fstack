@@ -23,8 +23,8 @@ class TimeTracker extends Component {
     return (
       <div>
         <nav className="home">
-          <Link to='/'>projects</Link>
           <Link to='/profile'>profile</Link>
+          <Link to='/'>projects</Link>
           <Link to='/login' onClick={ this.logout }>sign out</Link>
         </nav>
         <div className="home wrapper">
@@ -133,7 +133,6 @@ class TimeTracker extends Component {
   deleteProject = (id) =>{
     let userID = this.state.userID;
     let userRef = this.firebaseRef.child(userID);
-    console.log(id, userRef)
     if(confirm("Destroy item?")){
       userRef.child(id).remove();
     }
