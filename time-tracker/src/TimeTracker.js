@@ -14,7 +14,7 @@ class TimeTracker extends Component {
       projects: {},
       elapsed: 0,
       useTimer: false,
-      projectsName: 'default'
+      projectsName: ''
     }
   }
   render() {
@@ -81,10 +81,8 @@ class TimeTracker extends Component {
     this.firebaseRef.on("child_added", (dataSnapshot) =>{
       let userID = this.state.userID;
       let projects = this.state.projects;
-      projects[dataSnapshot.key] = dataSnapshot.val();
-      console.log(dataSnapshot.key);
-
       if (dataSnapshot.key === userID){
+        projects[dataSnapshot.key] = dataSnapshot.val();
         this.setState({projects: projects[dataSnapshot.key]});
       }
       Object.keys(projects).map((id) =>{
@@ -116,6 +114,18 @@ class TimeTracker extends Component {
       });
     })
   }
+
+  // firebaseUpdate = () =>{
+  //   if (dataSnapshot.key === userID){
+  //     projects[dataSnapshot.key] = dataSnapshot.val();
+  //     this.setState({projects: projects[dataSnapshot.key]});
+  //   }
+  //   Object.keys(projects).map((id) =>{
+  //     if (id === userID && (projects[userID]['projectsName']) !== undefined ){
+  //       return this.setState({projectsName: projects[userID]['projectsName']});
+  //     } 
+  //   });
+  // }
 
   logout = () =>{
     if(confirm("Would you care to sign out?")){
