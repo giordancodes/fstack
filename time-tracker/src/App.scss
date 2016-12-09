@@ -21,10 +21,10 @@ code{
 	font-size: 1.6rem;
 }
 .wrapper {
-	padding: 0 5px;
+	padding: 0 25px;
 	font-family: 'Josefin Sans', sans-serif;
 	color: #DDD;
-	max-width: 600px;
+	max-width: 960px;
 	margin: 0 auto;
 }
 hr{
@@ -360,6 +360,7 @@ section.timer{
 			border: none;
 			color: $lightblue;
 			text-align: right;
+			flex-grow: .9;
 		}
 		::-webkit-input-placeholder {
 		   color: $lightblue;
