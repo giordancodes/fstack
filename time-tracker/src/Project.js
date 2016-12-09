@@ -16,7 +16,6 @@ class Project extends Component {
       <section className="single-project">
         <h1>{ this.props.currentProjectTitle }</h1>
         
-        
         <h2>current time logged: { this.props.currentProjectTime } </h2>
         <div className="modify-time">
           { !this.props.useTimer ? 
@@ -45,19 +44,24 @@ class Project extends Component {
           }
         </div>
         { this.state.modifyTime ?
-          <div className="editing-time">
-            <input  type="number" 
-                    value={ this.state.newTime }
-                    onChange={ this.newProjectTime }
-                    min='0' />
-            <button className="primary finish"
-                    onClick={ this.onUpdateTime } >
-              finish?
-            </button>
-            <button className="primary cancel"
-                    onClick={ this.cancelTimeEdit } >
-              cancel?
-            </button>
+          <div>
+            { !this.props.useTimer ?
+              <div className="editing-time">
+                <input  type="number" 
+                        value={ this.state.newTime }
+                        onChange={ this.newProjectTime }
+                        min='0' />
+                <button className="primary finish"
+                        onClick={ this.onUpdateTime } >
+                  finish?
+                </button>
+                <button className="primary cancel"
+                        onClick={ this.cancelTimeEdit } >
+                  cancel?
+                </button>
+              </div>
+            : null
+          }
           </div>
           : null
         }
