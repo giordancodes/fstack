@@ -33,6 +33,7 @@ class TimeTracker extends Component {
             <p>Hello, { this.state.currentUser }. </p>
             <img src={ this.state.userImage } alt=""/>
           </header>
+
           { React.cloneElement(this.props.children, 
             { renameConfirm: this.renameConfirm,
               projectsName: this.state.projectsName,
@@ -58,6 +59,7 @@ class TimeTracker extends Component {
               currentProject: this.state.currentProject,
               deleteUser: this.deleteUser,
               firebaseRef: this.firebaseRef })}
+
           <footer>
             © 2016 <a href="http://giordan.ca">Giordan Battaglin</a>
           </footer>
@@ -130,7 +132,7 @@ class TimeTracker extends Component {
   logout = () =>{
     if(confirm("Would you care to sign out?")){
       firebase.auth().signOut();
-      this.setState({loggedIn: false});
+      // this.setState({loggedIn: false});
     }
   }
 
@@ -141,7 +143,6 @@ class TimeTracker extends Component {
   renameConfirm = (n) =>{
     let userID = this.state.userID;
     this.firebaseRef.child(userID).update({projectsName: n}); 
-    // this.firebaseRef.update({ projectsName: n });
     this.setState({rename: false, projectsName: n });
   }
 
@@ -204,8 +205,10 @@ class TimeTracker extends Component {
   }
 
   deleteUser = () =>{
+    let user = firebase.auth().currentUser;
     if(confirm("This CANNOT be undone; are you absolutely, positively sure you want to destroy all the hard work you've done and salt the earth?")){
       alert("nice");
+      user.delete();
     }
   }
 }

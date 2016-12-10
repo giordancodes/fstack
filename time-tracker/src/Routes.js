@@ -6,6 +6,7 @@ import Login from './Login';
 import ProjectsList from './ProjectsList';
 import Project from './Project';
 import Profile from './Profile';
+import DeleteUser from './DeleteUser';
 
 class Routes extends Component {
   
@@ -17,6 +18,7 @@ class Routes extends Component {
           <IndexRoute component={ ProjectsList } />
           <Route path='/project/:projectId' component={ Project } />
           <Route path='/profile' component={ Profile } />
+          <Route path='/delete-user' component={ DeleteUser } />
         </Route>
       </Router>
     )

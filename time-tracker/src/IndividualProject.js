@@ -1,7 +1,7 @@
 import React from 'react';
 
 const IndividualProject = (props) => <div>
-  { Object.keys(props.projects).map((id, val) => {
+  { Object.keys(props.projects).map((id) => {
 	  	let item = props.projects[id];
 	  	if (id !== 'projectsName'){
 	      return(

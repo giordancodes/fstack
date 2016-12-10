@@ -160,10 +160,6 @@ class Login extends Component {
       , 5000);
   }
 
-  renameConfirm = () =>{
-    let newName = this.props.newName;
-    this.setState({rename: false, newName: '', originalName: newName })
-  }
 }
 
 export default Login;
