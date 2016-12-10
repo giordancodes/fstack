@@ -208,7 +208,8 @@ class TimeTracker extends Component {
     let user = firebase.auth().currentUser;
     if(confirm("This CANNOT be undone; are you absolutely, positively sure you want to destroy all the hard work you've done and salt the earth?")){
       alert("nice");
-      user.delete();
+      browserHistory.push('/delete-user');
+      // user.delete();
     }
   }
 }

@@ -7,16 +7,16 @@ class DeleteUser extends Component {
 		super();
 		this.state={
 			form:{
-        name: '',
 				email: '',
 				password: ''
 			}
 		}
 	}
-	
+
 	render(){
 		return(
-			<section className="goodbye">
+			<section className="goodbye login">
+			<h1>enter your credentials one last time to delete your account</h1>
 			  <form onSubmit={ this.login }>
           <div className="input">
             <label  htmlFor="email">email</label>
@@ -44,6 +44,12 @@ class DeleteUser extends Component {
 		form[e.target.id] = e.target.value;
 		this.setState({form});
 	}
+
+	destroyUser = () =>{
+		let user = firebase.auth().currentUser;
+		user.delete();
+	}
+
 }
 
 export default DeleteUser;
