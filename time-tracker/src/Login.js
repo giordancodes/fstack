@@ -148,7 +148,7 @@ class Login extends Component {
       browserHistory.push('/');
     })
     .catch((error) => {
-      console.log('error ' + error);
+      console.log('error: ' + error);
       this.resetError(error);
     })
   }
