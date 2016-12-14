@@ -55,7 +55,7 @@ class Project extends Component {
                                         value={ this.state.newTime }
                                         onChange={ this.newProjectTime }
                                         min='0' /> */}
-                <form>
+                <form onSubmit={ this.onUpdateTime }>
                   <div>
                     <input  type="number" 
                             id="newTimeHours"
@@ -70,17 +70,17 @@ class Project extends Component {
                             onChange={ this.updateField } /> <br/>
                     <label htmlFor="newTimeMinutes">adjust minutes</label>
                   </div>
+                  <div className="editingButtons"> 
+                    <button className="primary finish"
+                            onClick={ this.onUpdateTime } >
+                      finish?
+                    </button>
+                    <button className="primary cancel"
+                            onClick={ this.cancelTimeEdit } >
+                      cancel?
+                    </button>
+                  </div>
                 </form>
-                <div className="editingButtons"> 
-                  <button className="primary finish"
-                          onClick={ this.onUpdateTime } >
-                    finish?
-                  </button>
-                  <button className="primary cancel"
-                          onClick={ this.cancelTimeEdit } >
-                    cancel?
-                  </button>
-                </div>
               </div>
             : null
           }
@@ -113,7 +113,9 @@ class Project extends Component {
     this.setState({modifyTime: m, newTime: p});
   }
 
-  onUpdateTime = () =>{
+  onUpdateTime = (e) =>{
+    e.preventDefault();
+    
     let t = this.state.newTime;
     let h = this.state.form.newTimeHours;
     let m = this.state.form.newTimeMinutes;
