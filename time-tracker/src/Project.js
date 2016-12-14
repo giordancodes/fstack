@@ -7,7 +7,11 @@ class Project extends Component {
   constructor(){
     super();
     this.state={
-      modifyTime: false
+      modifyTime: false,
+      form:{
+        newTimeMinutes: 0,
+        newTimeHours: 0
+      }
     }
   }
 	
@@ -47,18 +51,36 @@ class Project extends Component {
           <div>
             { !this.props.useTimer ?
               <div className="editing-time">
-                <input  type="number" 
-                        value={ this.state.newTime }
-                        onChange={ this.newProjectTime }
-                        min='0' />
-                <button className="primary finish"
-                        onClick={ this.onUpdateTime } >
-                  finish?
-                </button>
-                <button className="primary cancel"
-                        onClick={ this.cancelTimeEdit } >
-                  cancel?
-                </button>
+                {/*<input  type="number" 
+                                        value={ this.state.newTime }
+                                        onChange={ this.newProjectTime }
+                                        min='0' /> */}
+                <form>
+                  <div>
+                    <input  type="number" 
+                            id="newTimeHours"
+                            value={ this.state.newTimeHours }
+                            onChange={ this.updateField } /> <br/>
+                    <label htmlFor="newTimeHours">adjust hours</label>
+                  </div>
+                   <div>
+                    <input  type="number" 
+                            id="newTimeMinutes"
+                            value={ this.state.newTimeMinutes }
+                            onChange={ this.updateField } /> <br/>
+                    <label htmlFor="newTimeMinutes">adjust minutes</label>
+                  </div>
+                </form>
+                <div className="editingButtons"> 
+                  <button className="primary finish"
+                          onClick={ this.onUpdateTime } >
+                    finish?
+                  </button>
+                  <button className="primary cancel"
+                          onClick={ this.cancelTimeEdit } >
+                    cancel?
+                  </button>
+                </div>
               </div>
             : null
           }
@@ -93,6 +115,9 @@ class Project extends Component {
 
   onUpdateTime = () =>{
     let t = this.state.newTime;
+    let h = this.state.form.newTimeHours;
+    let m = this.state.form.newTimeMinutes;
+     
     this.props.updateTime(t);
     this.timeEdit();
   }
@@ -114,6 +139,12 @@ class Project extends Component {
     let newTime = this.state.newTime;
     newTime = e.target.value;
     this.setState({ newTime });
+  }
+
+  updateField = (e) =>{
+    let form = this.state.form;
+    form[e.target.id] = e.target.value;
+    this.setState({form});
   }
 
 }

@@ -32,7 +32,7 @@ class TimeTracker extends Component {
         <div className="home wrapper">
           <header>
             <p>Hello, { this.state.currentUser }. </p>
-            <img src={ this.state.userImage } alt=""/>
+            <img src={ this.state.userImage }/>
           </header>
 
           { React.cloneElement(this.props.children, 
@@ -118,18 +118,6 @@ class TimeTracker extends Component {
       });
     })
   }
-
-  // firebaseUpdate = () =>{
-  //   if (dataSnapshot.key === userID){
-  //     projects[dataSnapshot.key] = dataSnapshot.val();
-  //     this.setState({projects: projects[dataSnapshot.key]});
-  //   }
-  //   Object.keys(projects).map((id) =>{
-  //     if (id === userID && (projects[userID]['projectsName']) !== undefined ){
-  //       return this.setState({projectsName: projects[userID]['projectsName']});
-  //     } 
-  //   });
-  // }
 
   logout = () =>{
     if(confirm("Would you care to sign out?")){
@@ -220,8 +208,7 @@ class TimeTracker extends Component {
     let minutes = Math.floor((totalSeconds - (hours * 3600)) / 60);
     let seconds = totalSeconds - (hours * 3600) - (minutes * 60);
 
-    // round seconds
-    seconds = Math.round(seconds * 100) / 100
+    seconds = Math.round(seconds * 100) / 100;
 
     let result = (hours < 10 ? "0" + hours : hours);
     result += ":" + (minutes < 10 ? "0" + minutes : minutes);

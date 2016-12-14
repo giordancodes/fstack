@@ -36,7 +36,7 @@ class Profile extends Component {
 							</label>
 			  			<label htmlFor="profileImage">
 				  			<span>your image:</span>
-				  			<input 	type="text"
+				  			<input 	type="url"
 				  							id="profileImage"
 				  							onChange={ this.updateField }
 				  							value={ this.state.form.image }
@@ -44,7 +44,7 @@ class Profile extends Component {
 			  			</label>
 			  			<label htmlFor="profileEmail">
 				  			<span>your email:</span>
-				  			<input 	type="text"
+				  			<input 	type="email"
 				  							id="profileEmail"
 				  							onChange={ this.updateField }
 				  							value={ this.state.form.email }
