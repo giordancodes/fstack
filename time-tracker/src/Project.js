@@ -117,8 +117,11 @@ class Project extends Component {
     let t = this.state.newTime;
     let h = this.state.form.newTimeHours;
     let m = this.state.form.newTimeMinutes;
-     
-    this.props.updateTime(t);
+
+    console.log(t,h,m);
+    let result = t + (h * 3600) + (m * 60);
+
+    this.props.updateTime(result);
     this.timeEdit();
   }
 
