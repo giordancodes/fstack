@@ -16,7 +16,7 @@ class Project extends Component {
       <section className="single-project">
         <h1>{ this.props.currentProjectTitle }</h1>
         
-        <h2>current time logged: { this.props.currentProjectTime } </h2>
+        <h2>current time logged: { this.props.toHHMMSS(this.props.currentProjectTime) } </h2>
         <div className="modify-time">
           { !this.props.useTimer ? 
               <button className="primary"

@@ -42,6 +42,7 @@ class ProjectsList extends Component {
               </form>
             </li>
             <IndividualProject  chooseProject={ this.chooseProject }
+                                toHHMMSS={ this.props.toHHMMSS }
                                 projects={ this.props.projects }
                                 onDeleteProject={ this.onDeleteProject } />
           </ul>

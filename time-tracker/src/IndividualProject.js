@@ -13,7 +13,7 @@ const IndividualProject = (props) => <div>
 	              </span>
 	            </div>
 	            <div>
-	            	<span>{ item.time }</span>
+	            	<span>{ props.toHHMMSS(item.time) }</span>
 	            	<button className="delete"
 	            					onClick={ () => props.onDeleteProject(id) }
 	            	>delete?</button>

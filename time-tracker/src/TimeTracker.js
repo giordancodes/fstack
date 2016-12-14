@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import { browserHistory, Link } from 'react-router';
 
+// import { toHHMMSS } from '../helpers';
 import './index.css';
 import './App.scss';
 
@@ -44,6 +45,7 @@ class TimeTracker extends Component {
               userEmail: this.state.userEmail,
               userImage: this.state.userImage,
               reloadUser: this.reloadUser,
+              toHHMMSS: this.toHHMMSS,
               newProject: this.newProject,
               deleteProject: this.deleteProject,
               updateTime: this.updateTime,
@@ -212,6 +214,21 @@ class TimeTracker extends Component {
       // user.delete();
     }
   }
+
+  toHHMMSS = (totalSeconds) => {
+    let hours   = Math.floor(totalSeconds / 3600);
+    let minutes = Math.floor((totalSeconds - (hours * 3600)) / 60);
+    let seconds = totalSeconds - (hours * 3600) - (minutes * 60);
+
+    // round seconds
+    seconds = Math.round(seconds * 100) / 100
+
+    let result = (hours < 10 ? "0" + hours : hours);
+    result += ":" + (minutes < 10 ? "0" + minutes : minutes);
+    result += ":" + (seconds  < 10 ? "0" + seconds : seconds);
+    return result;
+  }
+
 }
 
 export default TimeTracker;
