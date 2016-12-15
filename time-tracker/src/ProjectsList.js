@@ -36,9 +36,11 @@ class ProjectsList extends Component {
                         onChange={ this.newProjectNameUpdate }
                         value={ this.state.newProjectName } 
                           />
-                <button className="primary"
-                        onSubmit={ this.newProject }
-                >add new</button>
+                <div>
+                  <button className="primary"
+                          onSubmit={ this.newProject }
+                  >add new</button>
+                </div>
               </form>
             </li>
             <IndividualProject  chooseProject={ this.chooseProject }

@@ -27,7 +27,7 @@ class Profile extends Component {
 			  	<div className="main-options">
 			  		<form>
 			  			<label htmlFor="profileUser">
-			  				<span>your username:</span>
+			  				<span title="you can literally have any name">your username:</span>
 			  				<input 	type="text"
 			  								id="profileUser"
 			  								onChange={ this.updateField }
@@ -35,7 +35,7 @@ class Profile extends Component {
 			  								placeholder={ this.props.currentUser } /> 
 							</label>
 			  			<label htmlFor="profileImage">
-				  			<span>your image:</span>
+				  			<span title="hyperlink to any image on the internet">your image:</span>
 				  			<input 	type="url"
 				  							id="profileImage"
 				  							onChange={ this.updateField }
@@ -43,7 +43,7 @@ class Profile extends Component {
 				  							placeholder={ this.props.userImage } />
 			  			</label>
 			  			<label htmlFor="profileEmail">
-				  			<span>your email:</span>
+				  			<span title="a polite email will be sent to your desired new address to confirm your identity">your email:</span>
 				  			<input 	type="email"
 				  							id="profileEmail"
 				  							onChange={ this.updateField }
@@ -51,7 +51,7 @@ class Profile extends Component {
 				  							placeholder={ this.props.userEmail } />
 							</label>
 			  			<label htmlFor="profilePassword">
-				  			<span>your password:</span>
+				  			<span title="we would never actually show your real password here, unless it was 'just kidding'">your password:</span>
 				  			<input 	type="password"
 				  							id="profilePassword"
 				  							onChange={ this.updateField }
@@ -68,7 +68,7 @@ class Profile extends Component {
 			  	</div>
 			  	<form>
 			  		<label>
-			  			<span>delete account??</span>
+			  			<span title="this will start the deletion process of you from the internet">delete account??</span>
 				  		<button className="primary cancel"
 				  						onClick={ this.props.deleteUser } >
 					  		damn { this.props.currentUser }</button>

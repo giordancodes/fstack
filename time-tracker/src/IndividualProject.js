@@ -7,13 +7,13 @@ const IndividualProject = (props) => <div>
 	      return(
 	        <div key={ id } >
 	          <li>
-	            <div>
+	            <div className="project-line">
 	            	<span>
 	                <a onClick={ () => props.chooseProject(id) } >{ item.title }</a>
 	              </span>
 	            </div>
-	            <div>
-	            	<span>{ props.toHHMMSS(item.time) }</span>
+	            <div className="project-line">
+	            	<span className="time">{ props.toHHMMSS(item.time) }</span>
 	            	<button className="delete"
 	            					onClick={ () => props.onDeleteProject(id) }
 	            	>delete?</button>

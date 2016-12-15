@@ -20,7 +20,7 @@ class Project extends Component {
       <section className="single-project">
         <h1>{ this.props.currentProjectTitle }</h1>
         
-        <h2>current time logged: { this.props.toHHMMSS(this.props.currentProjectTime) } </h2>
+        <h2>current time: <span>{ this.props.toHHMMSS(this.props.currentProjectTime) } </span></h2>
         <div className="modify-time">
           { !this.props.useTimer ? 
               <button className="primary"
@@ -56,18 +56,18 @@ class Project extends Component {
                                         onChange={ this.newProjectTime }
                                         min='0' /> */}
                 <form onSubmit={ this.onUpdateTime }>
-                  <div>
+                  <div className="labeled-input">
                     <input  type="number" 
                             id="newTimeHours"
                             value={ this.state.newTimeHours }
-                            onChange={ this.updateField } /> <br/>
+                            onChange={ this.updateField } /> 
                     <label htmlFor="newTimeHours">adjust hours</label>
                   </div>
-                   <div>
+                   <div className="labeled-input">
                     <input  type="number" 
                             id="newTimeMinutes"
                             value={ this.state.newTimeMinutes }
-                            onChange={ this.updateField } /> <br/>
+                            onChange={ this.updateField } /> 
                     <label htmlFor="newTimeMinutes">adjust minutes</label>
                   </div>
                   <div className="editingButtons"> 

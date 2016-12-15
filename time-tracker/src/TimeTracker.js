@@ -32,7 +32,7 @@ class TimeTracker extends Component {
         <div className="home wrapper">
           <header>
             <p>Hello, { this.state.currentUser }. </p>
-            <img src={ this.state.userImage }/>
+            <img src={ this.state.userImage } alt="this is the sweet image you uploaded" title="this is the sweet image you uploaded" />
           </header>
 
           { React.cloneElement(this.props.children, 
@@ -210,7 +210,8 @@ class TimeTracker extends Component {
 
     seconds = Math.round(seconds * 100) / 100;
 
-    let result = (hours < 10 ? "0" + hours : hours);
+    let result = hours;
+    // let result = (hours < 10 ? "0" + hours : hours);
     result += ":" + (minutes < 10 ? "0" + minutes : minutes);
     result += ":" + (seconds  < 10 ? "0" + seconds : seconds);
     return result;
