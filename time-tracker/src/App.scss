@@ -21,7 +21,7 @@ code{
 	font-size: 1.6rem;
 }
 .wrapper {
-	padding: 0 25px;
+	padding: 0 25px 40px;
 	font-family: 'Josefin Sans', sans-serif;
 	color: #DDD;
 	max-width: 960px;
@@ -185,6 +185,7 @@ label, label.profileUser span{
 				width: 160px;
 				background: $white;
 				border: none;
+				padding: .5rem;
 			}
 			input[type=radio] {
 				width: 20px;
@@ -404,13 +405,13 @@ section.timer{
 			
 		}
 		input {
-			width: 260px;
+			max-width: 330px;
 			background: none;
 			border: solid 1px $liver;
 			color: $lightblue;
 			text-align: right;
 			flex-grow: .9;
-			padding: 1rem;
+			padding: .5rem;
 		}
 		::-webkit-input-placeholder {
 		   color: $lightblue;
@@ -448,8 +449,9 @@ footer{
 	right: 0;
 	color: $liver;
 	text-align: center;
-	padding-bottom: 5px;
+	padding: 10px 0;
 	font-size: 1.6rem;
+	background: $black;
 	a{
 		transition: all .6s;
 		text-decoration: none;
@@ -459,21 +461,57 @@ footer{
 		}
 	}
 }
-.goodbye{
-	h1{
-		color: $red;
-	}
+form.credentials{
 	form{
-		text-align: center;
 		input{
 			margin-bottom: 1rem;
+			padding: 1rem;
 		}
 		button{
 			margin-top:5rem;
 			font-size: 2.4rem;
 		}
 	}
+	.input label{
+		font-size: 2.4rem;
+	}
+}
+.goodbye{
+	h1{
+		color: $red;
+	}
+	text-align: center;
 	.error{
 		height: 2rem;
+	}
+}
+
+@media all and (max-width: 425px) {
+	#profilePage form input {
+		max-width: 220px;
+	}
+}
+
+@media all and (max-width: 425px) {
+	#profilePage form input {
+		max-width: 220px;
+	}
+	.projects-list section.projects ul li a{
+		font-size: 1.8rem;
+	}
+	section.single-project .labeled-input{
+		width: auto;
+		label{
+			font-size:1.8rem;
+		}
+		input{
+			width: 9rem;
+		}
+	}
+}
+
+@media all and (max-width: 320px) {
+	#profilePage form input {
+		max-width: 180px;
 	}
 }

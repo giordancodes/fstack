@@ -61,14 +61,14 @@ class Project extends Component {
                             id="newTimeHours"
                             value={ this.state.newTimeHours }
                             onChange={ this.updateField } /> 
-                    <label htmlFor="newTimeHours">adjust hours</label>
+                    <label htmlFor="newTimeHours">add/subtract hours</label>
                   </div>
                    <div className="labeled-input">
                     <input  type="number" 
                             id="newTimeMinutes"
                             value={ this.state.newTimeMinutes }
                             onChange={ this.updateField } /> 
-                    <label htmlFor="newTimeMinutes">adjust minutes</label>
+                    <label htmlFor="newTimeMinutes">add/subtract minutes</label>
                   </div>
                   <div className="editingButtons"> 
                     <button className="primary finish"
@@ -120,7 +120,6 @@ class Project extends Component {
     let h = this.state.form.newTimeHours;
     let m = this.state.form.newTimeMinutes;
 
-    console.log(t,h,m);
     let result = t + (h * 3600) + (m * 60);
 
     this.props.updateTime(result);

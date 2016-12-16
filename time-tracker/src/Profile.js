@@ -87,7 +87,7 @@ class Profile extends Component {
 
 	updateUserInfo = (e) =>{
 		e.preventDefault();
-		let result;
+		// let result;
 		let creds = this.state.form;
 		let user = firebase.auth().currentUser;
 
@@ -112,13 +112,6 @@ class Profile extends Component {
 				this.resetError(error);
 			});
 		}
-		// creds = {
-		// 	profileUser: null,
-		// 	profileEmail: null,
-		// 	profilePassword: null,
-		// 	profileImage: null
-		// };
-		// this.setState({form:creds})
 	}
 
 	resetError = (error) =>{

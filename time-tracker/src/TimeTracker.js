@@ -32,7 +32,7 @@ class TimeTracker extends Component {
         <div className="home wrapper">
           <header>
             <p>Hello, { this.state.currentUser }. </p>
-            <img src={ this.state.userImage } alt="this is the sweet image you uploaded" title="this is the sweet image you uploaded" />
+            <img src={ this.state.userImage } role="presentation" />
           </header>
 
           { React.cloneElement(this.props.children, 
@@ -54,7 +54,6 @@ class TimeTracker extends Component {
               stopTimer: this.stopTimer,
               stopAndSaveTimer: this.stopAndSaveTimer,
               elapsed: this.state.elapsed,
-              useTimer: this.state.useTimer,
               setCurrentProjectTimeAndTitle: this.setCurrentProjectTimeAndTitle,
               currentProjectTime: this.state.currentProjectTime,
               currentProjectTitle: this.state.currentProjectTitle,
@@ -73,7 +72,7 @@ class TimeTracker extends Component {
   componentDidMount(){
     firebase.auth().onAuthStateChanged((user) => {
       if (user){
-        this.setState({ loggedIn: true, currentUser: user.displayName, userID: user.uid, userEmail: user.email, userImage: user.photoURL });
+        this.setState({ currentUser: user.displayName, userID: user.uid, userEmail: user.email, userImage: user.photoURL });
       } else {
         browserHistory.push('/login');
       }
@@ -122,7 +121,6 @@ class TimeTracker extends Component {
   logout = () =>{
     if(confirm("Would you care to sign out?")){
       firebase.auth().signOut();
-      // this.setState({loggedIn: false});
     }
   }
 
@@ -191,15 +189,13 @@ class TimeTracker extends Component {
 
   reloadUser = () =>{
     let user = firebase.auth().currentUser;
-    this.setState({ loggedIn: true, currentUser: user.displayName, userID: user.uid, userEmail: user.email, userImage: user.photoURL });
+    this.setState({ currentUser: user.displayName, userID: user.uid, userEmail: user.email, userImage: user.photoURL });
   }
 
   deleteUser = () =>{
-    let user = firebase.auth().currentUser;
     if(confirm("This CANNOT be undone; are you absolutely, positively sure you want to destroy all the hard work you've done and salt the earth?")){
       alert("nice");
       browserHistory.push('/delete-user');
-      // user.delete();
     }
   }
 
@@ -211,7 +207,6 @@ class TimeTracker extends Component {
     seconds = Math.round(seconds * 100) / 100;
 
     let result = hours;
-    // let result = (hours < 10 ? "0" + hours : hours);
     result += ":" + (minutes < 10 ? "0" + minutes : minutes);
     result += ":" + (seconds  < 10 ? "0" + seconds : seconds);
     return result;

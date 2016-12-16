@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import { browserHistory } from 'react-router';
+// import { browserHistory } from 'react-router';
 
+import Credentials from './Credentials';
 import './animate.css';
 
 class DeleteUser extends Component { 
@@ -20,30 +21,11 @@ class DeleteUser extends Component {
 		return(
 			<section className="goodbye login">
 				<h1>enter your credentials one last time to delete your account</h1>
-			  <form onSubmit={ this.login }>
-          <div className="input">
-            <label  htmlFor="email">email</label>
-            <input  type="text" 
-                    placeholder="email"
-                    id="email"
-                    value={ this.state.form.email }
-                    onChange={ this.updateField } />
-          </div>
-          <div className="input">
-            <label  htmlFor="password">password</label>
-            <input  type="password"
-                    placeholder="password"
-                    id="password"
-                    value={ this.state.form.password }
-                    onChange={ this.updateField } />
-          </div>
-					<div className="error"> { this.state.error ? <code>{ this.state.error }</code> : null } 
-					</div>
-          <button className="primary cancel infinite pulse animated"
-          				onClick={ this.destroyUser }	>
-          	break my heart
-          </button>
-			  </form>
+			  <Credentials />
+	      <button className="primary cancel infinite pulse animated"
+	      				onClick={ this.destroyUser }	>
+	      	break my heart
+	      </button>
 			</section>
    	)
 	}
