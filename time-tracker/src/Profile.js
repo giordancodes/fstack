@@ -9,6 +9,7 @@ class Profile extends Component {
 				profileUser: null,
 				profileEmail: null,
 				profilePassword: null,
+				currentPassword: null,
 				profileImage: null
 			},
 			error: null
@@ -58,6 +59,17 @@ class Profile extends Component {
 				  							value={ this.state.form.password }
 				  							placeholder="just kidding" />
 			  			</label>
+			  			{ this.state.reauthCredentials ?  
+				  			<label htmlFor="currentPassword">
+					  			<span title="please enter your current password">enter password:</span>
+					  			<input 	type="password"
+					  							id="currentPassword"
+					  							onChange={ this.updateField }
+					  							value={ this.state.form.currentPassword }
+					  							placeholder="current password" />
+				  			</label>
+				  			: null
+				  		}
 					  	<div className="update">
 					  		<button className="primary"
 					  						onClick={ this.updateUserInfo } >
@@ -77,6 +89,11 @@ class Profile extends Component {
 			  </div>
 			</section>
 		)
+	}
+
+	reauth = () =>{
+		let user = firebase.auth().currentUser;
+		let result = firebase.auth().signInWithEmailAndPassword(this.props.email);
 	}
 
 	updateField = (e) =>{
@@ -104,6 +121,17 @@ class Profile extends Component {
 		}
 		if (creds.profileUser){
 			user.updateProfile({displayName: creds.profileUser})
+			.then(() => {
+				this.props.reloadUser();
+			})
+			.catch((error) =>{
+				console.log('error ' + error);
+				this.resetError(error);
+			});
+		}
+		if (creds.profileEmail){
+			this.reauth();
+			user.updateEmail(creds.profileEmail)
 			.then(() => {
 				this.props.reloadUser();
 			})

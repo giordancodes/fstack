@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+// import { browserHistory } from 'react-router';
 
 import Credentials from './Credentials';
 import './animate.css';
 
-class DeleteUser extends Component { 
+class UpdateUser extends Component { 
 	constructor(){
 		super();
 		this.state={
@@ -19,11 +20,11 @@ class DeleteUser extends Component {
 	render(){
 		return(
 			<section className="goodbye login">
-				<h1>enter your credentials one last time to delete your account</h1>
+				<h1>enter your credentials to update sensitive data in your account</h1>
 			  <Credentials />
 	      <button className="primary cancel infinite pulse animated"
 	      				onClick={ this.destroyUser }	>
-	      	break my heart
+	      	confirm
 	      </button>
 			</section>
    	)
@@ -35,20 +36,20 @@ class DeleteUser extends Component {
 		this.setState({form});
 	}
 
-	destroyUser = (e) =>{
-		e.preventDefault();
-		let result;
-		let creds = this.state.form;
-		let user = firebase.auth().currentUser;
+	// destroyUser = (e) =>{
+	// 	e.preventDefault();
+	// 	let result;
+	// 	let creds = this.state.form;
+	// 	let user = firebase.auth().currentUser;
 
-		result = firebase.auth().signInWithEmailAndPassword(creds.email, creds.password)
-		.then(user.delete())
-		.catch((error) =>{
-			console.log('error: ' + error.message);
-			this.resetError(error);
-		})
+	// 	result = firebase.auth().signInWithEmailAndPassword(creds.email, creds.password)
+	// 	.then(user.delete())
+	// 	.catch((error) =>{
+	// 		console.log('error: ' + error.message);
+	// 		this.resetError(error);
+	// 	})
 
-	}
+	// }
 
 	resetError = (error) =>{
 	  this.setState({error: error.message})
@@ -59,4 +60,4 @@ class DeleteUser extends Component {
 
 }
 
-export default DeleteUser;
+export default UpdateUser;
