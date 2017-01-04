@@ -9,8 +9,8 @@ class Profile extends Component {
 				profileUser: null,
 				profileEmail: null,
 				profilePassword: null,
-				currentPassword: null,
-				profileImage: null
+				profileImage: null,
+				currentPassword: ''
 			},
 			error: null
 		}
@@ -43,6 +43,15 @@ class Profile extends Component {
 				  							value={ this.state.form.image }
 				  							placeholder={ this.props.userImage } />
 			  			</label>
+					  	<div className="update">
+					  		<button className="primary"
+					  						onClick={ this.updateUserInfo } >
+					  			update name/image?
+					  		</button>
+					  	</div>
+		  			</form>
+		  			<hr/>
+		  			<form>
 			  			<label htmlFor="profileEmail">
 				  			<span title="a polite email will be sent to your desired new address to confirm your identity">your email:</span>
 				  			<input 	type="email"
@@ -59,23 +68,20 @@ class Profile extends Component {
 				  							value={ this.state.form.password }
 				  							placeholder="just kidding" />
 			  			</label>
-			  			{ this.state.reauthCredentials ?  
-				  			<label htmlFor="currentPassword">
-					  			<span title="please enter your current password">enter password:</span>
-					  			<input 	type="password"
-					  							id="currentPassword"
-					  							onChange={ this.updateField }
-					  							value={ this.state.form.currentPassword }
-					  							placeholder="current password" />
-				  			</label>
-				  			: null
-				  		}
-					  	<div className="update">
-					  		<button className="primary"
-					  						onClick={ this.updateUserInfo } >
-					  			update entered info?
-					  		</button>
-					  	</div>
+			  			<label className="reauth" htmlFor="currentPassword">
+				  			<span title="please enter your current password">enter password:</span>
+				  			<input 	type="password"
+				  							id="currentPassword"
+				  							onChange={ this.updateField }
+				  							value={ this.state.form.currentPassword }
+				  							placeholder="current password" />
+			  			</label>
+			  			<div className="update">
+			  				<button className="primary"
+			  								onClick={ this.updateSensitiveInfo } >
+			  					update email/password?
+			  				</button>
+			  			</div>
 			  		</form>
 			  	</div>
 			  	<form>
@@ -93,7 +99,8 @@ class Profile extends Component {
 
 	reauth = () =>{
 		let user = firebase.auth().currentUser;
-		let result = firebase.auth().signInWithEmailAndPassword(this.props.email);
+		let credential = firebase.auth.EmailAuthProvider.credential(this.props.userEmail, this.state.form.currentPassword);
+		user.reauthenticate(credential);
 	}
 
 	updateField = (e) =>{
@@ -104,7 +111,6 @@ class Profile extends Component {
 
 	updateUserInfo = (e) =>{
 		e.preventDefault();
-		// let result;
 		let creds = this.state.form;
 		let user = firebase.auth().currentUser;
 
@@ -129,9 +135,27 @@ class Profile extends Component {
 				this.resetError(error);
 			});
 		}
+	}
+
+	updateSensitiveInfo = (e) =>{
+		e.preventDefault();
+		let creds = this.state.form;
+		let user = firebase.auth().currentUser;
+
+		this.reauth();
+		
 		if (creds.profileEmail){
-			this.reauth();
 			user.updateEmail(creds.profileEmail)
+			.then(() => {
+				this.props.reloadUser();
+			})
+			.catch((error) =>{
+				console.log('error ' + error);
+				this.resetError(error);
+			});
+		}
+		if (creds.profilePassword){
+			user.updateEmail(creds.profilePassword)
 			.then(() => {
 				this.props.reloadUser();
 			})

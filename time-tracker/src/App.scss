@@ -29,6 +29,7 @@ code{
 }
 hr{
 	border-color: $liver;
+	margin: 3rem 0;
 }
 nav{
 	font-family: 'Josefin Sans', sans-serif;
@@ -51,7 +52,6 @@ nav{
 		transition: all .4s;
 		&:hover, &:focus{
 			color: $white;
-			// font-weight:800;
 		}
 		&:last-child{
 			&:focus, &:hover{
@@ -402,7 +402,6 @@ section.timer{
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			
 		}
 		input {
 			max-width: 330px;
@@ -435,7 +434,10 @@ section.timer{
 			margin-right: 1rem;
 			font-size: 2rem;
 			color: $white;
-		}
+		}	
+	}
+	label.reauth span{
+		color: $red;
 	}
 	.update{
 		text-align: right;
