@@ -84,21 +84,7 @@ class Login extends Component {
                         value={ this.state.form.name }
                         onChange={ this.updateField } />
                </div>
-               <div className="input">
-                 <label>is user machine/part-machine?</label>
-                 <label htmlFor="roboModeOff">no</label>
-                 <input  type="radio"
-                        id='roboModeOff'
-                        checked={ !this.state.roboMode }
-                        onChange={ this.verifyRobot }
-                         />
-                 <label htmlFor="roboMode">yes</label>
-                 <input  type="radio"
-                        id='roboMode'
-                        checked={ this.state.roboMode }
-                        onChange={ this.verifyRobot }
-                         />
-                </div>
+               
            </div> 
            : null }
         </form>

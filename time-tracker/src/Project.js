@@ -102,8 +102,10 @@ class Project extends Component {
   }
 
   componentDidMount(){
+    this.props.reloadUser();
     let newTime = this.props.currentProjectTime;
     this.setState({ newTime });
+
   }
 
   timeEdit = () =>{
