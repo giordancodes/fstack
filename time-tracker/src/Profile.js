@@ -148,9 +148,9 @@ class Profile extends Component {
 		let user = firebase.auth().currentUser;
 
 		e.preventDefault();
-		
+		this.reauth();
+
 		if (creds.profileEmail){
-			this.reauth();
 			user.updateEmail(creds.profileEmail)
 			.then(() => {
 				console.log('email changed')
@@ -162,7 +162,6 @@ class Profile extends Component {
 			});
 		}
 		if (creds.profilePassword){
-			this.reauth();
 			user.updatePassword(creds.profilePassword)
 			.then(() => {
 				console.log('p changed')

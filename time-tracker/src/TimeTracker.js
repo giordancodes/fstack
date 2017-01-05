@@ -78,10 +78,6 @@ class TimeTracker extends Component {
       }
     });
 
-    if(!this.state.currentUser && this.state.userID){
-      location.reload();
-    }
-
     this.firebaseRef = firebase.database().ref("projectList");
 
     // update state when child added

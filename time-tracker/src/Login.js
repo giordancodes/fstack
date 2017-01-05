@@ -93,7 +93,6 @@ class Login extends Component {
   }
 
   componentWillMount(){
-    // this.firebaseRef = firebase.database().ref("root");
     firebase.auth().onAuthStateChanged((user) =>{
       if (user){
         browserHistory.push('/');
