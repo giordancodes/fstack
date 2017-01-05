@@ -57,6 +57,9 @@ class ProjectsList extends Component {
     let p = this.props.projectsName;
     this.firebaseRef = firebase.database().ref("projectList");
     this.setState({originalName: p});
+    if(!this.props.currentUser && this.props.userID){
+      location.reload();
+    }
   }
 
   chooseProject = (id) =>{

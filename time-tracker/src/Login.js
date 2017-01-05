@@ -101,6 +101,10 @@ class Login extends Component {
     })
   }
 
+  componentWillUnmount(){
+    location.reload();
+  }
+
   updateField = (e) =>{
   	let form = this.state.form;
   	form[e.target.id] = e.target.value;

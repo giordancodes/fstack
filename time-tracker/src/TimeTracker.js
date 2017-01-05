@@ -62,7 +62,7 @@ class TimeTracker extends Component {
               firebaseRef: this.firebaseRef })}
 
           <footer>
-            © 2016 <a href="http://giordan.ca">Giordan Battaglin</a>
+            © 2017 <a href="http://giordan.ca">Giordan Battaglin</a>
           </footer>
         </div>
       </div>
@@ -77,6 +77,10 @@ class TimeTracker extends Component {
         browserHistory.push('/login');
       }
     });
+
+    if(!this.state.currentUser && this.state.userID){
+      location.reload();
+    }
 
     this.firebaseRef = firebase.database().ref("projectList");
 
