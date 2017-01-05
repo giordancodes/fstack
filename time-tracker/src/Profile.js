@@ -21,7 +21,7 @@ class Profile extends Component {
 			<section id="profilePage">
 				<h1>{ this.props.currentUser }'s Profile</h1>
 				{ this.state.error ?  
-						<h2>something went wrong, pally => { this.state.error.message }</h2>
+						<h2 className="error">{ this.state.error }</h2>
 					: null
 				}
 			  <div className="options">
@@ -100,7 +100,14 @@ class Profile extends Component {
 	reauth = () =>{
 		let user = firebase.auth().currentUser;
 		let credential = firebase.auth.EmailAuthProvider.credential(this.props.userEmail, this.state.form.currentPassword);
-		user.reauthenticate(credential);
+
+		user.reauthenticate(credential)
+		.then(() =>{
+			console.log('successfully reauthenticated');
+		})
+		.catch((error) =>{
+			console.log(error);
+		})
 	}
 
 	updateField = (e) =>{
@@ -114,14 +121,13 @@ class Profile extends Component {
 		let creds = this.state.form;
 		let user = firebase.auth().currentUser;
 
-		// console.log(user, creds, (!creds));
 		if (creds.profileImage){
 			user.updateProfile({photoURL: creds.profileImage})
 			.then(() => {
 				this.props.reloadUser();
 			})
 			.catch((error) =>{
-				console.log('error ' + error);
+				console.log(error);
 				this.resetError(error);
 			});
 		}
@@ -131,36 +137,39 @@ class Profile extends Component {
 				this.props.reloadUser();
 			})
 			.catch((error) =>{
-				console.log('error ' + error);
+				console.log(error);
 				this.resetError(error);
 			});
 		}
 	}
 
 	updateSensitiveInfo = (e) =>{
-		e.preventDefault();
 		let creds = this.state.form;
 		let user = firebase.auth().currentUser;
 
-		this.reauth();
+		e.preventDefault();
 		
 		if (creds.profileEmail){
+			this.reauth();
 			user.updateEmail(creds.profileEmail)
 			.then(() => {
+				console.log('email changed')
 				this.props.reloadUser();
 			})
 			.catch((error) =>{
-				console.log('error ' + error);
+				console.log(error);
 				this.resetError(error);
 			});
 		}
 		if (creds.profilePassword){
-			user.updateEmail(creds.profilePassword)
+			this.reauth();
+			user.updatePassword(creds.profilePassword)
 			.then(() => {
+				console.log('p changed')
 				this.props.reloadUser();
 			})
 			.catch((error) =>{
-				console.log('error ' + error);
+				console.log(error);
 				this.resetError(error);
 			});
 		}
