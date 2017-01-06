@@ -15,7 +15,7 @@ class ProjectsList extends Component {
   }
   render() {
     return (
-      <div className="projects-list wrapper">
+      <div className="projects-list">
         <h1>{ this.props.projectsName } List</h1>
         
         <Rename showRename={ this.showRename }

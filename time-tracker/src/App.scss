@@ -489,13 +489,13 @@ form.credentials{
 	}
 }
 
-@media all and (max-width: 425px) {
+@media (max-width: 425px) {
 	#profilePage form input {
 		max-width: 220px;
 	}
 }
 
-@media all and (max-width: 425px) {
+@media (max-width: 425px) {
 	#profilePage form input {
 		max-width: 220px;
 	}
@@ -513,7 +513,41 @@ form.credentials{
 	}
 }
 
-@media all and (max-width: 320px) {
+@media (max-width: 375px){
+	h1{
+		font-size: 3rem;
+	}
+	h2{
+		font-size: 2rem;
+	}
+	nav{
+		font-size: 1.6rem;
+	}
+	.primary{
+		font-size: 1.6rem;
+	}
+	.projects-list section.projects ul li{
+		font-size: 2rem;
+	}
+	.projects-list.wrapper{
+		// padding-right: 0;
+	}
+	.projects-list #renameProjects{
+		font-size: 1.2rem;
+		margin-bottom: 2rem;
+	}
+	#profilePage label span, #profilePage label{
+		font-size: 1.4rem;
+	}
+	.projects-list section.projects ul li .project-line span.time{
+		font-size: 1.8rem;
+	}
+	section.timer, section.single-project .modify-time{
+		margin-top: 2rem;
+	}
+}
+
+@media (max-width: 320px) {
 	#profilePage form input {
 		max-width: 180px;
 	}
