@@ -19,7 +19,10 @@ class Profile extends Component {
 	render(){
 		return(
 			<section id="profilePage">
-				<h1>{ this.props.currentUser }'s Profile</h1>
+				{ (this.props.currentUser) ? 
+				  <h1>{ this.props.currentUser }'s Profile</h1>
+				  : <h1>Profile</h1>
+				}
 				{ this.state.error ?  
 						<h2 className="error">{ this.state.error }</h2>
 					: null

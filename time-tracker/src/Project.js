@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 
+import RenameSingleProject from './RenameSingleProject';
 import Timer from './Timer';
 class Project extends Component {
 
@@ -19,6 +20,15 @@ class Project extends Component {
     return(
       <section className="single-project">
         <h1>{ this.props.currentProjectTitle }</h1>
+        
+        <RenameSingleProject  showRename={ this.showRename }
+                              originalName={ this.state.originalName }
+                              updateProject={ this.updateProject }
+                              onRenameConfirm={ this.onRenameConfirm }
+                              renameConfirm={ this.props.renameConfirm }
+                              rename={ this.state.rename }
+                              renameCancel={ this.renameCancel } />
+
         
         <h2>current time: <span>{ this.props.toHHMMSS(this.props.currentProjectTime) } </span></h2>
         <div className="modify-time">
@@ -51,10 +61,6 @@ class Project extends Component {
           <div>
             { !this.props.useTimer ?
               <div className="editing-time">
-                {/*<input  type="number" 
-                                        value={ this.state.newTime }
-                                        onChange={ this.newProjectTime }
-                                        min='0' /> */}
                 <form onSubmit={ this.onUpdateTime }>
                   <div className="labeled-input">
                     <input  type="number" 
@@ -105,7 +111,6 @@ class Project extends Component {
     this.props.reloadUser();
     let newTime = this.props.currentProjectTime;
     this.setState({ newTime });
-
   }
 
   timeEdit = () =>{
@@ -113,6 +118,33 @@ class Project extends Component {
     let p = this.props.currentProjectTime;
     m = !m;
     this.setState({modifyTime: m, newTime: p});
+  }
+
+  showRename = () =>{
+    this.setState({rename: true})
+  }
+
+  updateProject = (e) =>{
+    let n = this.state.newName;
+    n = e.target.value;
+    this.setState({newName: n});
+  }
+
+  onRenameConfirm = (e) =>{
+    e.preventDefault();
+    let n = this.state.newName;
+    if (n === undefined){
+      alert("You entered nothing. What are you doing?");
+    } else if (n.replace(/\s+/g, '') === ""){
+       alert("That is not sufficient; think this one over.")
+    } else {
+      this.props.renameConfirm(n);
+      this.setState({rename: false, newName: '', originalName: n});
+    }
+  }
+
+  renameCancel = () =>{
+    this.setState({rename: false, newName: ''});
   }
 
   onUpdateTime = (e) =>{

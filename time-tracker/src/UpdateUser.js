@@ -36,21 +36,6 @@ class UpdateUser extends Component {
 		this.setState({form});
 	}
 
-	// destroyUser = (e) =>{
-	// 	e.preventDefault();
-	// 	let result;
-	// 	let creds = this.state.form;
-	// 	let user = firebase.auth().currentUser;
-
-	// 	result = firebase.auth().signInWithEmailAndPassword(creds.email, creds.password)
-	// 	.then(user.delete())
-	// 	.catch((error) =>{
-	// 		console.log('error: ' + error.message);
-	// 		this.resetError(error);
-	// 	})
-
-	// }
-
 	resetError = (error) =>{
 	  this.setState({error: error.message})
 	  setTimeout(() => {

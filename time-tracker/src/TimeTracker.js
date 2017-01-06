@@ -31,7 +31,10 @@ class TimeTracker extends Component {
         </nav>
         <div className="home wrapper">
           <header>
-            <p>Hello, { this.state.currentUser }. </p>
+            { (this.state.currentUser) ? 
+              <p>Hello, { this.state.currentUser }. </p>
+              : null
+            }
             <img src={ this.state.userImage } role="presentation" />
           </header>
 
@@ -132,6 +135,10 @@ class TimeTracker extends Component {
     let userID = this.state.userID;
     this.firebaseRef.child(userID).update({projectsName: n}); 
     this.setState({rename: false, projectsName: n });
+  }
+
+  renameSingleProject = (id) =>{
+    
   }
 
   deleteProject = (id) =>{

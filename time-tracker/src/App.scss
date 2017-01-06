@@ -146,8 +146,22 @@ label, label.profileUser span{
 		background: $red;
 	}
 }
-#renameProjects{
+#renameProjects, #renameProject{
+	text-align: center;
+	font-weight: 300;
+	color: $lightblue;
+	font-size: 1.6rem;
 	margin-bottom: 6rem;
+	#rename-input{
+		text-align: center;
+		border: solid 1px $blue;
+	}
+	label:first-child{
+		margin-right: 2px;
+	}
+	label:last-child{
+		margin-left: 2px;
+	}
 }
 #renameProjectsButton{
 	&:hover, &:focus{
@@ -164,7 +178,7 @@ label, label.profileUser span{
 }
 .login {
 	.error{
-		font-size: 1.4em;
+		font-size: 1.4rem;
 		margin-bottom: 5px;
 	}
 	.greeting {
@@ -221,27 +235,6 @@ input.liveText{
 .projects-list{
 	h1{
 		margin-bottom: 10px;
-	}
-	#renameProjects{
-		text-align: center;
-		font-weight: 300;
-		color: $lightblue;
-		font-size: 1.6rem;
-		#rename-input{
-			text-align: center;
-		}
-		// label{
-		// 	cursor: pointer;
-		// 	&:hover, &:focus{
-		// 		color: $liver;
-		// 	}
-		// }
-		label:first-child{
-			margin-right: 2px;
-		}
-		label:last-child{
-			margin-left: 2px;
-		}
 	}
 	section.projects{
 		font-size: 2rem;
@@ -543,7 +536,7 @@ form.credentials{
 		font-size: 1.8rem;
 	}
 	section.timer, section.single-project .modify-time{
-		margin-top: 2rem;
+		margin-top: 3rem;
 	}
 }
 
