@@ -138,7 +138,7 @@ class Project extends Component {
     } else if (n.replace(/\s+/g, '') === ""){
        alert("That is not sufficient; think this one over.")
     } else {
-      this.props.renameConfirm(n);
+      this.props.renameSingleProject(n);
       this.setState({rename: false, newName: '', originalName: n});
     }
   }

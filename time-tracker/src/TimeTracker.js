@@ -48,6 +48,7 @@ class TimeTracker extends Component {
               userEmail: this.state.userEmail,
               userImage: this.state.userImage,
               reloadUser: this.reloadUser,
+              renameSingleProject: this.renameSingleProject,
               toHHMMSS: this.toHHMMSS,
               newProject: this.newProject,
               deleteProject: this.deleteProject,
@@ -138,7 +139,11 @@ class TimeTracker extends Component {
   }
 
   renameSingleProject = (id) =>{
-    
+    // let url = this.state.currentProject;
+    // let userID = this.state.userID;
+    // let userRef = this.firebaseRef.child(userID);
+    // userRef.child(url).update({ 'title': newTime });
+    // this.setState({ currentProjectTime: newTime });
   }
 
   deleteProject = (id) =>{
