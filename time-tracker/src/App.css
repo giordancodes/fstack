@@ -1,0 +1,547 @@
+html, body {
+  font-size: 62.5%;
+  background: #1B1725;
+  height: 100vh;
+}
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+button, a {
+  transition: all .4s;
+}
+
+code {
+  font-size: 1.6rem;
+}
+
+.wrapper {
+  padding: 0 25px 40px;
+  font-family: 'Josefin Sans', sans-serif;
+  color: #DDD;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+hr {
+  border-color: #534B62;
+  margin: 3rem 0;
+}
+
+nav {
+  font-family: 'Josefin Sans', sans-serif;
+  color: #DDD;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-size: 2.4rem;
+  border-bottom: solid 1px #534B62;
+  padding: 1rem 0;
+}
+nav a {
+  margin: 0 5px;
+  color: #226CE0;
+  text-decoration: none;
+  font-weight: 300;
+  transition: all .4s;
+}
+nav a:hover, nav a:focus {
+  color: #FAE8EB;
+}
+nav a:last-child:focus, nav a:last-child:hover {
+  color: #FF0700;
+}
+
+header {
+  text-align: center;
+}
+header p {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 300;
+  color: #00D51A;
+}
+header img {
+  max-width: 640px;
+  max-height: 140px;
+  height: auto;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  font-weight: 400;
+  padding-top: 0;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 2.4rem;
+}
+
+h4 {
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: #3E92CC;
+}
+
+label, label.profileUser span {
+  cursor: pointer;
+  color: #FAE8EB;
+  transition: all .3s;
+}
+label:hover, label:focus, label.profileUser span:hover, label.profileUser span:focus {
+  color: #534B62;
+}
+
+.primary {
+  background: #226CE0;
+  border: none;
+  color: #FAE8EB;
+  font-size: 2rem;
+  padding: 1rem;
+  font-weight: 400;
+}
+.primary:focus, .primary:hover {
+  background: #534B62;
+  color: #00D51A;
+}
+
+.secondary {
+  color: #534B62;
+  background: none;
+  border: none;
+  margin: 10px 0;
+}
+.secondary:hover, .secondary:focus {
+  color: #226CE0;
+}
+
+.primary.finish {
+  background: #00D51A;
+  color: #1B1725;
+}
+
+.primary.cancel {
+  background: #FF0700;
+}
+.primary.cancel:focus, .primary.cancel:hover {
+  color: #1B1725;
+}
+
+.delete {
+  font-size: 1.6rem;
+  background: none;
+  border: none;
+  padding-top: .6rem;
+  padding-bottom: .5rem;
+  color: #FF0700;
+}
+.delete:focus, .delete:hover {
+  color: #FAE8EB;
+  background: #FF0700;
+}
+
+#renameProjects, #renameProject {
+  text-align: center;
+  font-weight: 300;
+  color: #3E92CC;
+  font-size: 1.6rem;
+  margin-bottom: 6rem;
+}
+#renameProjects #rename-input, #renameProject #rename-input {
+  text-align: center;
+  border: solid 1px #226CE0;
+}
+#renameProjects label:first-child, #renameProject label:first-child {
+  margin-right: 2px;
+}
+#renameProjects label:last-child, #renameProject label:last-child {
+  margin-left: 2px;
+}
+
+#renameProjectsButton:hover, #renameProjectsButton:focus {
+  color: #00D51A;
+}
+
+#cancelRenameProjectsButton:hover, #cancelRenameProjectsButton:focus {
+  color: #FF0700;
+}
+
+.error {
+  color: #FF0700;
+}
+
+.login .error {
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+}
+.login .greeting {
+  height: 60px;
+  color: #3E92CC;
+}
+.login form {
+  font-size: 2rem;
+}
+.login form .input {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 2rem;
+}
+.login form .input input {
+  width: 160px;
+  background: #FAE8EB;
+  border: none;
+  padding: .5rem;
+}
+.login form .input input[type=radio] {
+  width: 20px;
+}
+.login form .input input[type=radio]:focus {
+  border: solid 2px #226CE0;
+}
+.login form .roboMode .input:last-child {
+  margin-top: 10px;
+}
+.login form .radio-sneak input[type="radio"]:checked {
+  display: none;
+}
+.login form > div {
+  padding-bottom: 10px;
+}
+.login form .button-div {
+  text-align: right;
+}
+
+input.liveText {
+  font-size: 2rem;
+  margin: 0 5px;
+  color: #226CE0;
+  background: none;
+  border: none;
+  padding: 0;
+  width: 125px;
+}
+
+.projects-list h1 {
+  margin-bottom: 10px;
+}
+.projects-list section.projects {
+  font-size: 2rem;
+}
+.projects-list section.projects ul {
+  list-style: none;
+  padding: 0;
+}
+.projects-list section.projects ul input {
+  color: #FAE8EB;
+  width: 100%;
+  border: solid 1px #3E92CC;
+  background: transparent;
+  border-radius: 5px;
+  padding: 8px 10px 5px;
+  margin-bottom: 30px;
+  transition: all .4s;
+}
+.projects-list section.projects ul input:hover, .projects-list section.projects ul input:focus {
+  background: #226CE0;
+  border-color: #FAE8EB;
+}
+.projects-list section.projects ul li {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  font-size: 2.4rem;
+}
+.projects-list section.projects ul li .project-line {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  align-items: center;
+}
+.projects-list section.projects ul li .project-line span.time {
+  font-size: 2.2rem;
+  font-weight: 400;
+  font-style: italic;
+  color: #FAE8EB;
+}
+.projects-list section.projects ul li form {
+  margin-bottom: 2rem;
+}
+.projects-list section.projects ul li span {
+  display: inline-block;
+  margin-right: 1rem;
+}
+.projects-list section.projects ul li a {
+  text-decoration: none;
+  color: #FAE8EB;
+  cursor: pointer;
+  font-size: 2.8rem;
+}
+.projects-list section.projects ul li a:hover, .projects-list section.projects ul li a:focus {
+  color: #226CE0;
+}
+
+section.single-project h2 span {
+  font-style: italic;
+  font-weight: 400;
+}
+section.single-project h3 {
+  color: #00D51A;
+}
+section.single-project h3 span {
+  font-weight: 700;
+}
+section.single-project h4 label {
+  cursor: pointer;
+  transition: all .4s;
+}
+section.single-project h4 label:hover, section.single-project h4 label:focus {
+  color: #FAE8EB;
+}
+section.single-project h4 label span {
+  color: #00D51A;
+}
+section.single-project .modify-time {
+  margin-top: 5rem;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+section.single-project .modify-time input[type=number] {
+  text-align: right;
+}
+section.single-project .modify-time .timer-buttons {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+}
+section.single-project .editing-time {
+  margin-top: 4rem;
+  text-align: center;
+}
+section.single-project .editingButtons {
+  margin-top: 3rem;
+}
+section.single-project .labeled-input {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 360px;
+  margin: 0 auto;
+}
+section.single-project .labeled-input input {
+  font-size: 4rem;
+  width: 12rem;
+  padding: 1rem 1rem .6rem;
+  margin-bottom: 1rem;
+}
+section.single-project .labeled-input label {
+  font-size: 2.4rem;
+}
+
+section.timer {
+  margin-top: 5rem;
+  text-align: center;
+  font-size: 2.2rem;
+}
+
+#profilePage h1 {
+  margin-bottom: 5rem;
+}
+#profilePage .main-options {
+  margin-bottom: 15rem;
+}
+#profilePage form label {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#profilePage form input {
+  max-width: 330px;
+  background: none;
+  border: solid 1px #534B62;
+  color: #3E92CC;
+  text-align: right;
+  flex-grow: .9;
+  padding: .5rem;
+}
+#profilePage form ::-webkit-input-placeholder {
+  color: #3E92CC;
+}
+#profilePage form ::-moz-placeholder {
+  color: #3E92CC;
+}
+#profilePage form :-ms-input-placeholder {
+  color: #3E92CC;
+}
+#profilePage button {
+  min-width: 12rem;
+}
+#profilePage label {
+  font-size: 2.4rem;
+  margin: 2rem 0;
+  color: #3E92CC;
+  cursor: pointer;
+}
+#profilePage label span {
+  margin-right: 1rem;
+  font-size: 2rem;
+  color: #FAE8EB;
+}
+#profilePage label.reauth span {
+  color: #FF0700;
+}
+#profilePage .update {
+  text-align: right;
+  margin-top: 3rem;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #534B62;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 1.6rem;
+  background: #1B1725;
+}
+footer a {
+  transition: all .6s;
+  text-decoration: none;
+  color: #534B62;
+}
+footer a:hover, footer a:focus {
+  color: #3E92CC;
+}
+
+form.credentials form input {
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+form.credentials form button {
+  margin-top: 5rem;
+  font-size: 2.4rem;
+}
+form.credentials .input label {
+  font-size: 2.4rem;
+}
+
+.goodbye {
+  text-align: center;
+}
+.goodbye h1 {
+  color: #FF0700;
+}
+.goodbye .error {
+  height: 2rem;
+}
+
+@media (max-width: 425px) {
+  #profilePage form input {
+    max-width: 220px;
+  }
+}
+@media (max-width: 425px) {
+  #profilePage form input {
+    max-width: 220px;
+  }
+
+  .projects-list section.projects ul li a {
+    font-size: 1.8rem;
+  }
+
+  section.single-project .labeled-input {
+    width: auto;
+  }
+  section.single-project .labeled-input label {
+    font-size: 1.8rem;
+  }
+  section.single-project .labeled-input input {
+    width: 9rem;
+  }
+}
+@media (max-width: 375px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  nav {
+    font-size: 1.6rem;
+  }
+
+  .primary {
+    font-size: 1.6rem;
+  }
+
+  .projects-list section.projects ul li {
+    font-size: 2rem;
+  }
+
+  .projects-list #renameProjects {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  #profilePage label span, #profilePage label {
+    font-size: 1.4rem;
+  }
+
+  .projects-list section.projects ul li .project-line span.time {
+    font-size: 1.8rem;
+  }
+
+  section.timer, section.single-project .modify-time {
+    margin-top: 3rem;
+  }
+}
+@media (max-width: 320px) {
+  #profilePage form input {
+    max-width: 180px;
+  }
+}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import { browserHistory } from 'react-router';
 
-import './App.scss';
+import './App.css';
 import './index.css';
 
 class Login extends Component {

@@ -3,7 +3,7 @@ import firebase from 'firebase';
 import { browserHistory, Link } from 'react-router';
 
 import './index.css';
-import './App.scss';
+import './App.css';
 
 class TimeTracker extends Component {
   constructor() {
