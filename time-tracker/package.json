@@ -87,5 +87,5 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "homepage": "https://timetracker-49584.firebaseapp.com/"
+  "homepage": "https://timetracker.space/"
 }
