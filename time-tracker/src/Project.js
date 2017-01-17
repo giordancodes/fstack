@@ -24,7 +24,7 @@ class Project extends Component {
         <RenameSingleProject  showRename={ this.showRename }
                               originalName={ this.state.originalName }
                               updateProject={ this.updateProject }
-                              onRenameConfirm={ this.onRenameConfirm }
+                              onRenameSingleConfirm={ this.onRenameSingleConfirm }
                               renameConfirm={ this.props.renameConfirm }
                               rename={ this.state.rename }
                               renameCancel={ this.renameCancel } />
@@ -130,15 +130,17 @@ class Project extends Component {
     this.setState({newName: n});
   }
 
-  onRenameConfirm = (e) =>{
+  onRenameSingleConfirm = (e) =>{
     e.preventDefault();
     let n = this.state.newName;
+    let id = this.props.currentProject;
     if (n === undefined){
-      alert("You entered nothing. What are you doing?");
+      alert("Nothing entered. Please try again.");
     } else if (n.replace(/\s+/g, '') === ""){
-       alert("That is not sufficient; think this one over.")
+       alert("That is not sufficient; please try again.")
     } else {
-      this.props.renameSingleProject(n);
+      this.props.renameSingleProject(n, id);
+
       this.setState({rename: false, newName: '', originalName: n});
     }
   }

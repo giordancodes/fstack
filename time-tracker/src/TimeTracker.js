@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import { browserHistory, Link } from 'react-router';
 
-// import { toHHMMSS } from '../helpers';
 import './index.css';
 import './App.scss';
 
@@ -138,12 +137,11 @@ class TimeTracker extends Component {
     this.setState({rename: false, projectsName: n });
   }
 
-  renameSingleProject = (id) =>{
-    // let url = this.state.currentProject;
-    // let userID = this.state.userID;
-    // let userRef = this.firebaseRef.child(userID);
-    // userRef.child(url).update({ 'title': newTime });
-    // this.setState({ currentProjectTime: newTime });
+  renameSingleProject = (n, id) =>{
+    let userID = this.state.userID;
+    let userRef = this.firebaseRef.child(userID);
+    userRef.child(id).update({ 'title': n });
+    this.setState({ currentProjectTitle: n });
   }
 
   deleteProject = (id) =>{

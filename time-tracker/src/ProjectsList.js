@@ -88,9 +88,9 @@ class ProjectsList extends Component {
     e.preventDefault();
     let n = this.state.newName;
     if (n === undefined){
-      alert("You entered nothing. What are you doing?");
+      alert("Nothing entered. Please try again.");
     } else if (n.replace(/\s+/g, '') === ""){
-       alert("That is not sufficient; think this one over.")
+       alert("That is not sufficient; please try again.")
     } else {
       this.props.renameConfirm(n);
       this.setState({rename: false, newName: '', originalName: n});
@@ -119,7 +119,6 @@ class ProjectsList extends Component {
     }
 
     if (this.state.newProjectName !== ''){
-      // this.firebaseRef.push(newProject);
       this.firebaseRef.child(userID).push(newProject);
       this.setState({newProjectName: '', projects: projects})
     }

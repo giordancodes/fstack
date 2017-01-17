@@ -13,7 +13,7 @@ class RenameSingleProject extends Component {
 		return(
 			<section id="renameProject">
 			  <div>
-			    <form onSubmit={ this.props.onRenameConfirm }>
+			    <form onSubmit={ this.props.onRenameSingleConfirm }>
 			      <label  htmlFor="rename-input"
 			              onClick={ this.props.showRename }
 			              >change&nbsp;</label> 
@@ -32,7 +32,7 @@ class RenameSingleProject extends Component {
 			  </div>
 			  { this.props.rename ?
 			    <div>
-			      <button onClick={ this.props.onRenameConfirm }
+			      <button onClick={ this.props.onRenameSingleConfirm }
 			              className="secondary"
 			              id="renameProjectsButton" >
 			        <code>confirm</code>
