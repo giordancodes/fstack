@@ -51,7 +51,7 @@ nav a {
   transition: all .4s;
 }
 nav a:hover, nav a:focus {
-  color: #FAE8EB;
+  color: #EEE;
 }
 nav a:last-child:focus, nav a:last-child:hover {
   color: #FF0700;
@@ -447,7 +447,7 @@ footer {
   text-align: center;
   padding: 10px 0;
   font-size: 1.6rem;
-  background: #1B1725;
+  background: rgba(0,0,0,.3);
 }
 footer a {
   transition: all .6s;

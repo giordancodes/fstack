@@ -121,6 +121,7 @@ class ProjectsList extends Component {
     if (this.state.newProjectName !== ''){
       this.firebaseRef.child(userID).push(newProject);
       this.setState({newProjectName: '', projects: projects})
+      window.scrollTo(0,document.body.scrollHeight);
     }
   }
 

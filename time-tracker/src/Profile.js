@@ -57,6 +57,10 @@ class Profile extends Component {
 					  	</div>
 		  			</form>
 		  			<hr/>
+		  			<div className="info"> 
+		  				<h4>to change your email or password, </h4>
+		  				<h4>enter your password in the final box</h4>
+		  			</div>
 		  			<form>
 			  			<label htmlFor="profileEmail">
 				  			<span title="a polite email will be sent to your desired new address to confirm your identity">your email:</span>
