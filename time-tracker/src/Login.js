@@ -16,8 +16,7 @@ class Login extends Component {
 			},
 			mode: 'login',
       roboMode: false,
-			error: null
-		}
+			error: null		}
 	}
 
   render() {
@@ -37,7 +36,7 @@ class Login extends Component {
         <form onSubmit={ this.login }>
           <div className="input">
             <label  htmlFor="email">email</label>
-            <input  type="text" 
+            <input  type="email" 
                     placeholder="email"
                     id="email"
                     value={ this.state.form.email }
@@ -75,7 +74,7 @@ class Login extends Component {
            </div>
            <div className="error"> { this.state.error ? <code>{ this.state.error }</code> : null } </div>
             { (this.state.mode === 'signup' ) ?
-              <div className='roboMode'>
+              <div>
               <div className="input">
                 <label  htmlFor="name">name of user</label>
                 <input  type="text" 
@@ -124,20 +123,25 @@ class Login extends Component {
     e.preventDefault();
     let result;
     let creds = this.state.form;
+    let newName = this.state.form.name;
     if(this.state.mode === "login"){
       result = firebase.auth().signInWithEmailAndPassword(
         creds.email, creds.password)
     } else {
-      result = firebase.auth().createUserWithEmailAndPassword(creds.email, creds.password)
-      .then((user) => {
-        return user.updateProfile({ displayName: creds.name })
-      })
+      if (newName.replace(/\s/g,'') !== '' || newName){
+        result = firebase.auth().createUserWithEmailAndPassword(creds.email, creds.password)
+        .then((user) => {
+          return user.updateProfile({ displayName: creds.name })
+        })
+      } else {
+        this.setState({error: 'Please enter a username'});
+      }
     }
     result.then((data) => {
       browserHistory.push('/');
     })
     .catch((error) => {
-      console.log('error: ' + error);
+      console.log(error);
       this.resetError(error);
     })
   }

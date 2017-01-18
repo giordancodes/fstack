@@ -80,6 +80,7 @@ h1, h2, h3 {
 
 h1 {
   font-size: 4rem;
+  margin: 2rem 0;
 }
 
 h2 {
@@ -239,9 +240,6 @@ input.liveText {
   width: 125px;
 }
 
-.projects-list h1 {
-  margin-bottom: 10px;
-}
 .projects-list section.projects {
   font-size: 2rem;
 }
@@ -381,8 +379,12 @@ section.timer {
   font-size: 2.2rem;
 }
 
-#profilePage h1 {
-  margin-bottom: 5rem;
+#profilePage .info h4 {
+  text-align: center;
+  margin-bottom: 4rem;
+  color: #3E92CC;
+  font-weight: 400;
+  font-style: italic;
 }
 #profilePage .main-options {
   margin-bottom: 15rem;

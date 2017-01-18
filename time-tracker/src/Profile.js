@@ -27,6 +27,9 @@ class Profile extends Component {
 						<h2 className="error">{ this.state.error }</h2>
 					: null
 				}
+				<div className="info"> 
+					<h4>update your info here</h4>
+				</div>
 			  <div className="options">
 			  	<div className="main-options">
 			  		<form>

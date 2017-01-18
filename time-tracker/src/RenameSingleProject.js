@@ -27,7 +27,7 @@ class RenameSingleProject extends Component {
 			      }
 			      <label  htmlFor="rename-input"
 			              onClick={ this.props.showRename }
-			              >&nbsp;name?</label>
+			              >name?</label>
 			    </form>
 			  </div>
 			  { this.props.rename ?
