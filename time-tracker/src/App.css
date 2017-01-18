@@ -7,7 +7,9 @@ html, body {
 body {
   font-family: 'Josefin Sans', sans-serif;
 }
-
+#root{
+  padding-bottom: 5rem;
+}
 button, a {
   transition: all .4s;
 }
@@ -447,7 +449,7 @@ footer {
   text-align: center;
   padding: 10px 0;
   font-size: 1.6rem;
-  background: rgba(0,0,0,.3);
+  background: rgba(0,0,0,.8);
 }
 footer a {
   transition: all .6s;

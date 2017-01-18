@@ -169,6 +169,7 @@ class TimeTracker extends Component {
     useTimer = !useTimer;
     this.setState({ start: new Date(), useTimer });
     this.timer = setInterval(this.tick, 50);
+    window.scrollTo(0,document.body.scrollHeight);
   }
 
   stopTimer = () =>{

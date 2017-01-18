@@ -31,6 +31,10 @@ class Project extends Component {
 
         
         <h2>current time: <span>{ this.props.toHHMMSS(this.props.currentProjectTime) } </span></h2>
+        { this.props.useTimer ?  
+          <Timer elapsed={ this.props.elapsed } />
+          : null
+        }
         <div className="modify-time">
           { !this.props.useTimer ? 
               <button className="primary"
@@ -91,10 +95,6 @@ class Project extends Component {
             : null
           }
           </div>
-          : null
-        }
-        { this.props.useTimer ?  
-          <Timer elapsed={ this.props.elapsed } />
           : null
         }
       </section>
