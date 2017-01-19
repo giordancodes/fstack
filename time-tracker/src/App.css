@@ -486,6 +486,9 @@ form.credentials .input label {
   #profilePage form input {
     max-width: 220px;
   }
+  #profilePage form label{
+    font-size: 1.8rem;
+  }
 }
 @media (max-width: 425px) {
   #profilePage form input {

@@ -35,32 +35,6 @@ class Project extends Component {
           <Timer elapsed={ this.props.elapsed } />
           : null
         }
-        <div className="modify-time">
-          { !this.props.useTimer ? 
-              <button className="primary"
-                      onClick={ this.props.startTimer } >
-                      start time?
-              </button> 
-              :
-              <div className="timer-buttons">
-                <button className="primary"
-                        onClick={ this.props.stopAndSaveTimer } >
-                        stop and save?
-                </button> 
-                <button className="primary cancel"
-                        onClick={ this.props.stopTimer } >
-                        revert?
-                </button>
-              </div>
-               }
-          { !this.props.useTimer ? 
-            <button className="primary"
-                    onClick={ this.timeEdit } >
-              change time?
-            </button>
-            : null
-          }
-        </div>
         { this.state.modifyTime ?
           <div>
             { !this.props.useTimer ?
@@ -97,6 +71,32 @@ class Project extends Component {
           </div>
           : null
         }
+        <div className="modify-time">
+          { !this.props.useTimer ? 
+              <button className="primary"
+                      onClick={ this.props.startTimer } >
+                      start time?
+              </button> 
+              :
+              <div className="timer-buttons">
+                <button className="primary"
+                        onClick={ this.props.stopAndSaveTimer } >
+                        stop and save?
+                </button> 
+                <button className="primary cancel"
+                        onClick={ this.props.stopTimer } >
+                        revert?
+                </button>
+              </div>
+               }
+          { !this.props.useTimer ? 
+            <button className="primary"
+                    onClick={ this.timeEdit } >
+              change time?
+            </button>
+            : null
+          }
+        </div>
       </section>
     )
   }
@@ -118,6 +118,26 @@ class Project extends Component {
     let p = this.props.currentProjectTime;
     m = !m;
     this.setState({modifyTime: m, newTime: p});
+  }
+  
+  cancelTimeEdit = () =>{
+    let newTime = this.state.newTime;
+    let currentTime = this.props.currentProjectTime;
+    this.setState({ newTime: currentTime });
+    // this.timeEdit();
+  }
+
+  onUpdateTime = (e) =>{
+    e.preventDefault();
+    
+    let t = this.state.newTime;
+    let h = this.state.form.newTimeHours;
+    let m = this.state.form.newTimeMinutes;
+
+    let result = t + (h * 3600) + (m * 60);
+
+    this.props.updateTime(result);
+    this.timeEdit();
   }
 
   showRename = () =>{
@@ -147,26 +167,6 @@ class Project extends Component {
 
   renameCancel = () =>{
     this.setState({rename: false, newName: ''});
-  }
-
-  onUpdateTime = (e) =>{
-    e.preventDefault();
-    
-    let t = this.state.newTime;
-    let h = this.state.form.newTimeHours;
-    let m = this.state.form.newTimeMinutes;
-
-    let result = t + (h * 3600) + (m * 60);
-
-    this.props.updateTime(result);
-    this.timeEdit();
-  }
-
-  cancelTimeEdit = () =>{
-    let newTime = this.state.newTime;
-    newTime = this.props.currentProjectTime;
-    this.setState({ newTime });
-    this.timeEdit();
   }
 
   onSetCurrentProjectTimeAndTitle = (x, y) =>{

@@ -47,6 +47,7 @@ class TimeTracker extends Component {
               userEmail: this.state.userEmail,
               userImage: this.state.userImage,
               reloadUser: this.reloadUser,
+              scrollDown: this.scrollDown,
               renameSingleProject: this.renameSingleProject,
               toHHMMSS: this.toHHMMSS,
               newProject: this.newProject,
@@ -169,7 +170,7 @@ class TimeTracker extends Component {
     useTimer = !useTimer;
     this.setState({ start: new Date(), useTimer });
     this.timer = setInterval(this.tick, 50);
-    window.scrollTo(0,document.body.scrollHeight);
+    this.scrollDown();
   }
 
   stopTimer = () =>{
@@ -201,6 +202,10 @@ class TimeTracker extends Component {
   reloadUser = () =>{
     let user = firebase.auth().currentUser;
     this.setState({ currentUser: user.displayName, userID: user.uid, userEmail: user.email, userImage: user.photoURL });
+  }
+
+  scrollDown = () =>{
+    window.setTimeout(window.scrollTo(0,document.body.scrollHeight), 1000);
   }
 
   deleteUser = () =>{

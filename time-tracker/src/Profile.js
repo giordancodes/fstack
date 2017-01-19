@@ -71,12 +71,12 @@ class Profile extends Component {
 				  							placeholder={ this.props.userEmail } />
 							</label>
 			  			<label htmlFor="profilePassword">
-				  			<span title="we would never actually show your real password here, unless it was 'just kidding'">your password:</span>
+				  			<span title="we would never actually show your real password here">your password:</span>
 				  			<input 	type="password"
 				  							id="profilePassword"
 				  							onChange={ this.updateField }
 				  							value={ this.state.form.password }
-				  							placeholder="just kidding" />
+				  							placeholder="*******" />
 			  			</label>
 			  			<label className="reauth" htmlFor="currentPassword">
 				  			<span title="please enter your current password">enter password:</span>

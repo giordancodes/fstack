@@ -30,7 +30,7 @@ class ProjectsList extends Component {
         <section  className="projects" 
                   onSubmit={ this.newProject } >
           { (this.state.erroneousName) ? 
-            <p className="error">Please enter a project name that isn't all spaces</p>
+            <p className="error">'Tis an invalid project name</p>
             : null
           }
           <ul>
@@ -126,7 +126,7 @@ class ProjectsList extends Component {
     if (this.state.newProjectName.replace(/\s/g,'') !== ''){
       this.firebaseRef.child(userID).push(newProject);
       this.setState({newProjectName: '', projects: projects})
-      window.scrollTo(0,document.body.scrollHeight);
+      this.props.scrollDown();
       this.setState({erroneousName:false});
     } else{
       this.setState({erroneousName:true});
