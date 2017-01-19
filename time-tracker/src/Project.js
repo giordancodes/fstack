@@ -59,10 +59,10 @@ class Project extends Component {
                             onClick={ this.onUpdateTime } >
                       finish?
                     </button>
-                    <button className="primary cancel"
-                            onClick={ this.cancelTimeEdit } >
-                      cancel?
-                    </button>
+                    {/*<button className="primary cancel"
+                                                onClick={ this.cancelTimeEdit } >
+                                          cancel?
+                                        </button>*/}
                   </div>
                 </form>
               </div>
@@ -124,7 +124,7 @@ class Project extends Component {
     let newTime = this.state.newTime;
     let currentTime = this.props.currentProjectTime;
     this.setState({ newTime: currentTime });
-    // this.timeEdit();
+    this.timeEdit();
   }
 
   onUpdateTime = (e) =>{
